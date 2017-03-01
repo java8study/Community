@@ -1,1 +1,2 @@
-#JongRyul's RABBITMQ Sample
+# Community
+Java Study Community Site

@@ -1,1 +1,2 @@
-#JongRyul's Spring Batch
+# Community
+Java Study Community Site

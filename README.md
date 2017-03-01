@@ -1,2 +1,2 @@
 # Community
-JongRyul's Community Site
+Java Study Community Site

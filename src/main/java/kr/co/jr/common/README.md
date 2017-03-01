@@ -1,1 +1,2 @@
-#JongRyul's Common Code
+# Community
+Java Study Community Site
