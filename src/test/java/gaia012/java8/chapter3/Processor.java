@@ -54,7 +54,7 @@ public class Processor {
     }
 
     @Test
-    public void execution3(){
+    public void execute3(){
         String str = "3";
         Function<String, Integer> stringToInteger =
                 (String s) -> Integer.parseInt(s);
