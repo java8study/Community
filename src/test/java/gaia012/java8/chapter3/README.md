@@ -54,7 +54,7 @@ List<Apple> greenApples = filter(inventory, a -> "green".equals(a.getColor()));
 메서드 레퍼런스(클래스명::메소드명)
 Apple::getWeight == (apple a) a -> a.getWeight()
 
-MergeTest2
-MergeTest2
-MergeTest2
-MergeTest2
+MergeTest5
+MergeTest5
+MergeTest5
+MergeTest5
