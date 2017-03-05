@@ -24,7 +24,6 @@ public class Processor {
     public String processFile() throws IOException {
         String filePath = new File(".").getAbsolutePath().replace(".", "");
         try (BufferedReader br = new BufferedReader(new FileReader(filePath + "src/test/java/gaia012/java8/chapter3/data.txt"))) {
-//            "D:\\development\\intellij\\workspace\\Community\\src\\test\\java\\gaia012\\java8\\chapter3\\data.txt"
             return br.readLine();
         }
     }
