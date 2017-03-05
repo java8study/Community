@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import org.junit.Test;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
@@ -21,13 +22,16 @@ public class Processor {
 
     //    Before
     public String processFile() throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader("D:\\development\\intellij\\workspace\\Community\\src\\test\\java\\gaia012\\java8\\chapter3\\data.txt"))) {
+        String filePath = new File(".").getAbsolutePath().replace(".", "");
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath + "src/test/java/gaia012/java8/chapter3/data.txt"))) {
+//            "D:\\development\\intellij\\workspace\\Community\\src\\test\\java\\gaia012\\java8\\chapter3\\data.txt"
             return br.readLine();
         }
     }
 
     public String processFile(BufferedReaderProcessor p) throws IOException {
-        try (BufferedReader br = new BufferedReader(new FileReader("D:\\development\\intellij\\workspace\\Community\\src\\test\\java\\gaia012\\java8\\chapter3\\data.txt"))) {
+        String filePath = new File(".").getAbsolutePath().replace(".", "");
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath + "src/test/java/gaia012/java8/chapter3/data.txt"))) {
             return p.process(br);
         }
     }
@@ -54,7 +58,7 @@ public class Processor {
     }
 
     @Test
-    public void execute3(){
+    public void execute3() {
         String str = "3";
         Function<String, Integer> stringToInteger =
                 (String s) -> Integer.parseInt(s);
@@ -70,5 +74,18 @@ public class Processor {
         BiPredicate<List<String>, String> contain2 = List::contains;
 
         assertThat(contain.test(param, "3"), is(contain2.test(param, "3")));
+    }
+
+    private int paramToStrings(String... str) {
+//        str : 배열
+        for (String s : str) {
+            System.out.println(s);
+        }
+        return str.length;
+    }
+
+    @Test
+    public void paramToStringTest() {
+        assertThat(paramToStrings("11", "22", "33", "44", "55"), is(5));
     }
 }
