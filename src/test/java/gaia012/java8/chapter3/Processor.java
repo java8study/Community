@@ -1,6 +1,7 @@
 package gaia012.java8.chapter3;
 
 import com.google.common.collect.Lists;
+import gaia012.java8.chapter2.Apple;
 import org.junit.Test;
 
 import java.io.BufferedReader;
@@ -50,7 +51,7 @@ public class Processor {
     public void execute2() {
 //      람다 안에서 사용되는 지역변수는 final(상수)처럼 사용되어야 한다.
 
-        final int portNumber = 1337;
+        int portNumber = 1337;
         Runnable r = () -> System.out.println(portNumber);
 //        portNumber = 31337;
         assertThat(portNumber, is(1337));
@@ -58,10 +59,11 @@ public class Processor {
 
     @Test
     public void execute3() {
+
         String str = "3";
-        Function<String, Integer> stringToInteger =
-                (String s) -> Integer.parseInt(s);
+        Function<String, Integer> stringToInteger = (String s) -> Integer.parseInt(s);
         Function<String, Integer> stringToInteger2 = Integer::parseInt;
+
         assertThat(stringToInteger.apply(str), is(stringToInteger2.apply(str)));
 
         List<String> param = Lists.newArrayList();
@@ -86,5 +88,35 @@ public class Processor {
     @Test
     public void paramToStringTest() {
         assertThat(paramToStrings("11", "22", "33", "44", "55"), is(5));
+    }
+
+    @Test
+    public void execute5(){
+        List<Apple> list = Lists.newArrayList();
+        Apple apple1 = new Apple();
+        apple1.setWeight(150);
+        apple1.setColor("red");
+
+        Apple apple2 = new Apple();
+        apple2.setWeight(160);
+        apple2.setColor("green");
+
+        Apple apple3 = new Apple();
+        apple3.setWeight(170);
+        apple3.setColor("white");
+
+        list.add(apple1);
+        list.add(apple2);
+        list.add(apple3);
+
+        List<Apple> result = Lists.newArrayList();
+        for(Apple apple : list){
+            if(apple.getColor().equals("red")) {
+                result.add(apple);
+            }
+        }
+
+        assertThat(result.size(), is(1));
+        assertThat(result.get(0).getWeight(), is(150));
     }
 }
