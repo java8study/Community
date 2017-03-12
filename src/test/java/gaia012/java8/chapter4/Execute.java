@@ -1,14 +1,13 @@
 package gaia012.java8.chapter4;
 
+import com.google.common.collect.Lists;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -40,9 +39,57 @@ public class Execute {
     }
 
     @Test
-    public void execute2(){
+    public void execute2() {
         List<Dish> result = menu.stream().filter(d -> d.getCalories() > 300).skip(2).collect(Collectors.toList());
         assertThat(result.get(0).getName(), is("chicken"));
         assertThat(result.get(1).getName(), is("french fries"));
+    }
+
+    @Test
+    public void execute3() {
+        String str = "banana";
+        Map<String, Integer> map = new HashMap<>();
+
+        /**
+         * 모든 경우의 수를 찾기.
+         */
+        for (int i = 0; i <= str.length(); i++) {
+            for (int j = i + 2; j <= str.length(); j++) {
+                String tmp = str.substring(i, j);
+                if (!map.containsKey(tmp)) {
+                    map.put(tmp, 1);
+                } else {
+                    map.put(tmp, map.get(tmp) + 1);
+                }
+            }
+        }
+
+
+        /**
+         * Max값 구하기.
+         */
+        int maxValue = map.values().stream().mapToInt(i -> i).max().getAsInt();
+
+        /**
+         * 최대값과 같은 걸 찾아서 출력
+         *  일반 for문
+         */
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            if (entry.getValue() == maxValue) {
+                System.out.println(entry.getKey() + " : " + entry.getValue());
+            }
+        }
+
+        System.out.println("--------------------------------");
+
+        /**
+         * 최대값과 같은 걸 찾아서 출력
+         *  java8 Stream 이용
+         */
+        map.entrySet().stream().filter(item -> item.getValue() == maxValue).forEach(item ->
+                System.out.println(item.getKey() + " : " + item.getValue())
+        );
+
+
     }
 }
