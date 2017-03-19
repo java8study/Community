@@ -19,6 +19,7 @@ public class Apple {
 	}
 
 	public void setWeight(int weight) {
+		
 		this.weight = weight;
 	}
 
