@@ -12,4 +12,12 @@ public class Apple {
     private String color;
     private int weight;
 
+
+    public Apple() {
+
+    }
+    public Apple(int weight, String color) {
+        this.weight = weight;
+        this.color = color;
+    }
 }
