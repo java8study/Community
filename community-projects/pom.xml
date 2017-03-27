@@ -4,14 +4,15 @@
 	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>kr.co.jr</groupId>
+		<groupId>community</groupId>
 		<artifactId>Community</artifactId>
-		<version>1.0-SNAPSHOT</version>
+		<version>${project.version}</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
-	<groupId>kr.co.jr</groupId>
+	<groupId>community</groupId>
 	<artifactId>community-projects</artifactId>
 	<packaging>pom</packaging>
-	<version>1.0-SNAPSHOT</version>
+	<version>${project.version}</version>
 	<name>community-projects</name>
 
 	<modules>
