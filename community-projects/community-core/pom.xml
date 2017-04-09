@@ -32,12 +32,6 @@
         </dependency>
         <dependency>
             <groupId>community</groupId>
-            <artifactId>support-test</artifactId>
-            <version>${project.version}</version>
-            <type>pom</type>
-        </dependency>
-        <dependency>
-            <groupId>community</groupId>
             <artifactId>support-orm</artifactId>
             <version>${project.version}</version>
             <type>pom</type>
