@@ -82,9 +82,53 @@
 			    .mapToInt(Dish::getCalories)		<- 언박싱 과정 생략. IntStream 반환
 			    .sum();
 
-	* 일반 스트림으로 변환
+  * 일반 스트림으로 변환
     -> Stream<Integer> stream = intStream.boxed();		<- 숫자 스트림을 스트림으로 반환
 
 
 
-#### 5.7 
+#### 5.7 스트림 만들기
+-> 스트림은 데이터 처리 질의를 표현하는 강력한 도구, 다양한 방식으로 스트림을 만들 수 있으며, 일련의 값 / 배열 / 파일 / 함수 이용 무한 스트림 등
+
+  * 값으로 스트림 만들기
+    -> Stream<String> strem = Stream.of(“Java 8”, “Lambdas”, “In”, “Action”);
+
+  * 배열로 스트림 만들기
+    -> 	int [] numbers = {2, 3, 5, 7, 11, 13};
+	int sum = Arrays.stream(numbers).sum();		<- IntStream 으로 변환
+
+  * 함수로 무한 스트림 만들기 - iterate / generate
+    -> 	Stream.iterate(0, n -> n + 2).limit(10).forEach(System.out::prntln);
+  * iterate 는 끝이 없으므로 무한 스트림을 만든다. 스트림과 컬렉션의 가장 큰 차이
+  Stream.generate(Math::random).limit(5).forEach(System.out::println);
+  * generate 는 생성된 각 값을 연속적으로 계산하지 않는다.
+
+
+
+#### 6 컬렉터
+-> 무엇을 원하는지 직접 명시하여 어떤 방법으로 얻을지 신경 쓸 필요가 없게 된다. 그동안 작업한 collect(toList()) / collect(groupingBy()) 등	 리듀싱 연산이 내부적으로 수행 된다.
+
+  * 값으로 스트림 만들기
+    -> Stream<String> strem = Stream.of(“Java 8”, “Lambdas”, “In”, “Action”);
+
+
+
+#### 6.2.1 스트림값에서 최댓값과 최솟값 검색
+-> Collectors.maxBy / Collectors.minBy 두 개의 메서드를 사용
+
+  * Collectors.maxBy
+    -> Comparator<Dish> dishCaloriesComparator = Comparator.comparingInt(Dish::getCalories);
+	Optional<Dish> mostCalorieDish = menu.stream().collect(maxBy(dishCaloreisComparator));
+	
+	maxBy 컬렉터는 스트림 요소 비교를 위해 Comparator 인수로 받는다.
+
+
+
+#### 6.2.2 요약 연산
+-> Collectors.summingInt 라는 특별한 요약 메서드를 제공한다. int 로 매핑하는 함수를 인수로 받는다. Collectors.summarizingInt 는 최대 / 평균 / 합계 등 두 개 이상의 연산을 한 번에 수행하기 위한 메서드
+
+  * Collectors.summingInt
+    -> int totalCalories = menu.stream().collect(summingInt(Dish::getCalories));
+
+  * Collectors.summarizingInt 
+    -> int totalCalories = menu.stream().collect(summingInt(Dish::getCalories));
