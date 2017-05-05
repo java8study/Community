@@ -131,4 +131,26 @@
     -> int totalCalories = menu.stream().collect(summingInt(Dish::getCalories));
 
   * Collectors.summarizingInt 
-    -> int totalCalories = menu.stream().collect(summingInt(Dish::getCalories));
+    -> IntSummarStatics menuStatistics = menu.stream().collect(summarizingInt(Dish::getCalories));
+	=> IntSummaryStatistics { count = 9, sum = 4300, min = 120, ... }
+
+
+
+#### 6.2.3 문자열 연결
+-> 내부적으로 StringBuilder 를 이용하여 문자열을 연결하는 joining 팩토리 메서드
+
+  * joining
+    -> String shortMenu = menu.stream().map(Dish::getName).collect(joining());
+  * 내부적으로 toString 메서드를 포함하면 생략이 가능하다.
+  => String shortMenu = menu.stream().collect(joining());
+
+
+
+#### 6.2.4 범용 리듀싱 요약 연산
+-> 모든 컬렉터는 reducing 팩토리 메서드로 구현이 가능하다.
+
+  * reducing
+    -> 세 개의 인수를 받는다.
+	A. 리듀싱 연산의 시작값 이거나 스트림에 인수가 없을 때의 반환값
+	B. 변환 함수 (요리를 칼로리 정수로 변환하는 Dish::getCalories)
+	C. 같은 종류의 두 항목을 하나의 값으로 더하는 BinaryOperator
