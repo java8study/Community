@@ -1,6 +1,6 @@
 # CHAPTER. 12 새로운 날짜와 시간 API
 
-### 최초 java.util.Date 는 날짜와 시간 표현에 있어 애매하고 유용성 떨어짐
+### 최초 java.util.Date 는 날짜와 시간 표현에 있어 애매하고 유용성 떨어짐
 -> 1900년을 기준으로 하는 오프셋과 0에서 시작하는 달
 ex) Date date = new Date(114, 2, 18);
 => Tue Mar 18 00:00:00 CET 2014
