@@ -6,13 +6,13 @@ Chapter 4.
 		(java.util.stream.Stream 참고)
 	- 코드로 질의표현 -> 컬렉션 데이터 처리
 	- 쓰레드를 이용하지 않고 병렬로 처리가능
-		ex) 
+		- ex) 
 			List<String> lowCaloricDishesName = menu.stream().~
 			List<String> lowCaloricDishesName = menu.parallelstream().~  => 병렬로 실행
 	- 선언형 코드로 작성가능
-		filter / sorted / map / collect 같은 빌딩블록연산을 연결해 복잡한 데이터 처리 파이프라인을 만들 수 있다. (가독성, 명확성)
-		이는 특정 스레딩 모델에 제한되지 않고 자유롭게 사용가능 (단일/멀티 스레드)
-		parallelstream을 쓰면 스레드와 락 걱정을 할 필요가 없다. 알아서 해준다!
+		- filter / sorted / map / collect 같은 빌딩블록연산을 연결해 복잡한 데이터 처리 파이프라인을 만들 수 있다. (가독성, 명확성)
+		 이는 특정 스레딩 모델에 제한되지 않고 자유롭게 사용가능 (단일/멀티 스레드)
+		 parallelstream을 쓰면 스레드와 락 걱정을 할 필요가 없다. 알아서 해준다!
 		------------------------------------------------------
 		import static java.util.Comparator.comparing;
 		import static java.util.stream.Collectors.toList;
@@ -66,14 +66,14 @@ Chapter 5.
 
 - 스트림 활용
 	- 필터링/슬라이싱
-		-필더링은 프레디케이트 함수를 인수로받아서 스트림반환 가능
+		- 필더링은 프레디케이트 함수를 인수로받아서 스트림반환 가능
 		- .distinct() 가능
 		- 스트림 축소
 			.limit(n)
 		- 요소 건너뛰기
 			.skip(n)
 	- 매핑
-		테이블에서 특정 열 데이터 선택가능
+		- 테이블에서 특정 열 데이터 선택가능
 		------------------------------------------------------
 		List <Integer> di shNameLengths = 
 			menu.stream ()
