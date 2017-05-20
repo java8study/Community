@@ -56,9 +56,9 @@ ex) LocalDate date = LocalDate.parse(“2014-03-18”);
       
       
   * 날짜와 시간 조합 가능
-  
+    
 ex) LocalDateTime dt = LocalDateTime.of(2014, Month.MARCH, 18, 13, 45, 20);
-  * 2014-03-18T13:45:20
+    2014-03-18T13:45:20
       
       
   * 기계의 날짜와 시간
