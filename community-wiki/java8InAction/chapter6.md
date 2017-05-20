@@ -1,6 +1,7 @@
 # CHAPTER. 06
 #### 6 컬렉터
--> 무엇을 원하는지 직접 명시하여 어떤 방법으로 얻을지 신경 쓸 필요가 없게 된다. 그동안 작업한 collect(toList()) / collect(groupingBy()) 등	 리듀싱 연산이 내부적으로 수행 된다.
+-> 무엇을 원하는지 직접 명시하여 어떤 방법으로 얻을지 신경 쓸 필요가 없게 된다. 
+그동안 작업한 collect(toList()) / collect(groupingBy()) 등	 리듀싱 연산이 내부적으로 수행 된다.
 
   * 값으로 스트림 만들기
     -> Stream<String> strem = Stream.of(“Java 8”, “Lambdas”, “In”, “Action”);
@@ -19,7 +20,8 @@
 
 
 #### 6.2.2 요약 연산
--> Collectors.summingInt 라는 특별한 요약 메서드를 제공한다. int 로 매핑하는 함수를 인수로 받는다. Collectors.summarizingInt 는 최대 / 평균 / 합계 등 두 개 이상의 연산을 한 번에 수행하기 위한 메서드
+-> Collectors.summingInt 라는 특별한 요약 메서드를 제공한다. int 로 매핑하는 함수를 인수로 받는다. 
+Collectors.summarizingInt 는 최대 / 평균 / 합계 등 두 개 이상의 연산을 한 번에 수행하기 위한 메서드
 
   * Collectors.summingInt
     -> int totalCalories = menu.stream().collect(summingInt(Dish::getCalories));
