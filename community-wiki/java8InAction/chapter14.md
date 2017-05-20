@@ -11,7 +11,8 @@
   * 함수를 결과로 반환하는 경우
   
 ex) Function<Function<Double, Double>, Function<Double, Double>>
-(Double x) -> x * x 라는 함수를 인수로 받아 (Double x) -> 2 * x 같은 함수를 결과로 반환
+
+    (Double x) -> x * x 라는 함수를 인수로 받아 (Double x) -> 2 * x 같은 함수를 결과로 반환
 
 
 
