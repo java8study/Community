@@ -62,9 +62,12 @@ ex) LocalDateTime dt = LocalDateTime.of(2014, Month.MARCH, 18, 13, 45, 20);
       
       
   * 기계의 날짜와 시간
+  
   사람의 주, 월, 시간 단위가 아닌 기계 관점의 특정 지점을 하나의 큰 수로 표현
 
+
   * 두 시간 객체 사이의 지속시간은 Duration 클래스로 표현
+  
   LocalTime / LocalDateTime / Instant 사용 가능
   초와 나노초로 시간단위를 표현하므로 LocalDate 사용불가
 
