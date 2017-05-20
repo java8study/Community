@@ -30,6 +30,7 @@
   * 예를 들어 while 문의 루프의 조건을 갱신해야 하는 경우 루프가 실행되지 않거나 무한루프에 빠질 수 있듯 코드에 영향
   * 반복을 이용하는 모든 프로그램은 재귀로 구현 가능
   * 고전 방식의 재귀가 아닌 꼬리 재귀를 사용해야 추가적인 컴파일러 최적화 기대
+  
 ex) static long factorialRecursive(long n) {
 
 		  return n == 1 ? 1 : n * factorialRecursive(n - 1);
