@@ -20,14 +20,22 @@ ex) Function<Function<Double, Double>, Function<Double, Double>>
   * 커링은 x 와 y 라는 두 인수를 받는 함수 f 를 한 개의 인수를 받는 g 라는 함수로 대체하는 기법
   * 기존 로직을 활용해서 변환기를 특정 상황에 적용하는 방법
   * 한개의 인수를 갖는 변환 함수를 생산하는 팩토리를 정의
+  
 ex) static double converter(double x, double f, double b) {
+
 	return x * f + b;
+	
      }
 
   * 개선
+  
     static DoubleUnaryOperator curriedConverter(double f, double b) {
+    
 		  return (double x) -> x * f + b;
+		  
     }
+    
     DoubleUnaryOperator convertCtoF = curriedConverter(9.0/5, 32);
+    
     DoubleUnaryOperator convertUSDtoGBP = curriedConverter(0.6, 0);
  
