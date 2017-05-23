@@ -6,8 +6,8 @@
     <packaging>pom</packaging>
     <version>${project.version}</version>
     <modules>
-        <module>community-supports</module>
-        <module>community-projects</module>
+        <module>community-core</module>
+        <module>community-domain</module>
     </modules>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
