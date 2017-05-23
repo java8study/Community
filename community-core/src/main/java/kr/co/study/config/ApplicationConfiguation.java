@@ -35,7 +35,7 @@ public class ApplicationConfiguation {
 	}
 
 	@Bean
-	public static PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
+	public PropertySourcesPlaceholderConfigurer placeholderConfigurer() {
 		return new PropertySourcesPlaceholderConfigurer();
 	}
 
