@@ -2,14 +2,16 @@ package kr.co.study.config;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.Import;
 
 /**
  * Created by coupang on 2017. 5. 23..
  */
 @EnableAutoConfiguration
-public class ApplicationInitialisation {
+@Import(ApplicationConfiguation.class)
+public class Application {
 
 	public static void main(String[] args){
-		SpringApplication.run(ApplicationInitialisation.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 }
