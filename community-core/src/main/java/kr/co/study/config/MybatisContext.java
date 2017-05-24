@@ -28,7 +28,7 @@ public class MybatisContext {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
 		sessionFactory.setMapperLocations(applicationContext.getResources("classpath:mapper/**/*.xml"));
-		sessionFactory.setTypeAliasesPackage("kr.co.study");
+//		sessionFactory.setTypeAliasesPackage("kr.co.study");
 		return sessionFactory;
 	}
 
