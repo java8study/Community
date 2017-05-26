@@ -12,7 +12,7 @@ import java.util.List;
  * Created by coupang on 2017. 5. 26..
  */
 @Controller
-@RequestMapping("/sample")
+@RequestMapping("/mapper/sample")
 public class SampleController {
 
 	@Autowired

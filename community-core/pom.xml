@@ -6,6 +6,17 @@
 	<name>community-core Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
+	<repository>
+		<id>mvn2</id>
+		<url>http://repo1.maven.org/maven2/</url>
+		<releases>
+			<enabled>true</enabled>
+		</releases>
+		<snapshots>
+			<enabled>true</enabled>
+		</snapshots>
+	</repository>
+
 	<parent>
 		<artifactId>Community</artifactId>
 		<groupId>community</groupId>
@@ -320,7 +331,7 @@
 			<version>1.2.0</version>
 		</dependency>
 
-		<dependency>
+		<!--<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
 			<version>${spring.security.version}</version>
@@ -342,7 +353,7 @@
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
 			<version>${spring.security.version}</version>
-		</dependency>
+		</dependency>-->
 
 
 		<dependency>

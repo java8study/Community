@@ -3,6 +3,7 @@ package kr.co.study.config;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.LocaleResolver;
@@ -18,6 +19,9 @@ import org.springframework.web.servlet.view.JstlView;
  */
 @Configuration
 @EnableWebMvc
+@Import({
+	ApplicationConfig.class
+})
 public class WebConfig extends WebMvcConfigurerAdapter {
 	/**
 	 * CSS / JavaScript / Image 등의 정적 리소스를 처리해주는 핸들러를 등록
