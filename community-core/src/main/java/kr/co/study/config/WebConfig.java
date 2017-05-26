@@ -76,7 +76,6 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		// ex) 디자인만 입힌 것들.
 		registry.addViewController("/simpleView").setViewName("/simpleView");
 
-
 		// 404 오류가 발생했을때 보여줄 뷰를 등록
 		// registry.addViewController("/page-not-found").setViewName("errors/404");
 	}

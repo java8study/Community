@@ -1,7 +1,6 @@
 package kr.co.study.config;
 
 import org.apache.commons.dbcp.BasicDataSource;
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;

@@ -37,5 +37,4 @@ public class WebInitializer implements WebApplicationInitializer {
 		characterEncodingFilter.setInitParameter("encoding", "UTF-8");
 	}
 
-
 }
