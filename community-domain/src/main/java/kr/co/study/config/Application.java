@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Import;
  */
 @Configuration
 @EnableAutoConfiguration
-@ComponentScan("kr.co.study")
 @Import(ApplicationConfig.class)
 public class Application {
 

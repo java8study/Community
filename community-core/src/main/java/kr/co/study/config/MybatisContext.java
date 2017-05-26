@@ -5,6 +5,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -23,11 +24,14 @@ import javax.sql.DataSource;
 	sqlSessionFactoryRef="sqlSessionFactoryBean")
 public class MybatisContext {
 
+	@Autowired
+	DataSource dataSource;
+
 	@Bean
-	public SqlSessionFactoryBean sqlSessionFactoryBean(DataSource dataSource, ApplicationContext applicationContext) throws Exception {
+	public SqlSessionFactoryBean sqlSessionFactoryBean(ApplicationContext applicationContext) throws Exception {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
-		sessionFactory.setMapperLocations(applicationContext.getResources("classpath:mapper/**/*.xml"));
+		sessionFactory.setMapperLocations(applicationContext.getResources("classpath:/mapper/**/*.xml"));
 //		sessionFactory.setTypeAliasesPackage("kr.co.study.repository");
 		return sessionFactory;
 	}
