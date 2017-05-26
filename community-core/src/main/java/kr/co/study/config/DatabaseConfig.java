@@ -30,10 +30,10 @@ public class DatabaseConfig implements EnvironmentAware {
 	public DataSource dataSource() {
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName(environment.getProperty("database.DriverClassName"));
-		dataSource.setUrl(environment.getProperty("jdbc:mysql://localhost:3306/community"));
+		dataSource.setUrl(environment.getProperty("database.Url"));
 		dataSource.setUsername(environment.getProperty("database.UserName"));
 		dataSource.setPassword(environment.getProperty("database.Password"));
-		dataSource.setDefaultAutoCommit(false);
+		dataSource.setDefaultAutoCommit(true);
 		return dataSource;
 	}
 

@@ -24,11 +24,8 @@ import javax.sql.DataSource;
 	sqlSessionFactoryRef="sqlSessionFactoryBean")
 public class MybatisContext {
 
-	@Autowired
-	DataSource dataSource;
-
 	@Bean
-	public SqlSessionFactoryBean sqlSessionFactoryBean(ApplicationContext applicationContext) throws Exception {
+	public SqlSessionFactoryBean sqlSessionFactoryBean(DataSource dataSource, ApplicationContext applicationContext) throws Exception {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
 		sessionFactory.setMapperLocations(applicationContext.getResources("classpath:/mapper/**/*.xml"));
