@@ -17,7 +17,6 @@
 			<groupId>community</groupId>
 			<artifactId>community-core</artifactId>
 			<version>${project.version}</version>
-			<type>pom</type>
 		</dependency>
 	</dependencies>
 	<build>
