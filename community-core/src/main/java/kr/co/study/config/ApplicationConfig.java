@@ -11,9 +11,9 @@ import org.springframework.context.annotation.Import;
 @Configuration
 @ComponentScan(value = "kr.co.study")
 @Import({
-	DatabaseConfiguation.class,
+	DatabaseConfig.class,
 	MybatisContext.class
 })
-public class ApplicationConfiguation {
+public class ApplicationConfig {
 
 }

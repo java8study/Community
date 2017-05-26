@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 @Configuration
 @PropertySource(value = { "classpath:properties/datasource.properties" })
 @EnableTransactionManagement
-public class DatabaseConfiguation implements EnvironmentAware {
+public class DatabaseConfig implements EnvironmentAware {
 
 	@Autowired
 	private Environment environment;
