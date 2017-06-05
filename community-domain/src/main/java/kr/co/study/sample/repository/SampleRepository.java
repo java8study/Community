@@ -13,4 +13,5 @@ import java.util.List;
 @Repository
 public interface SampleRepository {
 	List<SampleDto> findAll();
+	void insert(SampleDto dto);
 }

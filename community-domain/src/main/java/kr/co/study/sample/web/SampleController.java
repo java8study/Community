@@ -24,4 +24,10 @@ public class SampleController {
 		model.addAttribute("list", sampleService.findAll());
 		return "sample/index";
 	}
+
+	@RequestMapping("/insert.do")
+	public String insert(Model model){
+		sampleService.insert();
+		return "sample/index";
+	}
 }

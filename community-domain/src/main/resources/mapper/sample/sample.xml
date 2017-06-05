@@ -4,6 +4,10 @@
 	<select id="findAll" resultType="kr.co.study.sample.dto.SampleDto">
 		SELECT * FROM sample
 	</select>
+
+	<insert id="insert" parameterType="kr.co.study.sample.dto.SampleDto">
+		insert into sample (name) values (#{name});
+	</insert>
 </mapper>
 
 
