@@ -8,7 +8,6 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
@@ -16,7 +15,6 @@ import javax.sql.DataSource;
  * Created by coupang on 2017. 5. 24..
  */
 @Configuration
-@EnableTransactionManagement
 @MapperScan(
 	annotationClass = Mapper.class,
 	basePackages = "kr.co.study",
