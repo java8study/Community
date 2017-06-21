@@ -155,13 +155,13 @@
 database.property 가 있을 경우 내용
     (db.username=spring)
 
-#### <context:property-placeholder>이용
+*1 <context:property-placeholder>이용
 - <context:property-placeholder location="classpath:database.properties"/>
 - <property name="username" value="${db.username }" />넣어주면 된다.
 - @Value( "$ {db .username }") String username; 로 사용가능하다.
 
 
-####  spell
+*2  spell
 - 다른 빈 오브젝트에 접근 할 수 있는 표현식을 이용해 원하는 오브젝트를 능동적으로 가져오는 것
 사용방법
  1. <util:properties id="dbprops" location=“classpath:database.properties" /> 로 
