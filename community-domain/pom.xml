@@ -12,6 +12,11 @@
 		<version>${project.version}</version>
 		<relativePath>../pom.xml</relativePath>
 	</parent>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.4.2.RELEASE</version>
+	</parent>
 	<dependencies>
 		<dependency>
 			<groupId>community</groupId>
