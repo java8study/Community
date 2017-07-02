@@ -20,14 +20,15 @@ import javax.sql.DataSource;
 @MapperScan(
 	annotationClass = Mapper.class,
 	basePackages = "kr.co.study",
-	sqlSessionFactoryRef = "sqlSessionFactoryBean")
+	sqlSessionFactoryRef = "sqlSessionFactoryBean"
+	)
 public class MybatisContext {
 
 	@Bean
 	public SqlSessionFactoryBean sqlSessionFactoryBean(DataSource dataSource, ApplicationContext applicationContext) throws Exception {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
-		sessionFactory.setMapperLocations(applicationContext.getResources("classpath:/mapper/**/*.xml"));
+		sessionFactory.setMapperLocations(applicationContext.getResources("classpath*:/mapper/**/*.xml"));
 		//		sessionFactory.setTypeAliasesPackage("kr.co.study.repository");
 		return sessionFactory;
 	}
