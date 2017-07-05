@@ -45,9 +45,9 @@
 				<!-- /.box-body -->
 
 			  <div class="box-footer">
-			    <button type="submit" class="btn btn-warning" id="modifyBtn">Modify</button>
-			    <button type="submit" class="btn btn-danger" id="removeBtn">REMOVE</button>
-			    <button type="submit" class="btn btn-primary" id="goListBtn">GO LIST </button>
+			    <button type="submit" class="btn btn-warning" id="modifyBtn">수정</button>
+			    <button type="submit" class="btn btn-danger" id="removeBtn">삭제</button>
+			    <button type="submit" class="btn btn-primary" id="goListBtn">리스트</button>
 			  </div>
 
 
@@ -67,20 +67,20 @@
 
 			<div class="box box-success">
 				<div class="box-header">
-					<h3 class="box-title">ADD NEW REPLY</h3>
+					<h3 class="box-title">댓글 추가</h3>
 				</div>
 				<div class="box-body">
-					<label for="exampleInputEmail1">Writer</label> <input
+					<label for="exampleInputEmail1">작성자</label> <input
 						class="form-control" type="text" placeholder="USER ID"
-						id="newReplyWriter"> <label for="exampleInputEmail1">Reply
-						Text</label> <input class="form-control" type="text"
+						id="newReplyWriter"> <label for="exampleInputEmail1">
+						갯글
+						</label> <input class="form-control" type="text"
 						placeholder="REPLY TEXT" id="newReplyText">
 
 				</div>
 				<!-- /.box-body -->
 				<div class="box-footer">
-					<button type="button" class="btn btn-primary" id="replyAddBtn">ADD
-						REPLY</button>
+					<button type="button" class="btn btn-primary" id="replyAddBtn">댓글 추가</button>
 				</div>
 			</div>
 
@@ -118,9 +118,9 @@
         <p><input type="text" id="replytext" class="form-control"></p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-info" id="replyModBtn">Modify</button>
-        <button type="button" class="btn btn-danger" id="replyDelBtn">DELETE</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-info" id="replyModBtn">수정</button>
+        <button type="button" class="btn btn-danger" id="replyDelBtn">삭제</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
       </div>
     </div>
   </div>
@@ -320,6 +320,7 @@ $(document).ready(function(){
 	console.log(formObj);
 	
 	$("#modifyBtn").on("click", function(){
+		alert("버튼 눌림");
 		formObj.attr("action", "/sboard/modifyPage");
 		formObj.attr("method", "get");		
 		formObj.submit();
