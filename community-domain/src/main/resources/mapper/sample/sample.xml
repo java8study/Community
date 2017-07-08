@@ -6,9 +6,11 @@
 	</select>
 
 	<select id="findUser" parameterType="string" resultType="kr.co.study.sample.dto.SampleDto">
+		<![CDATA[
 		select *
 		from sample
 		where userId=#{userId}
+		]]>
 	</select>
 	
 	<insert id="registerMember"  useGeneratedKeys="true"
@@ -26,6 +28,10 @@
     </update>
 	
 
+
+	<insert id="insert" parameterType="kr.co.study.sample.dto.SampleDto">
+		insert into sample (name) values (#{name});
+	</insert>
 </mapper>
 
 

@@ -22,7 +22,7 @@ public class SampleService {
 		return sampleRepository.findAll();
 	}
 
-	// pwdì™€ pwd2ê°€ ì¼ì¹˜í•˜ë©´ ìƒˆë¡œìš´ íšŒì›ìœ¼ë¡œ ë“±ë¡
+	// pwd?? pwd2ê°? ?¼ì¹˜í•˜ë©? ?ƒˆë¡œìš´ ?šŒ?›?œ¼ë¡? ?“±ë¡?
 	public void joinMember(HashMap<String, Object> params) {
 		if (params!=null && params.get("userPwd").equals(params.get("userPwd2"))) {
 			sampleRepository.registerMember(params);
@@ -32,23 +32,23 @@ public class SampleService {
 	public boolean login(String userId, String userPwd) {
 		SampleDto result = sampleRepository.findUser(userId);
 		if (result == null) {
-			System.out.println("SampleService.class : loginë©”ì„œë“œ, result==null");
-			return false; // userIdê°€ ì—†ëŠ” ê²½ìš°-> ì‹¤íŒ¨
+			System.out.println("SampleService.class : loginë©”ì„œ?“œ, result==null");
+			return false; // userIdê°? ?—†?Š” ê²½ìš°-> ?‹¤?Œ¨
 		}
-		else { // userIdê°€ ìˆëŠ” ê²½ìš°
-			System.out.println("SampleService.class : loginë©”ì„œë“œ, result!=null" + result.toString());
+		else { // userIdê°? ?ˆ?Š” ê²½ìš°
+			System.out.println("SampleService.class : loginë©”ì„œ?“œ, result!=null" + result.toString());
 			String pwd = result.getUserPwd();
-			if (pwd == null) { // ë¹„ë°€ë²ˆí˜¸ì„ ì…ë ¥í•˜ì§€ ì•Šì€ ê²½ìš° ->ì‹¤íŒ¨
-				System.out.println("SampleService.class : loginë©”ì„œë“œ, result!=null, pwd==null");
+			if (pwd == null) { // ë¹„ë?ë²ˆí˜¸?„ ?…? ¥?•˜ì§? ?•Š?? ê²½ìš° ->?‹¤?Œ¨
+				System.out.println("SampleService.class : loginë©”ì„œ?“œ, result!=null, pwd==null");
 				return false;
 			}
-			else { // ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•œ ê²½ìš°
-				if (pwd.equals(userPwd)) { // ë¹„ë°€ë²ˆí˜¸ë¥¼ ë§ê²Œ ì…ë ¥-> ì„±ê³µ
-					System.out.println("SampleService.class : loginë©”ì„œë“œ, ë¹„ë°€ë²ˆí˜¸ ë§ìŒ" + pwd + "," + userPwd);
+			else { // ë¹„ë?ë²ˆí˜¸ë¥? ?…? ¥?•œ ê²½ìš°
+				if (pwd.equals(userPwd)) { // ë¹„ë?ë²ˆí˜¸ë¥? ë§ê²Œ ?…? ¥-> ?„±ê³?
+					System.out.println("SampleService.class : loginë©”ì„œ?“œ, ë¹„ë?ë²ˆí˜¸ ë§ìŒ" + pwd + "," + userPwd);
 					return true;
 				}
-				else { // ë¹„ë°€ë²ˆí˜¸ë¥¼ í‹€ë¦¬ê²Œ ì…ë ¥-> ì‹¤íŒ¨
-					System.out.println("SampleService.class : loginë©”ì„œë“œ, ë¹„ë°€ë²ˆí˜¸ í‹€ë¦¼" + pwd + "," + userPwd);
+				else { // ë¹„ë?ë²ˆí˜¸ë¥? ??ë¦¬ê²Œ ?…? ¥-> ?‹¤?Œ¨
+					System.out.println("SampleService.class : loginë©”ì„œ?“œ, ë¹„ë?ë²ˆí˜¸ ??ë¦?" + pwd + "," + userPwd);
 					return false;
 				}
 			}
@@ -57,18 +57,18 @@ public class SampleService {
 //		return true;
 	}
 
-	// íšŒì› í•œëª…ì˜ ì •ë³´ë¥¼ ê°€ì ¸ë‹¤ì¤Œ
+	// ?šŒ?› ?•œëª…ì˜ ? •ë³´ë?? ê°?? ¸?‹¤ì¤?
 	public SampleDto getMemberInfo(String userId) {
 		return sampleRepository.findUser(userId);
 	}
 
-	//íšŒì› ìˆ˜ì •
+	//?šŒ?› ?ˆ˜? •
 //	 public void memberUpdate(HashMap<String, Object> params){
 //		 
-//	        if(params.get("userPwd").equals(params.get("userPwd2"))) //ë¹„ë°€ë²ˆí˜¸ê°€ ë§ë‹¤ë©´
+//	        if(params.get("userPwd").equals(params.get("userPwd2"))) //ë¹„ë?ë²ˆí˜¸ê°? ë§ë‹¤ë©?
 //	        {
 //	        	SampleDto record = sampleRepository.findUser((String)params.get(SampleDto.userId));
-//	            record.putAll(params); //ì›ë˜ìˆë˜ê±°ì— ë‚´ê°€ ë°›ì€ê±¸ë¡œ ìˆ˜ì •
+//	            record.putAll(params); //?›?˜?ˆ?˜ê±°ì— ?‚´ê°? ë°›ì?ê±¸ë¡œ ?ˆ˜? •
 //	            sampleRepository.updateMember(record);
 //	        }
 //	    }

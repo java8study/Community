@@ -42,8 +42,7 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<version>1.16.12</version>
-			<optional>true</optional>
+			<version>1.16.16</version>
 		</dependency>
 
 		<dependency>
@@ -394,6 +393,14 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
+		</dependency>
+
+		<!-- Tomcat Embedded -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<version>8.0.36</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>

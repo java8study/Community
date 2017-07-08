@@ -44,20 +44,20 @@ public class SampleController {
 	
 //	@RequestMapping("login.do")
 //  public ModelAndView login(HttpSession session, String id, String pwd){
-////  ì„±ê³µ ì‹¤íŒ¨ì— ë”°ë¼ ë¦¬ë‹¤ì´ë ‰íŠ¸ ë°©í–¥ ê²°ì •
-//      //sessionì‚¬ìš©ì€ ë§¤ê°œë³€ìˆ˜ì— sessionì°¸ì¡°ë³€ìˆ˜ë¥¼ ë‘ë©´ ìë™ìœ¼ë¡œ ë“¤ì–´ì˜µë‹ˆë‹¤ 
-//      //login.doì²˜ë¦¬ë¥¼ ì™„ì„±í•˜ì„¸ìš” 
-//      //ë¡œê·¸ì¸ ì„±ê³µì´ë©´ main.do ë¦¬ë‹¤ì´ë ‰íŠ¸
-////      //ë¡œê·¸ì¸ ì‹¤íŒ¨ì´ë©´ loginForm.do ë¦¬ë‹¤ì´ë ‰íŠ¸
+////  ?„±ê³? ?‹¤?Œ¨?— ?”°?¼ ë¦¬ë‹¤?´? ‰?Š¸ ë°©í–¥ ê²°ì •
+//      //session?‚¬?š©?? ë§¤ê°œë³??ˆ˜?— sessionì°¸ì¡°ë³??ˆ˜ë¥? ?‘ë©? ??™?œ¼ë¡? ?“¤?–´?˜µ?‹ˆ?‹¤ 
+//      //login.doì²˜ë¦¬ë¥? ?™„?„±?•˜?„¸?š” 
+//      //ë¡œê·¸?¸ ?„±ê³µì´ë©? main.do ë¦¬ë‹¤?´? ‰?Š¸
+////      //ë¡œê·¸?¸ ?‹¤?Œ¨?´ë©? loginForm.do ë¦¬ë‹¤?´? ‰?Š¸
 //		
 //      if(sampleService.login(id, pwd)){
-//    	  System.out.println("SampleController.class : loginë©”ì„œë“œ , sample.login(" + id + "," + pwd + ") == true");
+//    	  System.out.println("SampleController.class : loginë©”ì„œ?“œ , sample.login(" + id + "," + pwd + ") == true");
 //    	  SampleDto user = sampleService.getMemberInfo(id);
 //          session.setAttribute("user", user);
 //          return "redirect:loginSuccess.do";
 //      }
 //      else{
-//    	  System.out.println("SampleController.class : loginë©”ì„œë“œ , sample.login(" + id + "," + pwd + ") == false");
+//    	  System.out.println("SampleController.class : loginë©”ì„œ?“œ , sample.login(" + id + "," + pwd + ") == false");
 //          return "redirect:loginForm.do";
 //      }
 //  
@@ -65,21 +65,21 @@ public class SampleController {
 	
 	 @RequestMapping("login.do")
 	    public ModelAndView login(HttpSession session,String userId, String userPwd){
-//	    ì„±ê³µ ì‹¤íŒ¨ì— ë”°ë¼ ë¦¬ë‹¤ì´ë ‰íŠ¸ ë°©í–¥ ê²°ì •
-	        //sessionì‚¬ìš©ì€ ë§¤ê°œë³€ìˆ˜ì— sessionì°¸ì¡°ë³€ìˆ˜ë¥¼ ë‘ë©´ ìë™ìœ¼ë¡œ ë“¤ì–´ì˜µë‹ˆë‹¤ 
-	        //login.doì²˜ë¦¬ë¥¼ ì™„ì„±í•˜ì„¸ìš” 
-	        //ë¡œê·¸ì¸ ì„±ê³µì´ë©´ index.do ë¦¬ë‹¤ì´ë ‰íŠ¸
-//	        //ë¡œê·¸ì¸ ì‹¤íŒ¨ì´ë©´ loginForm.do ë¦¬ë‹¤ì´ë ‰íŠ¸
+//	    ?„±ê³? ?‹¤?Œ¨?— ?”°?¼ ë¦¬ë‹¤?´? ‰?Š¸ ë°©í–¥ ê²°ì •
+	        //session?‚¬?š©?? ë§¤ê°œë³??ˆ˜?— sessionì°¸ì¡°ë³??ˆ˜ë¥? ?‘ë©? ??™?œ¼ë¡? ?“¤?–´?˜µ?‹ˆ?‹¤ 
+	        //login.doì²˜ë¦¬ë¥? ?™„?„±?•˜?„¸?š” 
+	        //ë¡œê·¸?¸ ?„±ê³µì´ë©? index.do ë¦¬ë‹¤?´? ‰?Š¸
+//	        //ë¡œê·¸?¸ ?‹¤?Œ¨?´ë©? loginForm.do ë¦¬ë‹¤?´? ‰?Š¸
 	        ModelAndView mav = new ModelAndView();
 	        if(sampleService.login(userId, userPwd)){
-	        	  System.out.println("SampleController.class : loginë©”ì„œë“œ , sample.login(" + userId + "," + userPwd + ") == true");
+	        	  System.out.println("SampleController.class : loginë©”ì„œ?“œ , sample.login(" + userId + "," + userPwd + ") == true");
 	        	  SampleDto user = sampleService.getMemberInfo(userId);
 	              session.setAttribute("user", user);
 	            mav.setViewName("redirect:loginSuccess.do");
 	        }
 	        else{
 	            //return "redirect:loginForm.do";
-	        	 System.out.println("SampleController.class : loginë©”ì„œë“œ , sample.login(" + userId + "," + userPwd + ") == false");
+	        	 System.out.println("SampleController.class : loginë©”ì„œ?“œ , sample.login(" + userId + "," + userPwd + ") == false");
 	            mav.setViewName("redirect:loginForm.do");
 	        }
 	        return mav;
@@ -91,9 +91,9 @@ public class SampleController {
 	        if(user == null)
 	            return "redirect:loginForm.do";
 	        else{
-//	            model.addAllAttributes(service.getMemberInfo(id))<= Mapì„ í†µì±„ë¡œ ì‹£ê¸° 
-//	            model.addAttibute(arg0); <= ëª¨ë¸ ê°ì²´ë¥¼ í†µì±„ë¡œ ì‹£ê¸° 
-//	            model.addAttribute(arg0, arg1); <=í‚¤ ê°’ ì§€ì • í•˜ë‚˜ì˜ ë°ì´í„° ì‹£ê¸° 
+//	            model.addAllAttributes(service.getMemberInfo(id))<= Map?„ ?†µì±„ë¡œ ?‹£ê¸? 
+//	            model.addAttibute(arg0); <= ëª¨ë¸ ê°ì²´ë¥? ?†µì±„ë¡œ ?‹£ê¸? 
+//	            model.addAttribute(arg0, arg1); <=?‚¤ ê°? ì§?? • ?•˜?‚˜?˜ ?°?´?„° ?‹£ê¸? 
 //	            model.addAllAttributes(sampleService.getMemberInfo(userId));
 	        	model.addAttribute("userId", user.getId());
 	        	model.addAttribute("userName", user.getUserName());
