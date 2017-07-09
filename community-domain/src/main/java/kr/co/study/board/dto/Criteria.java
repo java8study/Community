@@ -1,5 +1,8 @@
 package kr.co.study.board.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("criteria")
 public class Criteria {
 
 	private int page;	
