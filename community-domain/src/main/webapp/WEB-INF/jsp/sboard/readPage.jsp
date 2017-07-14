@@ -250,7 +250,7 @@
 						getPage("/replies/"+bno+"/"+replyPage );
 						replyerObj.val("");
 						replytextObj.val("");
-					}
+					} else
 			}});
 	});
 

@@ -23,7 +23,6 @@ public class SampleServiceImpl implements SampleService{
 
 	@Transactional
 	public void insert(){
-
 		SampleDto dto1 = new SampleDto();
 		dto1.setName("TEST!");
 		sampleRepository.insert(dto1);
