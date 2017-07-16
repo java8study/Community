@@ -26,7 +26,15 @@ public class MybatisContext {
 		SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource);
 		sessionFactory.setMapperLocations(applicationContext.getResources("classpath:/mapper/**/*.xml"));
+		sessionFactory.setConfiguration(getConfiguration());
 		return sessionFactory;
+	}
+
+	@Bean
+	public org.apache.ibatis.session.Configuration getConfiguration() {
+		org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
+//		configuration.getTypeAliasRegistry().registerAlias("sampleDto", Sammple.class);
+		return configuration;
 	}
 
 	@Bean
