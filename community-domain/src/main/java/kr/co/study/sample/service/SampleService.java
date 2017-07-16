@@ -22,7 +22,6 @@ public class SampleService {
 		return sampleRepository.findAll();
 	}
 
-	// pwd?? pwd2ê°? ?¼ì¹˜í•˜ë©? ?ƒˆë¡œìš´ ?šŒ?›?œ¼ë¡? ?“±ë¡?
 	public void joinMember(HashMap<String, Object> params) {
 		if (params!=null && params.get("userPwd").equals(params.get("userPwd2"))) {
 			sampleRepository.registerMember(params);
@@ -32,45 +31,31 @@ public class SampleService {
 	public boolean login(String userId, String userPwd) {
 		SampleDto result = sampleRepository.findUser(userId);
 		if (result == null) {
-			System.out.println("SampleService.class : loginë©”ì„œ?“œ, result==null");
-			return false; // userIdê°? ?—†?Š” ê²½ìš°-> ?‹¤?Œ¨
+			System.out.println("SampleService.class : loginë©”ì„œ, result==null");
+			return false;
 		}
-		else { // userIdê°? ?ˆ?Š” ê²½ìš°
-			System.out.println("SampleService.class : loginë©”ì„œ?“œ, result!=null" + result.toString());
+		else {
+			System.out.println("SampleService.class : loginë©”ì„œ, result!=null" + result.toString());
 			String pwd = result.getUserPwd();
-			if (pwd == null) { // ë¹„ë?ë²ˆí˜¸?„ ?…? ¥?•˜ì§? ?•Š?? ê²½ìš° ->?‹¤?Œ¨
-				System.out.println("SampleService.class : loginë©”ì„œ?“œ, result!=null, pwd==null");
+			if (pwd == null) {
+				System.out.println("SampleService.class : loginë©”ì„œ, result!=null, pwd==null");
 				return false;
 			}
-			else { // ë¹„ë?ë²ˆí˜¸ë¥? ?…? ¥?•œ ê²½ìš°
-				if (pwd.equals(userPwd)) { // ë¹„ë?ë²ˆí˜¸ë¥? ë§ê²Œ ?…? ¥-> ?„±ê³?
-					System.out.println("SampleService.class : loginë©”ì„œ?“œ, ë¹„ë?ë²ˆí˜¸ ë§ìŒ" + pwd + "," + userPwd);
+			else {
+				if (pwd.equals(userPwd)) {
+					System.out.println("SampleService.class : loginë©”ì„œ, ë¹„ë²ˆí˜¸ ë§ìŒ" + pwd + "," + userPwd);
 					return true;
 				}
-				else { // ë¹„ë?ë²ˆí˜¸ë¥? ??ë¦¬ê²Œ ?…? ¥-> ?‹¤?Œ¨
-					System.out.println("SampleService.class : loginë©”ì„œ?“œ, ë¹„ë?ë²ˆí˜¸ ??ë¦?" + pwd + "," + userPwd);
+				else {
+					System.out.println("SampleService.class : loginë©”ì„œ, ë¹„ë²ˆí˜¸" + pwd + "," + userPwd);
 					return false;
 				}
 			}
 
 		}
-//		return true;
 	}
 
-	// ?šŒ?› ?•œëª…ì˜ ? •ë³´ë?? ê°?? ¸?‹¤ì¤?
 	public SampleDto getMemberInfo(String userId) {
 		return sampleRepository.findUser(userId);
 	}
-
-	//?šŒ?› ?ˆ˜? •
-//	 public void memberUpdate(HashMap<String, Object> params){
-//		 
-//	        if(params.get("userPwd").equals(params.get("userPwd2"))) //ë¹„ë?ë²ˆí˜¸ê°? ë§ë‹¤ë©?
-//	        {
-//	        	SampleDto record = sampleRepository.findUser((String)params.get(SampleDto.userId));
-//	            record.putAll(params); //?›?˜?ˆ?˜ê±°ì— ?‚´ê°? ë°›ì?ê±¸ë¡œ ?ˆ˜? •
-//	            sampleRepository.updateMember(record);
-//	        }
-//	    }
-
 }
