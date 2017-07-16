@@ -5,8 +5,11 @@ import java.util.List;
 import kr.co.study.board.dto.Board;
 import kr.co.study.board.dto.Criteria;
 import kr.co.study.board.dto.SearchCriteria;
+import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
-
+@Mapper
+@Repository
 public interface BoardDAO {
 
   public void create(Board vo) throws Exception;
