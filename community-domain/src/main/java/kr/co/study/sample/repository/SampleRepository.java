@@ -17,8 +17,10 @@ public interface SampleRepository {
 	
 	List<HashMap<String,Object>> findAll();
 
+	SampleDto findUserIdAndUserPwd(SampleDto sampleDto);
+
 	SampleDto findUser(String userId);
-	
+
 	int registerMember(HashMap<String, Object> params);
 
 	int updateMember(HashMap<String, Object> params);
