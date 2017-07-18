@@ -11,6 +11,6 @@
 	<title>Index</title>
 </head>
 <body>
-Srping HelloWorld
+Sping HelloWorld
 </body>
 </html>

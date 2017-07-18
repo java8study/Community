@@ -1,6 +1,9 @@
 package kr.co.study.board.dto;
 
-public class SearchCriteria extends Criteria{
+import org.apache.ibatis.type.Alias;
+
+@Alias("searchCriteria")
+public class SearchCriteria {
 
 	private String searchType;
 	private String keyword;
