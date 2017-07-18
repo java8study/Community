@@ -1,91 +1,87 @@
 package kr.co.study.board.web;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import kr.co.study.board.dto.Board;
-import kr.co.study.board.dto.SearchCriteria;
-import kr.co.study.board.service.BoardService;
+import org.springframework.web.bind.annotation.RestController;
 
 
-@Controller
-@RequestMapping("/sboard/*")
-public class SearchBoardController {
+import kr.co.study.board.dto.Reply;
+import kr.co.study.board.service.ReplyService;
+
+@RestController
+@RequestMapping("/replies")
+public class ReplyController {
 
   @Autowired
-  private BoardService service;
+  private ReplyService service;
 
-  @RequestMapping(value = "/list", method = RequestMethod.GET) //@ModelAttribute("cri") SearchCriteria cri 이거로 추가해도 됨
-  public void listPage(SearchCriteria searchCriteria,Model model) throws Exception {
+  @RequestMapping(value = "", method = RequestMethod.POST)
+  public ResponseEntity<String> register(@RequestBody Reply vo) {
 	  
-	  model.addAttribute("cri",searchCriteria);
-	  model.addAttribute("list", service.listSearchCriteria(searchCriteria)); 
+	 System.out.println("댓글 도착");
+    ResponseEntity<String> entity = null;
+    try {
+      service.addReply(vo);
+      entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+    } catch (Exception e) {
+      e.printStackTrace();
+      entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+    return entity;
   }
 
-  @RequestMapping(value = "/readPage/{bno}", method = RequestMethod.GET)
-  public ModelAndView read(@PathVariable("bno") int bno)
-      throws Exception {
-	  ModelAndView model = new ModelAndView("sboard/readPage");
-    model.addObject(service.read(bno));
-    return model;
+  @RequestMapping(value = "/all/{bno}", method = RequestMethod.GET)
+  public ResponseEntity<List<Reply>> list(@PathVariable("bno") Integer bno) {
+
+    ResponseEntity<List<Reply>> entity = null;
+    try {
+      entity = new ResponseEntity<>(service.listReply(bno), HttpStatus.OK);
+
+    } catch (Exception e) {
+      e.printStackTrace();
+      entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    return entity;
   }
 
-  @RequestMapping(value = "/removePage", method = RequestMethod.POST)
-  public String remove(@RequestParam("bno") int bno, RedirectAttributes rttr) throws Exception {
+  @RequestMapping(value = "/{rno}", method = { RequestMethod.PUT, RequestMethod.PATCH })
+  public ResponseEntity<String> update(@PathVariable("rno") Integer rno, @RequestBody Reply vo) {
 
-    service.remove(bno);
+    ResponseEntity<String> entity = null;
+    try {
+      vo.setRno(rno);
+      service.modifyReply(vo);
 
-    rttr.addFlashAttribute("msg", "SUCCESS");
-
-    return "redirect:/sboard/list";
+      entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+    } catch (Exception e) {
+      e.printStackTrace();
+      entity = new ResponseEntity<String>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+    return entity;
   }
 
-  @RequestMapping(value = "/modifyPage", method = RequestMethod.GET)
-  public void modifyPagingGET(int bno, @ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
+  @RequestMapping(value = "/{rno}", method = RequestMethod.DELETE)
+  public ResponseEntity<String> remove(@PathVariable("rno") Integer rno) {
 
-    model.addAttribute(service.read(bno));
+    ResponseEntity<String> entity = null;
+    try {
+      service.removeReply(rno);
+      entity = new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+    } catch (Exception e) {
+      e.printStackTrace();
+      entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+    return entity;
   }
 
-  @RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
-  public String modifyPagingPOST(Board board, RedirectAttributes rttr) throws Exception {
-
-
-    service.modify(board);
-    rttr.addFlashAttribute("msg", "SUCCESS");
-    return "redirect:/sboard/list";
-  }
-
-  @RequestMapping(value = "/register", method = RequestMethod.GET)
-  public void registGET() throws Exception {
-
-  }
-
-  @RequestMapping(value = "/register", method = RequestMethod.POST)
-  public String registPOST(Board board, RedirectAttributes rttr) throws Exception {
-
-    service.regist(board);
-
-    rttr.addFlashAttribute("msg", "SUCCESS");
-
-    return "redirect:/sboard/list";
-  }
-  
-  
- /* @RequestMapping(value = "/serchList",method = RequestMethod.POST)
-  public ModelAndView serchList(SearchCriteria searchCriteria) throws Exception{
-	  logger.info(searchCriteria.toString());
-	  ModelAndView model = new ModelAndView("sboard/list");
-	  model.addObject(service.listSearchCriteria(searchCriteria));
-	  return model;
-  }*/
 }
