@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.study.board.dto.Board;
-import kr.co.study.board.dto.Criteria;
 import kr.co.study.board.dto.SearchCriteria;
 import kr.co.study.board.repository.BoardDAO;
 
@@ -52,17 +51,7 @@ public class BoardServiceImpl implements BoardService {
     return dao.listAll();
   }
 
-  @Override
-  public List<Board> listCriteria(Criteria cri) throws Exception {
-
-    return dao.listCriteria(cri);
-  }
-
-  @Override
-  public int listCountCriteria(Criteria cri) throws Exception {
-
-    return dao.countPaging(cri);
-  }
+ 
 
   @Override
   public List<Board> listSearchCriteria(SearchCriteria cri) throws Exception {
@@ -70,10 +59,5 @@ public class BoardServiceImpl implements BoardService {
     return dao.listSearch(cri);
   }
 
-  @Override
-  public int listSearchCount(SearchCriteria cri) throws Exception {
-
-    return dao.listSearchCount(cri);
-  }
 
 }
