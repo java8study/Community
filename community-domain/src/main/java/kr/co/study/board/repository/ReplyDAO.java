@@ -6,11 +6,11 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import kr.co.study.board.dto.Reply;
-import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
+
 
 @Mapper
 @Repository
+
 public interface ReplyDAO {
 
   public List<Reply> list(Integer bno) throws Exception;

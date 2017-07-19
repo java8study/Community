@@ -10,7 +10,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Alias("board")
 public class Board {
 
   private Integer bno;
