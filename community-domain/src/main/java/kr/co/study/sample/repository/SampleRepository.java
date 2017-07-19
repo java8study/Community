@@ -15,11 +15,13 @@ import kr.co.study.sample.dto.SampleDto;
 @Repository
 public interface SampleRepository {
 	
-	public List<HashMap<String,Object>> findAll();
+	List<HashMap<String,Object>> findAll();
 
-	public SampleDto findUser(String userId);
-	
-	public int registerMember(HashMap<String, Object> params);
+	SampleDto findUserIdAndUserPwd(SampleDto sampleDto);
 
-	public int updateMember(HashMap<String, Object> params);
+	SampleDto findUser(String userId);
+
+	int registerMember(HashMap<String, Object> params);
+
+	int updateMember(HashMap<String, Object> params);
 }

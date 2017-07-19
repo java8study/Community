@@ -10,9 +10,19 @@
 		select *
 		from sample
 		where userId=#{userId}
+		and userPwd = #{userPwd}
 		]]>
 	</select>
-	
+
+	<select id="findUserIdAndUserPwd" parameterType="kr.co.study.sample.dto.SampleDto" resultType="kr.co.study.sample.dto.SampleDto">
+		<![CDATA[
+		select *
+		from sample
+		where userId=#{userId}
+		and userPwd = #{userPwd}
+		]]>
+	</select>
+
 	<insert id="registerMember"  useGeneratedKeys="true"
     keyProperty="id" parameterType="java.util.HashMap">
 		insert into sample ( userId, userPwd, userName, email)

@@ -1,5 +1,7 @@
 package kr.co.study.board.dto;
 
+import org.apache.ibatis.type.Alias;
+
 import java.util.Date;
 
 import lombok.Getter;
@@ -8,6 +10,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@Alias("board")
 public class Board {
 
   private Integer bno;

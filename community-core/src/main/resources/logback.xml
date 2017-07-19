@@ -6,20 +6,20 @@
 			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
 		</encoder>
 	</appender>
-	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>${APP_HOME}/sujemall-webapp.log</file>
+	<!--<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>community.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<!-- 파일이 하루에 한개씩 생성된다 -->
+			&lt;!&ndash; 파일이 하루에 한개씩 생성된다 &ndash;&gt;
 			<fileNamePattern>community-.%d{yyyy-MM-dd}.log</fileNamePattern>
-			<!-- maxHIstory 설정은 위 부분에 롤링 정책에 따라 적용되 된다고 보면된다.
-			 위 설정데로 라면 30일이 지난 파일은 삭제가 된다.-->
+			&lt;!&ndash; maxHIstory 설정은 위 부분에 롤링 정책에 따라 적용되 된다고 보면된다.
+			 위 설정데로 라면 30일이 지난 파일은 삭제가 된다.&ndash;&gt;
 			<maxHistory>30</maxHistory>
 		</rollingPolicy>
 
 		<encoder>
 			<pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
 		</encoder>
-	</appender>
+	</appender>-->
 
 	<logger name="org.springframework" level="info"/>
 	<logger name="org.hibernate" level="debug"/>
