@@ -1,5 +1,7 @@
 package kr.co.study.article.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -9,6 +11,8 @@ import kr.co.study.article.dto.ArticleDTO;
 @Repository
 public interface ArticleRepository {
 
-	void writeNewArticle(ArticleDTO articleDTO);
+	public void writeNewArticle(ArticleDTO articleDTO);
+
+	public List<ArticleDTO> getAllArticleList();
 	
 }

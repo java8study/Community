@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.study.article.repository.ArticleRepository">
-	<insert id="insert" parameterType="kr.co.study.article.dto.ArticleDto">
+	<insert id="writeNewArticle" parameterType="kr.co.study.article.dto.ArticleDto">
 		INSERT INTO ARTICLE ( ARTICLE_ID, 
 								USER_NAME,
 								TITLE, 
@@ -18,5 +18,16 @@
 			0,
 			GETDATE() )
 	</insert>
+	
+	<select id="getAllArticleList" resultType="kr.co.study.article.dto.ArticleDTO" >
+		SELECT ARTICLE_ID articleId
+				USER_NAME userName
+				TITLE title
+				CONTENTS contents
+				LIKES_COUNT likesCount
+				READS_COUNT readsCount
+				WRITE_DATE
+		FROM ARTICLE 
+	</select>
 
 </mapper>

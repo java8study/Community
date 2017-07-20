@@ -30,15 +30,17 @@
 			<td>작성자 </td>
 			
 		</tr>
+		<c:forEach items="${ articleListDTO.articleList }" var="article">
 		<tr>
-			<td>${ articleId }</td>
-			<td>${ title }</td>
-			<td>${ writeDate }</td>
-			<td>${ readsCount }</td>
-			<td>${ likesCount }</td>
-			<td>${ userName }</td>
+			<td>${ article.articleId }</td>
+			<td>${ article.title }</td>
+			<td>${ article.writeDate }</td>
+			<td>${ article.readsCount }</td>
+			<td>${ article.likesCount }</td>
+			<td>${ article.userName }</td>
 		</tr>
-	
+		</c:forEach>
+		
 	</table>
 	
 	<button type="submit" id="writeBtn">글쓰기 </button>

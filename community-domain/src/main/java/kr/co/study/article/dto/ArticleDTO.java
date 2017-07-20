@@ -14,7 +14,7 @@ public class ArticleDTO {
 	private String writeDate;
 	
 	
-	
+	//getter,setter
 	public String getUserName() {
 		return userName;
 	}

@@ -8,4 +8,6 @@ public interface ArticleService {
 	
 	public void writeNewArticle(ArticleDTO articleDTO);
 	
+	public ModelAndView showArticleList(ArticleDTO articleDTO);
+	
 }
