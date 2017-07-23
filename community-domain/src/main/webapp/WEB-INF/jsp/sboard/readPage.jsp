@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 
 <%@include file="include/header.jsp"%>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <!-- Main content -->
 <section class="content">
@@ -11,33 +12,28 @@
 			<!-- general form elements -->
 			<div class="box box-primary">
 				<div class="box-header">
-					<h3 class="box-title">READ BOARD</h3>
+					<h3 class="box-title">글 읽기</h3>
 				</div>
 				<!-- /.box-header -->
 
 				<form role="form" action="modifyPage" method="post">
-
-					<input type='hidden' name='bno' value="${board.bno}"> <input
-						type='hidden' name='page' value="${cri.page}"> <input
-						type='hidden' name='perPageNum' value="${cri.perPageNum}">
-					<input type='hidden' name='searchType' value="${cri.searchType}">
-					<input type='hidden' name='keyword' value="${cri.keyword}">
-
+					<input type='hidden' name='bno' value="${board.bno}"> 
+									
 				</form>
 
 				<div class="box-body">
 					<div class="form-group">
-						<label for="exampleInputEmail1">Title</label> <input type="text"
+						<label for="exampleInputEmail1">제목</label> <input type="text"
 							name='title' class="form-control" value="${board.title}"
 							readonly="readonly">
 					</div>
 					<div class="form-group">
-						<label for="exampleInputPassword1">Content</label>
+						<label for="exampleInputPassword1">내용</label>
 						<textarea class="form-control" name="content" rows="3"
 							readonly="readonly">${board.content}</textarea>
 					</div>
 					<div class="form-group">
-						<label for="exampleInputEmail1">Writer</label> <input type="text"
+						<label for="exampleInputEmail1">작성자</label> <input type="text"
 							name="writer" class="form-control" value="${board.writer}"
 							readonly="readonly">
 					</div>
@@ -45,9 +41,9 @@
 				<!-- /.box-body -->
 
 			  <div class="box-footer">
-			    <button type="submit" class="btn btn-warning" id="modifyBtn">수정</button>
-			    <button type="submit" class="btn btn-danger" id="removeBtn">삭제</button>
-			    <button type="submit" class="btn btn-primary" id="goListBtn">리스트</button>
+			    <button type="submit" class="btn btn-primary btn-sm" id="modifyBtn">수정</button>
+			    <button type="submit" class="btn btn-primary btn-sm" id="removeBtn">삭제</button>
+			    <button type="submit" class="btn btn-primary btn-sm" id="goListBtn">리스트</button>
 			  </div>
 
 
@@ -67,7 +63,7 @@
 
 			<div class="box box-success">
 				<div class="box-header">
-					<h3 class="box-title">댓글 추가</h3>
+					<h3 class="box-title">댓글 목록</h3>
 				</div>
 				<div class="box-body">
 					<label for="exampleInputEmail1">작성자</label> <input
@@ -80,7 +76,7 @@
 				</div>
 				<!-- /.box-body -->
 				<div class="box-footer">
-					<button type="button" class="btn btn-primary" id="replyAddBtn">댓글 추가</button>
+					<button type="button" class="btn btn-primary btn-sm" id="replyAddBtn">댓글 추가</button>
 				</div>
 			</div>
 
@@ -130,80 +126,8 @@
 </section>
 <!-- /.content -->
 
-<script id="template" type="text/x-handlebars-template">
-{{#each .}}
-<li class="replyLi" data-rno={{rno}}>
-<i class="fa fa-comments bg-blue"></i>
- <div class="timeline-item" >
-  <span class="time">
-    <i class="fa fa-clock-o"></i>{{prettifyDate regdate}}
-  </span>
-  <h3 class="timeline-header"><strong>{{rno}}</strong> -{{replyer}}</h3>
-  <div class="timeline-body">{{replytext}} </div>
-    <div class="timeline-footer">
-     <a class="btn btn-primary btn-xs" 
-	    data-toggle="modal" data-target="#modifyModal">Modify</a>
-    </div>
-  </div>			
-</li>
-{{/each}}
-</script>
-
 <script>
-	Handlebars.registerHelper("prettifyDate", function(timeValue) {
-		var dateObj = new Date(timeValue);
-		var year = dateObj.getFullYear();
-		var month = dateObj.getMonth() + 1;
-		var date = dateObj.getDate();
-		return year + "/" + month + "/" + date;
-	});
 
-	var printData = function(replyArr, target, templateObject) {
-
-		var template = Handlebars.compile(templateObject.html());
-
-		var html = template(replyArr);
-		$(".replyLi").remove();
-		target.after(html);
-
-	}
-
-	var bno = ${board.bno};
-	
-	var replyPage = 1;
-
-	function getPage(pageInfo) {
-
-		$.getJSON(pageInfo, function(data) {
-			printData(data.list, $("#repliesDiv"), $('#template'));
-			printPaging(data.pageMaker, $(".pagination"));
-
-			$("#modifyModal").modal('hide');
-
-		});
-	}
-
-	var printPaging = function(pageMaker, target) {
-
-		var str = "";
-
-		if (pageMaker.prev) {
-			str += "<li><a href='" + (pageMaker.startPage - 1)
-					+ "'> << </a></li>";
-		}
-
-		for (var i = pageMaker.startPage, len = pageMaker.endPage; i <= len; i++) {
-			var strClass = pageMaker.cri.page == i ? 'class=active' : '';
-			str += "<li "+strClass+"><a href='"+i+"'>" + i + "</a></li>";
-		}
-
-		if (pageMaker.next) {
-			str += "<li><a href='" + (pageMaker.endPage + 1)
-					+ "'> >> </a></li>";
-		}
-
-		target.html(str);
-	};
 
 	$("#repliesDiv").on("click", function() {
 
@@ -227,7 +151,8 @@
 	
 
 	$("#replyAddBtn").on("click",function(){
-		 
+
+		 alert("버튼 눌림");
 		 var replyerObj = $("#newReplyWriter");
 		 var replytextObj = $("#newReplyText");
 		 var replyer = replyerObj.val();
@@ -235,8 +160,8 @@
 		
 		  
 		  $.ajax({
-				type:'post',
-				url:'/replies/',
+				type:'post', 
+				url:'/community-domain/replies',
 				headers: { 
 				      "Content-Type": "application/json",
 				      "X-HTTP-Method-Override": "POST" },
@@ -250,6 +175,9 @@
 						getPage("/replies/"+bno+"/"+replyPage );
 						replyerObj.val("");
 						replytextObj.val("");
+					}else{
+						alert("그냥 에러난거임");
+					
 					}
 			}});
 	});
@@ -321,22 +249,21 @@ $(document).ready(function(){
 	
 	$("#modifyBtn").on("click", function(){
 		alert("버튼 눌림");
-		formObj.attr("action", "/sboard/modifyPage");
+		formObj.attr("action", "/community-domain/sboard/modifyPage");
 		formObj.attr("method", "get");		
 		formObj.submit();
 	});
 	
 	$("#removeBtn").on("click", function(){
-		formObj.attr("action", "/sboard/removePage");
+		formObj.attr("action", "'${pageContext.request.contextPath}/sboard/removePage");
 		formObj.submit();
 	});
 	
 	$("#goListBtn ").on("click", function(){
 		formObj.attr("method", "get");
-		formObj.attr("action", "/sboard/list");
+		formObj.attr("action", "/community-domain/sboard/list");
 		formObj.submit();
 	});
 	
 });
 </script>
-<%@include file="include/footer.jsp"%>

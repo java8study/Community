@@ -33,7 +33,7 @@ public class MybatisContext {
 	@Bean
 	public org.apache.ibatis.session.Configuration getConfiguration() {
 		org.apache.ibatis.session.Configuration configuration = new org.apache.ibatis.session.Configuration();
-//		configuration.getTypeAliasRegistry().registerAlias("sampleDto", Sammple.class);
+		configuration.getTypeAliasRegistry().registerAlias("Board", "kr.co.study.board.dto.Board");
 		return configuration;
 	}
 

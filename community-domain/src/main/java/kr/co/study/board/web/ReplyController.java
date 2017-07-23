@@ -13,8 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import kr.co.study.board.dto.Criteria;
-import kr.co.study.board.dto.PageMaker;
+
 import kr.co.study.board.dto.Reply;
 import kr.co.study.board.service.ReplyService;
 
@@ -27,7 +26,8 @@ public class ReplyController {
 
   @RequestMapping(value = "", method = RequestMethod.POST)
   public ResponseEntity<String> register(@RequestBody Reply vo) {
-
+	  
+	 System.out.println("댓글 도착");
     ResponseEntity<String> entity = null;
     try {
       service.addReply(vo);
@@ -80,39 +80,6 @@ public class ReplyController {
     } catch (Exception e) {
       e.printStackTrace();
       entity = new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-    }
-    return entity;
-  }
-
-  @RequestMapping(value = "/{bno}/{page}", method = RequestMethod.GET)
-  public ResponseEntity<Map<String, Object>> listPage(
-      @PathVariable("bno") Integer bno,
-      @PathVariable("page") Integer page) {
-
-    ResponseEntity<Map<String, Object>> entity = null;
-    
-    try {
-      Criteria cri = new Criteria();
-      cri.setPage(page);
-
-      PageMaker pageMaker = new PageMaker();
-      pageMaker.setCri(cri);
-
-      Map<String, Object> map = new HashMap<String, Object>();
-      List<Reply> list = service.listReplyPage(bno, cri);
-
-      map.put("list", list);
-
-      int replyCount = service.count(bno);
-      pageMaker.setTotalCount(replyCount);
-
-      map.put("pageMaker", pageMaker);
-
-      entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
-
-    } catch (Exception e) {
-      e.printStackTrace();
-      entity = new ResponseEntity<Map<String, Object>>(HttpStatus.BAD_REQUEST);
     }
     return entity;
   }

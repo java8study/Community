@@ -5,6 +5,7 @@ create table tbl_board (
  writer VARCHAR(50) NOT NULL,
  regdate TIMESTAMP NOT NULL DEFAULT now(),
  viewcnt INT DEFAULT 0,
+ replycnt INT DEFAULT 0,
  PRIMARY KEY (bno));
 
 
@@ -17,3 +18,4 @@ regdate TIMESTAMP NOT NULL DEFAULT now(),
 updateDt TIMESTAMP NOT NULL DEFAULT now(),
 primary key(rno)
 );
+

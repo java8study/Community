@@ -68,7 +68,7 @@
 
 							<li><a href="${pageContext.request.contextPath}/loginForm.do">Login</a></li>
 							<li><a href="${pageContext.request.contextPath}/registerForm.do">Register</a></li>
-
+							<li><a href="${pageContext.request.contextPath}/sboard/list">board</a>
 						</ul>
 					</div>
 				</div>
