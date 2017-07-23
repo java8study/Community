@@ -3,6 +3,7 @@ package kr.co.study.article.web;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -20,7 +21,7 @@ public class WritePageController {
 	}
 	
 	@RequestMapping("/doWriteAction") 
-	public String doWriteAction(@Valid ArticleDTO articleDTO) {
+	public String doWriteAction(@ModelAttribute ArticleDTO articleDTO) {
 		
 		articleService.writeNewArticle(articleDTO);
 		

@@ -1,5 +1,8 @@
 package kr.co.study.article.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("articleDTO")
 public class ArticleDTO {
 	
 	private int articleId;
