@@ -3,14 +3,14 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="kr.co.study.board.repository.BoadDAO">
+<mapper namespace="kr.co.study.board.repository.BoardDAO">
 
 	<insert id="create">
 		insert into tbl_board (title, content, writer)
 		values(#{title},#{content}, #{writer})
 	</insert>
 
-	<select id="read" resultType="kr.co.study.board.dto.Board">
+	<select id="read" resultType="Board">
 		select
 		bno, title, content, writer, regdate, viewcnt , replycnt
 		from
@@ -18,7 +18,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		where bno = #{bno}
 	</select>
 
-	<select id="listAll" resultType="kr.co.study.board.dto.Board">
+	<!-- <select id="listAll" resultType="kr.co.study.board.dto.Board">
  <![CDATA[
  select 
    bno, title, content, writer, regdate, viewcnt 
@@ -27,30 +27,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
  where bno > 0 
  order by bno desc, regdate desc
  ]]>
-	</select>
+	</select> -->
 
-	<select id="listPage" resultType="kr.co.study.board.dto.Board">
- <![CDATA[
+	<select id="listSearch" resultType="kr.co.study.board.dto.Board">
  select 
-   bno, title, content, writer, regdate, viewcnt , replycnt
+   bno, title, content, writer, regdate, viewcnt 
  from 
    tbl_board 
- where bno > 0 
+ where bno &gt; 0   
+  		<if test="searchType != null">
+			<if test="searchType == 't'.toString()">
+				and title like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'c'.toString()">
+				and content like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'w'.toString()">
+				and writer like CONCAT('%', #{keyword}, '%')
+			</if>
+			<if test="searchType == 'tc'.toString()">
+				and ( title like CONCAT('%', #{keyword}, '%') OR content like
+				CONCAT('%', #{keyword}, '%'))
+			</if>
+			<if test="searchType == 'cw'.toString()">
+				and ( content like CONCAT('%', #{keyword}, '%') OR writer like
+				CONCAT('%', #{keyword}, '%'))
+			</if>
+			<if test="searchType == 'tcw'.toString()">
+				and ( title like CONCAT('%', #{keyword}, '%')
+				OR
+				content like CONCAT('%', #{keyword}, '%')
+				OR
+				writer like CONCAT('%', #{keyword}, '%'))
+			</if>
+		</if> 
  order by bno desc, regdate desc
- limit #{page}, 10
- ]]>
-	</select>
-
-	<select id="listCriteria" resultType="kr.co.study.board.dto.Board">
- <![CDATA[
- select 
-   bno, title, content, writer, regdate, viewcnt , replycnt
- from 
-   tbl_board 
- where bno > 0 
- order by bno desc, regdate desc
- limit #{pageStart}, #{perPageNum}
- ]]>
 	</select>
 
 
@@ -62,20 +73,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete">
 		delete from tbl_board where bno = #{bno}
 	</delete>
-
-
-
-	<select id="countPaging" resultType="int">
- <![CDATA[
- select 
-   count(bno) 
- from 
-   tbl_board 
- where 
-   bno > 0 
- ]]>
-	</select>
-
 
 
 	<sql id="search">
@@ -106,31 +103,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</if>
 	</sql>
-
-	<select id="listSearch" resultType="kr.co.study.board.dto.Board">
-<![CDATA[  
-  select * 
-  from tbl_board 
-  where bno > 0 
-]]>
-
-		<include refid="search"></include>
-  
-<![CDATA[    
-  order by bno desc
-  limit #{pageStart}, #{perPageNum}
-]]>
-	</select>
-
-	<select id="listSearchCount" resultType="int">
-<![CDATA[  
-  select count(bno) 
-  from tbl_board 
-  where bno > 0 
-]]>
-		<include refid="search"></include>
-
-	</select>
 
 
  

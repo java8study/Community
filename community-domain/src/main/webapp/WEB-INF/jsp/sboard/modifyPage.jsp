@@ -9,7 +9,7 @@
 		<!-- left column -->
 		<div class="col-md-12">
 			<!-- general form elements -->
-			<div class="box box-primary">
+			<div 99class="box box-primary">
 				<div class="box-header">
 					<h3 class="box-title">MODIFY BOARD</h3>
 				</div>
@@ -17,8 +17,6 @@
 
 <form role="form" action="modifyPage" method="post">
 
-	<input type='hidden' name='page' value="${cri.page}"> <input
-		type='hidden' name='perPageNum' value="${cri.perPageNum}">
 	<input type='hidden' name='searchType' value="${cri.searchType}">
 	<input type='hidden' name='keyword' value="${cri.keyword}">
 
@@ -47,8 +45,8 @@
 					<!-- /.box-body -->
 				</form>
 				<div class="box-footer">
-					<button type="submit" class="btn btn-primary">저장</button>
-					<button type="submit" class="btn btn-warning">취소</button>
+					<button type="submit" class="btn btn-primary btn-sm">저장</button>
+					<button type="submit" class="btn btn-primary btn-sm">취소</button>
 				</div>
 
 <script>
@@ -61,8 +59,8 @@ $(document).ready(
 
 		$(".btn-warning")
 				.on("click",function() {
-					self.location = "/sboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}"
-							+ "&searchType=${cri.searchType}&keyword=${cri.keyword}";
+					self.location = "${pageContext.request.contextPath}/sboard/list?"
+							+ "searchType=${cri.searchType}&keyword=${cri.keyword}";
 				});
 
 		$(".btn-primary").on("click",
@@ -87,4 +85,3 @@ $(document).ready(
 </div>
 <!-- /.content-wrapper -->
 
-<%@include file="include/footer.jsp"%>

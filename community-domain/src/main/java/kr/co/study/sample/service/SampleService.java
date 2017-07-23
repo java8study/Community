@@ -1,3 +1,4 @@
+
 package kr.co.study.sample.service;
 
 import java.util.HashMap;
@@ -28,7 +29,7 @@ public class SampleService {
 		}
 	}
 
-	public boolean login(String userId, String userPwd) {
+	/*public boolean login(String userId, String userPwd) {
 		SampleDto result = sampleRepository.findUser(userId);
 		if (result == null) {
 			System.out.println("SampleService.class : login메서, result==null");
@@ -53,6 +54,16 @@ public class SampleService {
 			}
 
 		}
+	}*/
+
+	public SampleDto login(SampleDto sampleDto) {
+		SampleDto result = sampleRepository.findUserIdAndUserPwd(sampleDto);
+
+		if(result == null){
+			throw new RuntimeException();
+		}
+
+		return result;
 	}
 
 	public SampleDto getMemberInfo(String userId) {

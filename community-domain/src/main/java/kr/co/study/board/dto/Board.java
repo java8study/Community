@@ -4,7 +4,12 @@ import org.apache.ibatis.type.Alias;
 
 import java.util.Date;
 
-@Alias("board")
+import lombok.Getter;
+import lombok.Setter;
+
+
+@Getter
+@Setter
 public class Board {
 
   private Integer bno;
@@ -15,63 +20,68 @@ public class Board {
   private int viewcnt;
   private int replycnt;
 
-  public int getReplycnt() {
-    return replycnt;
-  }
-
-  public void setReplycnt(int replycnt) {
-    this.replycnt = replycnt;
-  }
-
+  
+  public Board(){}
   public Integer getBno() {
-    return bno;
-  }
+	return bno;
+}
+  
 
-  public void setBno(Integer bno) {
-    this.bno = bno;
-  }
+  
 
-  public String getTitle() {
-    return title;
-  }
+public void setBno(Integer bno) {
+	this.bno = bno;
+}
 
-  public void setTitle(String title) {
-    this.title = title;
-  }
+public String getTitle() {
+	return title;
+}
 
-  public String getContent() {
-    return content;
-  }
+public void setTitle(String title) {
+	this.title = title;
+}
 
-  public void setContent(String content) {
-    this.content = content;
-  }
+public String getContent() {
+	return content;
+}
 
-  public String getWriter() {
-    return writer;
-  }
+public void setContent(String content) {
+	this.content = content;
+}
 
-  public void setWriter(String writer) {
-    this.writer = writer;
-  }
+public String getWriter() {
+	return writer;
+}
 
-  public Date getRegdate() {
-    return regdate;
-  }
+public void setWriter(String writer) {
+	this.writer = writer;
+}
 
-  public void setRegdate(Date regdate) {
-    this.regdate = regdate;
-  }
+public Date getRegdate() {
+	return regdate;
+}
 
-  public int getViewcnt() {
-    return viewcnt;
-  }
+public void setRegdate(Date regdate) {
+	this.regdate = regdate;
+}
 
-  public void setViewcnt(int viewcnt) {
-    this.viewcnt = viewcnt;
-  }
+public int getViewcnt() {
+	return viewcnt;
+}
 
-  @Override
+public void setViewcnt(int viewcnt) {
+	this.viewcnt = viewcnt;
+}
+
+public int getReplycnt() {
+	return replycnt;
+}
+
+public void setReplycnt(int replycnt) {
+	this.replycnt = replycnt;
+}
+
+@Override
   public String toString() {
     return "Board [bno=" + bno + ", title=" + title + ", content=" + content + ", writer=" + writer + ", regdate="
         + regdate + ", viewcnt=" + viewcnt + ", replycnt=" + replycnt + "]";
