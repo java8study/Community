@@ -10,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.study.sample.dto.SampleDto;
 import kr.co.study.sample.service.SampleService;
@@ -24,6 +23,12 @@ public class SampleController {
 
 	@Autowired
 	private SampleService sampleService;
+
+	// home page
+	@RequestMapping("/")
+	public String home() {
+		return "index";
+	}
 
 	// Login Page
 	@RequestMapping("loginForm.do")
@@ -42,24 +47,20 @@ public class SampleController {
 		sampleService.joinMember(params);
 		return "redirect:loginForm.do";
 	}
-	
 
-	 /*@RequestMapping("login.do")
-		public ModelAndView login(HttpSession session,String userId, String userPwd){
-	        ModelAndView mav = new ModelAndView();
-	        if(sampleService.login(userId, userPwd)){
-	        	  log.debug("SampleController.class : login메서드 , sample.login(" + userId + "," + userPwd + ") == true");
-	        	  SampleDto user = sampleService.getMemberInfo(userId);
-	              session.setAttribute("user", user);
-	            mav.setViewName("redirect:loginSuccess.do");
-	        }
-	        else{
-	            //return "redirect:loginForm.do";
-	        	 System.out.println("SampleController.class : login메서드 , sample.login(" + userId + "," + userPwd + ") == false");
-	            mav.setViewName("redirect:loginForm.do");
-	        }
-	        return mav;
-	    }*/
+	/*
+	 * @RequestMapping("login.do") public ModelAndView login(HttpSession
+	 * session,String userId, String userPwd){ ModelAndView mav = new
+	 * ModelAndView(); if(sampleService.login(userId, userPwd)){ log.debug(
+	 * "SampleController.class : login메서드 , sample.login(" + userId + "," +
+	 * userPwd + ") == true"); SampleDto user =
+	 * sampleService.getMemberInfo(userId); session.setAttribute("user", user);
+	 * mav.setViewName("redirect:loginSuccess.do"); } else{ //return
+	 * "redirect:loginForm.do"; System.out.println(
+	 * "SampleController.class : login메서드 , sample.login(" + userId + "," +
+	 * userPwd + ") == false"); mav.setViewName("redirect:loginForm.do"); }
+	 * return mav; }
+	 */
 
 	@RequestMapping("login.do")
 	public String login(SampleDto sampleDto, HttpSession session) {
@@ -79,7 +80,7 @@ public class SampleController {
 		if (user == null)
 			return "redirect:loginForm.do";
 		else {
-			model.addAttribute("userId", user.getId());
+			model.addAttribute("userId", user.getUserId());
 			model.addAttribute("userName", user.getUserName());
 			model.addAttribute("email", user.getEmail());
 			return "loginSuccess";
@@ -92,4 +93,15 @@ public class SampleController {
 		return "redirect:loginForm.do";
 
 	}
+
+	@RequestMapping("memberUpdate.do")
+	public String memberUpdateForm(Model model, HttpSession session) {
+		String userId = (String) session.getAttribute("userid");
+		if (userId == null) {
+			return "redirect:loginForm.do";
+		}
+		// update 되면 구현해야함.
+		return "memberUpdate";
+	}
+
 }
