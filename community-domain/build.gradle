@@ -1,7 +1,7 @@
 
 apply plugin: 'war'
 
-description = 'community-domain Maven Webapp'
+description = 'community-domain'
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'1.5.4.RELEASE'
     compile group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version:'1.3.0'

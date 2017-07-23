@@ -1,6 +1,4 @@
 allprojects  {
-  apply plugin: 'maven'
-
   group = 'community'
 version = '1.0.0-SNAPSHOT'
 }
