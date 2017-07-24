@@ -84,3 +84,7 @@ $(document).ready(
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+<<<<<<< HEAD
+=======
+
+>>>>>>> branch 'master' of https://github.com/java8study/Community.git

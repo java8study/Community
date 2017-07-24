@@ -266,4 +266,8 @@ $(document).ready(function(){
 	});
 	
 });
+<<<<<<< HEAD
 </script>
+=======
+</script>
+>>>>>>> branch 'master' of https://github.com/java8study/Community.git

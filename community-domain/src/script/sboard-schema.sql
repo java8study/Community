@@ -18,3 +18,4 @@ regdate TIMESTAMP NOT NULL DEFAULT now(),
 updateDt TIMESTAMP NOT NULL DEFAULT now(),
 primary key(rno)
 );
+
