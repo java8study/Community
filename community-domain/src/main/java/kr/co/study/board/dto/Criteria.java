@@ -1,3 +1,4 @@
+
 package kr.co.study.board.dto;
 
 import org.apache.ibatis.type.Alias;
@@ -54,5 +55,4 @@ public class Criteria {
 		return "Criteria [page=" + page + ", perPageNum=" + perPageNum + "]";
 	}
 }
-
 

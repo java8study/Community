@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import kr.co.study.board.dto.Criteria;
 import kr.co.study.board.dto.Reply;
 import kr.co.study.board.repository.BoardDAO;
 import kr.co.study.board.repository.ReplyDAO;
@@ -52,13 +51,6 @@ public class ReplyServiceImpl implements ReplyService {
   }
 
 
-
-  @Override
-  public List<Reply> listReplyPage(Integer bno, Criteria cri) 
-      throws Exception {
-
-    return replyDAO.listPage(bno, cri);
-  }
 
   @Override
   public int count(Integer bno) throws Exception {
