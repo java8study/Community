@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="base" template="/WEB-INF/jsp/templates/layout.jsp">
+		<put-attribute name="title" value="Project" />
+		<put-attribute name="header"
+			value="/WEB-INF/jsp/templates/header.jsp" />
+		<put-attribute name="footer"
+			value="/WEB-INF/jsp/templates/footer.jsp" />
+	</definition>
+
+	<!-- name에 Logical View Name, extends로 상속받는다 -->
+	<definition name="index" extends="base">
+		<put-attribute name="title" value="Project- Homepage" />
+		<put-attribute name="body" value="/WEB-INF/jsp/index.jsp" />
+	</definition>
+
+	<definition name="loginForm" extends="base">
+		<put-attribute name="title" value="Project- Login" />
+		<put-attribute name="body" value="/WEB-INF/jsp/loginForm.jsp" />
+	</definition>
+
+	<definition name="loginSuccess" extends="base">
+		<put-attribute name="title" value="Project- loginSuccess" />
+		<put-attribute name="body" value="/WEB-INF/jsp/loginSuccess.jsp" />
+	</definition>
+
+	<definition name="registerForm" extends="base">
+		<put-attribute name="title" value="Project- registerForm" />
+		<put-attribute name="body" value="/WEB-INF/jsp/registerForm.jsp" />
+	</definition>
+
+</tiles-definitions>

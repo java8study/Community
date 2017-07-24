@@ -1,4 +1,4 @@
-<%@include file="include/header.jsp"%>
+
 <div class="container-wrapper">
 <div class="container">
 
@@ -29,5 +29,3 @@
 		</form>
 	</div>
 </div>
-
-<%@include file="include/footer.jsp"%>

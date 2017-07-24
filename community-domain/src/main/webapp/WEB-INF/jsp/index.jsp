@@ -1,4 +1,3 @@
-<%@include file="include/header.jsp"%>
 
 <!-- Carousel
     ================================================== -->
@@ -196,7 +195,3 @@
 <hr class="featurette-divider">
 
 <!-- /END THE FEATURETTES -->
-
-
-
-<%@include file="include/footer.jsp"%>
