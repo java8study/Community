@@ -21,7 +21,7 @@
 
 
 				<div class='box-body'>
-					<form action="/community-domain/sboard/list" method="GET">
+					<form action="/sboard/list" method="GET">
 					<select name="searchType">
 						<option value="n"
 							<c:out value="${cri.searchType == null?'selected':''}"/>>

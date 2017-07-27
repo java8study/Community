@@ -51,7 +51,7 @@
                         <a href="#page-top"></a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#community">COMMUNITY</a>
+                       <a href="${pageContext.request.contextPath}/sboard/list">COMMUNITY</a>
                     </li>
                     
                     <li class="page-scroll">

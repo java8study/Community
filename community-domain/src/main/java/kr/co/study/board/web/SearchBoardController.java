@@ -32,12 +32,17 @@ public class SearchBoardController {
 	  model.addAttribute("list", service.listSearchCriteria(searchCriteria)); 
   }
 
-  @RequestMapping(value = "/readPage/{bno}", method = RequestMethod.GET)
-  public ModelAndView read(@PathVariable("bno") int bno)
-      throws Exception {
-	  ModelAndView model = new ModelAndView("sboard/readPage");
-    model.addObject(service.read(bno));
-    return model;
+//  @RequestMapping(value = "/readPage/{bno}", method = RequestMethod.GET)
+//  public ModelAndView read(@PathVariable("bno") int bno)
+//      throws Exception {
+//	  ModelAndView model = new ModelAndView("sboard/readPage");
+//    model.addObject(service.read(bno));
+//    return model;
+//  }
+  @RequestMapping(value="/readPage/{bno}", method=RequestMethod.GET)
+  public String read(@PathVariable("bno") int bno, Model model) throws Exception{
+	  model.addAttribute("board", service.read(bno));
+	  return "sboard/readPage";
   }
 
   @RequestMapping(value = "/removePage", method = RequestMethod.POST)

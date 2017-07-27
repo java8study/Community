@@ -19,8 +19,7 @@
 				class="sr-only">Email Address</label> <input type="email" id="email"
 				class="form-control" name="email" placeholder="Email Address"
 				required>
-
-
+<br>
 			<button class="btn btn-lg btn-primary btn-block" type="submit"
 				value="register">Sign up</button>
 
