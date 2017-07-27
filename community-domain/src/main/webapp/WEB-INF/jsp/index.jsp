@@ -14,7 +14,7 @@
 				alt="First slide">
 			<div class="container">
 				<div class="carousel-caption">
-					<h1>Example headline.</h1>
+					<h1>Example headline. </h1>
 					<p>
 						Note: If you're viewing this page via a
 						<code>file://</code>
