@@ -6,29 +6,26 @@ import org.apache.ibatis.type.Alias;
 public class ArticleDTO {
 	
 	private int articleId;
-	
 	private String userName;
 	private String title;
 	private String contents;
-	
 	private int likesCount;
 	private int readsCount;
-	
 	private String writeDate;
 	
 	
 	//getter,setter
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
 	public int getArticleId() {
 		return articleId;
 	}
 	public void setArticleId(int articleId) {
 		this.articleId = articleId;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	public String getContents() {
 		return contents;

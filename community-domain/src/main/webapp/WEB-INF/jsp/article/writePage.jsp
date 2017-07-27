@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,11 +19,7 @@
 		
 		$("#writeBtn").click(function () {
 			
-			var form = $("#articleWriteForm");
-			form.attr("action", "<c:url value="/doWriteAction" />";
-			form.submit();
-			
-			alert("작성 했습니다.");
+			/* alert("작성 했습니다."); */
 			
 		});
 		
@@ -31,7 +27,7 @@
 
 </script>
 <body>
-<form:form id="articleWriteForm" commandName="articleDTO" method="post">
+<form:form commandName="articleDTO" method="post" action="/community-domain/doWriteAction">
 	<table border="1">
 		<tr>
 			<td>제목 </td>

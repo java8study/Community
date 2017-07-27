@@ -28,9 +28,8 @@
 			<td>조회수 </td>
 			<td>좋아요 </td>
 			<td>작성자 </td>
-			
 		</tr>
-		<c:forEach items="${ articleListDTO.articleList }" var="article">
+		<c:forEach items="${ articleList }" var="article">
 		<tr>
 			<td>${ article.articleId }</td>
 			<td>${ article.title }</td>
@@ -41,8 +40,9 @@
 		</tr>
 		</c:forEach>
 		
+		
+		
 	</table>
-	
 	<button type="submit" id="writeBtn">글쓰기 </button>
 	<button type="submit" >수정하기 </button>
 	<button type="submit" >삭제하기 </button>

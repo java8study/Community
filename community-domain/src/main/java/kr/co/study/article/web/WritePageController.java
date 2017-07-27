@@ -21,8 +21,10 @@ public class WritePageController {
 	}
 	
 	@RequestMapping("/doWriteAction") 
-	public String doWriteAction(@ModelAttribute ArticleDTO articleDTO) {
-		
+	public String doWriteAction(ArticleDTO articleDTO) {
+		articleDTO.setUserName("jewel1609");
+		System.out.println(articleDTO.getTitle() + " ------");
+		System.out.println(articleDTO.getContents() + " ------");
 		articleService.writeNewArticle(articleDTO);
 		
 		return "redirect:/mainPage";
