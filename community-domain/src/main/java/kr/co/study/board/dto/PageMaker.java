@@ -1,7 +1,5 @@
 package kr.co.study.board.dto;
 
-import org.springframework.web.util.UriComponents;
-import org.springframework.web.util.UriComponentsBuilder;
 
 
 public class PageMaker {
@@ -75,26 +73,26 @@ public class PageMaker {
 	
 	public String makeQuery(int page){
 		
-		UriComponents uriComponents =
-	            UriComponentsBuilder.newInstance()
-	            .queryParam("page", page)
-	            .queryParam("perPageNum", cri.getPerPageNum())
-	            .build();	            
+//		UriComponents uriComponents =
+//	            UriComponentsBuilder.newInstance()
+//	            .queryParam("page", page)
+//	            .queryParam("perPageNum", cri.getPerPageNum())
+//	            .build();
 		
-		return uriComponents.toUriString();
+		return null;//uriComponents.toUriString();
 	}
 
 	public String makeSearch(int page){
 		
-		UriComponents uriComponents =
-	            UriComponentsBuilder.newInstance()
-	            .queryParam("page", page)
-	            .queryParam("perPageNum", cri.getPerPageNum())
-	            .queryParam("searchType", ((SearchCriteria)cri).getSearchType())
-	            .queryParam("keyword", ((SearchCriteria)cri).getKeyword())
-	            .build();	            
+//		UriComponents uriComponents =
+//	            UriComponentsBuilder.newInstance()
+//	            .queryParam("page", page)
+//	            .queryParam("perPageNum", cri.getPerPageNum())
+//	            .queryParam("searchType", ((SearchCriteria)cri).getSearchType())
+//	            .queryParam("keyword", ((SearchCriteria)cri).getKeyword())
+//	            .build();
 		
-		return uriComponents.toUriString();
+		return null;//uriComponents.toUriString();
 	}	
 	
 	@Override

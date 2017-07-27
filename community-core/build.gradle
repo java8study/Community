@@ -1,4 +1,4 @@
-apply plugin: 'jar'
+
 description = 'community-core'
 dependencies {
     compile group: 'org.apache.httpcomponents', name: 'httpclient', version:'4.3.1'
