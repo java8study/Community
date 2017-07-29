@@ -11,7 +11,7 @@
 			<!-- general form elements -->
 			<div class="box box-primary">
 				<div class="box-header">
-					<h3 class="box-title">글 등록</h3>
+					<h3 class="box-title">글 작성</h3>
 				</div>
 				<!-- /.box-header -->
 
@@ -50,3 +50,4 @@
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+

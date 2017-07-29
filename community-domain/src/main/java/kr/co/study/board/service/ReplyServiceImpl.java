@@ -1,11 +1,14 @@
 package kr.co.study.board.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kr.co.study.board.dto.Criteria;
 import kr.co.study.board.dto.Reply;
 import kr.co.study.board.repository.BoardDAO;
 import kr.co.study.board.repository.ReplyDAO;
@@ -16,15 +19,15 @@ public class ReplyServiceImpl implements ReplyService {
   @Autowired
   private ReplyDAO replyDAO;
   
-  @Autowired
-  private BoardDAO boardDAO;
-
+  @Autowired 
+  private BoardService boardService;
+  
   @Transactional
   @Override
   public void addReply(Reply vo) throws Exception {
-
+	
     replyDAO.create(vo);
-    boardDAO.updateReplyCnt(vo.getBno(), 1);
+    boardService.updateReplyCnt(vo.getBno(), 1);
   }
   
   @Transactional
@@ -33,7 +36,7 @@ public class ReplyServiceImpl implements ReplyService {
   
     int bno = replyDAO.getBno(rno);
     replyDAO.delete(rno);
-    boardDAO.updateReplyCnt(bno, -1);
+    boardService.updateReplyCnt(bno, -1);
   }   
 
 
@@ -51,6 +54,15 @@ public class ReplyServiceImpl implements ReplyService {
   }
 
 
+
+  @Override
+  public List<Reply> listReplyPage(Integer bno, Criteria cri) 
+      throws Exception {
+	    Map<String, Object> paramMap = new HashMap<>();
+	    paramMap.put("bno", bno);
+	    paramMap.put("cri", cri);	  
+    return replyDAO.listPage(paramMap);
+  }
 
   @Override
   public int count(Integer bno) throws Exception {
