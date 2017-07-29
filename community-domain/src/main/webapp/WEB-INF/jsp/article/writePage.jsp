@@ -17,12 +17,6 @@
 			document.location.href = "<c:url value="/mainPage" />";	
 		});
 		
-		$("#writeBtn").click(function () {
-			
-			/* alert("작성 했습니다."); */
-			
-		});
-		
 	});
 
 </script>
@@ -42,12 +36,9 @@
 			</td>
 		</tr>
 	</table>
-	
-	<br/><br/>
-	
 	<button type="submit" id="writeBtn"  >글쓰기 </button>
-	<button type="submit" id="cancelBtn" >취소 </button>
 </form:form>
+	<button type="submit" id="cancelBtn" >취소 </button>
 	
 	
 </body>

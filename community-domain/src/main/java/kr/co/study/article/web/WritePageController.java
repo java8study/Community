@@ -21,11 +21,25 @@ public class WritePageController {
 	}
 	
 	@RequestMapping("/doWriteAction") 
-	public String doWriteAction(ArticleDTO articleDTO) {
-		articleDTO.setUserName("jewel1609");
-		System.out.println(articleDTO.getTitle() + " ------");
-		System.out.println(articleDTO.getContents() + " ------");
-		articleService.writeNewArticle(articleDTO);
+	public String doWriteAction(String title, String contents) {
+		
+		//dto로 값넣으면 널포인터 에러가 난다..why..?
+		int checkWriteArticle = articleService.writeNewArticle(title, contents);
+		
+		if ( checkWriteArticle > 0) {
+			return "redirect:/mainPage";
+		}
+		else {
+			return "error";
+		}
+	}
+	
+	@RequestMapping("/doDeleteAction")
+	public String doDeleteAction(ArticleDTO articleDTO) {
+		
+		int articleId = articleDTO.getArticleId();
+		articleService.deleteArticleByArticleId(articleId);
+		
 		
 		return "redirect:/mainPage";
 	}

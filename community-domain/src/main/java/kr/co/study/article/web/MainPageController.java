@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,6 +32,21 @@ public class MainPageController {
 		view.setViewName("article/mainPage");
 		return view;
 		
+	}
+	
+	@RequestMapping("/articleDetail/{articleId}")
+	public ModelAndView viewEduBoardQNADetailPage(@PathVariable int articleId ) {
+		ModelAndView view = new ModelAndView();
+		
+		ArticleDTO articleDTO = new ArticleDTO();
+		
+		articleDTO = articleService.viewArticleDetailPage(articleId);
+		
+		view.addObject("articleDTO", articleDTO);
+		
+		view.setViewName("article/articleDetailPage");
+		
+		return view;
 	}
 	
 	

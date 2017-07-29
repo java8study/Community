@@ -10,8 +10,12 @@ import kr.co.study.article.dto.ArticleDTO;
 @Repository
 public interface ArticleRepository {
 
-	public void writeNewArticle(ArticleDTO articleDTO);
+	public int writeNewArticle(String title, String contents);
 
 	public List<ArticleDTO> getAllArticleList();
+
+	public void deleteArticleByArticleId(int articleId);
+
+	public ArticleDTO getOneArticleByArticleId(int articleId);
 	
 }

@@ -29,14 +29,18 @@
 			<td>좋아요 </td>
 			<td>작성자 </td>
 		</tr>
-		<c:forEach items="${ articleList }" var="article">
+		<c:forEach items="${articleList}" var="article">
 		<tr>
-			<td>${ article.articleId }</td>
-			<td>${ article.title }</td>
-			<td>${ article.writeDate }</td>
-			<td>${ article.readsCount }</td>
-			<td>${ article.likesCount }</td>
-			<td>${ article.userName }</td>
+			<td>
+			<a href="<c:url value='/articleDetail/${article.articleId}'/>">
+				${article.articleId}
+			</a>
+			</td>
+			<td>${article.title}</td>
+			<td>${article.writeDate}</td>
+			<td>${article.readsCount}</td>
+			<td>${article.likesCount}</td>
+			<td>${article.userName}</td>
 		</tr>
 		</c:forEach>
 		
@@ -44,8 +48,6 @@
 		
 	</table>
 	<button type="submit" id="writeBtn">글쓰기 </button>
-	<button type="submit" >수정하기 </button>
-	<button type="submit" >삭제하기 </button>
 
 </body>
 </html>

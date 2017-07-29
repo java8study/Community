@@ -8,11 +8,15 @@ import kr.co.study.article.dto.ArticleDTO;
 
 public interface ArticleService {
 	
-	public void writeNewArticle(ArticleDTO articleDTO);
+	public int writeNewArticle(String title, String contents);
 	
 	public ModelAndView showArticleList(ArticleDTO articleDTO);
 
 	public List<ArticleDTO> getAllArticleList();
+
+	public void deleteArticleByArticleId(int articleId);
+
+	public ArticleDTO viewArticleDetailPage(int articleId);
 
 	
 }
