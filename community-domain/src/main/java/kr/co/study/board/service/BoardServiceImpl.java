@@ -26,10 +26,6 @@ public class BoardServiceImpl implements BoardService {
     dao.create(Board);
   }
 
-//  @Override
-//  public Board read(Integer bno) throws Exception {
-//    return dao.read(bno);
-//  }
 
   @Override
   @Transactional(isolation=Isolation.READ_COMMITTED)

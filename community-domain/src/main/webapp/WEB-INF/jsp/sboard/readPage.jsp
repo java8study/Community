@@ -5,17 +5,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
-<!-- Main content -->
+
 <section class="content">
 	<div class="row">
-		<!-- left column -->
 		<div class="col-md-12">
-			<!-- general form elements -->
 			<div class="box box-primary">
 				<div class="box-header">
 					<h3 class="box-title">글 읽기</h3>
 				</div>
-				<!-- /.box-header -->
 
 				<form role="form" action="modifyPage" method="post">
 
@@ -55,14 +52,9 @@
 
 
 			</div>
-			<!-- /.box -->
 		</div>
-		<!--/.col (left) -->
 
 	</div>
-	<!-- /.row -->
-
-
 
 	<div class="row">
 		<div class="col-md-12">
@@ -137,7 +129,6 @@
 	
 	
 </section>
-<!-- /.content -->
 <script>
 
 var bno = ${board.bno};
@@ -169,8 +160,7 @@ $("#replyAddBtn").on("click", function() {
 		type : 'post',
 		url : "${pageContext.request.contextPath}/replies",
 		headers : {
-			"Content-Type" : "application/json",
-			"X-HTTP-Method-Override" : "POST"
+			"Content-Type" : "application/json"
 		},
 		dataType : 'text',
 		data : JSON.stringify({
@@ -207,8 +197,7 @@ $("#replyDelBtn").on("click", function() {
 		type : 'delete',
 		url : '${pageContext.request.contextPath}/replies/' + rno,
 		headers : {
-			"Content-Type" : "application/json",
-			"X-HTTP-Method-Override" : "DELETE"
+			"Content-Type" : "application/json"
 		},
 		dataType : 'text',
 		success : function(result) {
@@ -230,8 +219,7 @@ $("#replyModBtn").on("click",function(){
 			type:'put',
 			url:'${pageContext.request.contextPath}/replies/'+rno,
 			headers: { 
-			      "Content-Type": "application/json",
-			      "X-HTTP-Method-Override": "PUT" },
+			      "Content-Type": "application/json"},
 			data:JSON.stringify({replytext:replytext}), 
 			dataType:'text', 
 			success:function(result){

@@ -21,7 +21,6 @@ import kr.co.study.board.service.BoardService;
 @RequestMapping("/sboard/*")
 public class SearchBoardController {
 
-	  private static final Logger logger = LoggerFactory.getLogger(SearchBoardController.class);
 
 	  @Autowired
 	  private BoardService service;
@@ -29,15 +28,12 @@ public class SearchBoardController {
 	  @RequestMapping(value = "/list", method = RequestMethod.GET)
 	  public void listPage(@ModelAttribute("cri") SearchCriteria cri, Model model) throws Exception {
 
-	    logger.info(cri.toString());
 
-	    // model.addAttribute("list", service.listCriteria(cri));
 	    model.addAttribute("list", service.listSearchCriteria(cri));
 
 	    PageMaker pageMaker = new PageMaker();
 	    pageMaker.setCri(cri);
 
-	    // pageMaker.setTotalCount(service.listCountCriteria(cri));
 	    pageMaker.setTotalCount(service.listSearchCount(cri));
 
 	    model.addAttribute("pageMaker", pageMaker);
@@ -74,7 +70,6 @@ public class SearchBoardController {
 	  @RequestMapping(value = "/modifyPage", method = RequestMethod.POST)
 	  public String modifyPagingPOST(Board board, SearchCriteria cri, RedirectAttributes rttr) throws Exception {
 
-	    logger.info(cri.toString());
 	    service.modify(board);
 
 	    rttr.addAttribute("page", cri.getPage());
@@ -84,7 +79,6 @@ public class SearchBoardController {
 
 	    rttr.addFlashAttribute("msg", "SUCCESS");
 
-	    logger.info(rttr.toString());
 
 	    return "redirect:/sboard/list";
 	  }
@@ -92,15 +86,12 @@ public class SearchBoardController {
 	  @RequestMapping(value = "/register", method = RequestMethod.GET)
 	  public void registGET() throws Exception {
 
-	    logger.info("regist get ...........");
 	  }
 
 	  @RequestMapping(value = "/register", method = RequestMethod.POST)
 	  public String registPOST(Board board, RedirectAttributes rttr) throws Exception {
 
-	    logger.info("regist post ...........");
-	    logger.info(board.toString());
-
+	   
 	    service.regist(board);
 
 	    rttr.addFlashAttribute("msg", "SUCCESS");
@@ -108,19 +99,5 @@ public class SearchBoardController {
 	    return "redirect:/sboard/list";
 	  }
 
-	  // @RequestMapping(value = "/list", method = RequestMethod.GET)
-	  // public void listPage(@ModelAttribute("cri") SearchCriteria cri,
-	  // Model model) throws Exception {
-	  //
-	  // logger.info(cri.toString());
-	  //
-	  // model.addAttribute("list", service.listCriteria(cri));
-	  //
-	  // PageMaker pageMaker = new PageMaker();
-	  // pageMaker.setCri(cri);
-	  //
-	  // pageMaker.setTotalCount(service.listCountCriteria(cri));
-	  //
-	  // model.addAttribute("pageMaker", pageMaker);
-	  // }
+
 	}
