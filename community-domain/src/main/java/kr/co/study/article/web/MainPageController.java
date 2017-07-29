@@ -35,7 +35,7 @@ public class MainPageController {
 	}
 	
 	@RequestMapping("/articleDetail/{articleId}")
-	public ModelAndView viewEduBoardQNADetailPage(@PathVariable int articleId ) {
+	public ModelAndView viewArticleDetailPage(@PathVariable int articleId ) {
 		ModelAndView view = new ModelAndView();
 		
 		ArticleDTO articleDTO = new ArticleDTO();

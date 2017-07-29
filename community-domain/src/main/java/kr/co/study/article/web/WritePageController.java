@@ -21,17 +21,16 @@ public class WritePageController {
 	}
 	
 	@RequestMapping("/doWriteAction") 
-	public String doWriteAction(String title, String contents) {
+	public ModelAndView doWriteAction(String title, String contents) {
+		ModelAndView view = new ModelAndView();
 		
+		ArticleDTO articleDTO = new ArticleDTO();
+		
+		view.setViewName("redirect:/mainPage");
 		//dto로 값넣으면 널포인터 에러가 난다..why..?
-		int checkWriteArticle = articleService.writeNewArticle(title, contents);
+//		int checkWriteArticle = articleService.writeNewArticle(title, contents);
 		
-		if ( checkWriteArticle > 0) {
-			return "redirect:/mainPage";
-		}
-		else {
-			return "error";
-		}
+		return view;
 	}
 	
 	@RequestMapping("/doDeleteAction")
