@@ -90,7 +90,7 @@ public class HelloController {
 }
 ~~~
 
-#### 3.3.2 핸들러 매핑
+## 3.3.2 핸들러 매핑
 >- HTTP 요청 정보를 이용해서 이를 처리할 핸들러 오브젝트, 즉 컨트롤러를 찾아주는 기능을 가진 DispatcherServlet의 전략이다.
 >- 하나의 핸들러 매핑 전략이 여러 가지 타입의 컨트롤러를 선택할 수 있다.
 >- 다섯 가지 핸들러 매핑을 제공(스프링)    
@@ -101,7 +101,7 @@ public class HelloController {
 >- SimpleUrlHandlerMapping
 >- DefaultAnnotationHandlerMapping
 
-#### 3.3.3 핸들러 인터셉터
+## 3.3.3 핸들러 인터셉터
 >- DispathcerServlet이 컨트롤러를 호출하기 전과 후에 요청과 응답을 참조하거나 가공 할 수 있는 일종의 필터 (서블릿 필터와 유사한 개념)
 
 #### 3-32 핸들러 인터셉터 설정
@@ -118,6 +118,178 @@ public class HelloController {
  <bean id="simpleInterceptor" class="..."/>
  <bean id="eventInterceptor" class="..." />
 ~~~
+
+#### * HandlerAdapter
+#### 3-33 HandlerAdapter
+
+~~~
+package org.springframework.web.servlet;
+...
+public interface HandlerAdapter{
+ boolean supports(Object handler);
+ 
+ ModelAndView handler(HttpServletRequest request, HttpServletResponse response,
+            Object handler) throws Exception;
+            
+ long getLastModified(HttpServletRequest request, Object handler);
+   
+}
+~~~
+
+## 3.4.1 뷰
+-> MVC 아키텍처에서 모델이 가진 정보를 어떻게 표현해야하는지에 대한 로직을 갖고 있는 컴포넌트
+#### 3-40 View 인터페이스
+~~~
+package org.springframework.web.servlet;
+...
+public interface View {
+ String getContentType();
+ 
+ void render(Map<String, ?> model, HttpServletRequest request, 
+  HttpSErvletResponse response) thorws Exception;
+}
+~~~
+
+>- InternalResourceView
+>- JstlView
+
+>- RequestDispatcher 를 이용한 JSP뷰 생성
+~~~
+req.setAttribute(“message”, message);
+req.getRequestDispatcher(“/WEB-INF/view/hello.jsp”).forward(req, res);
+~~~
+
+>- InternalResourceView 의 사용
+~~~
+public class HelloController implements Controller {
+...
+public ModelAndView handleRequest(HttpServletRequest req, HttpServletResponse res) throws Exception {
+Map<String, Object> model = new HashMap<String, Object>();
+model.put("message", message);
+
+View view = new InternalResourceView("/WEB-INF/view/hello.jsp");
+return new ModelAndView(view, model);
+	}
+}
+~~~  
+
+>- RedirectView
+~~~
+return new ModelAndView(new RedirectView("/main");
+
+return new ModelAndView("redirect:/main");
+
+~~~
+
+>- Velocity View
+>- FreeMarker View
+>- MarshallingView
+>- AbstractAtomFeedView
+>- AbstractRssFeedView
+>- AbstractExcelView
+>- AbstractJExcelView
+>- AbstractPdfView
+
+#### 3-48 엑셀 문서 생성 코드
+~~~
+protected abstract void buildExcelDocument {
+ Map<String, Object> model, HSSFWorkbook workbook, HttpServletRequest request,
+ HttpServletResponse response) throws Exception;
+}
+~~~
+
+#### 3-49 PDF 뷰
+
+~~~
+public class HelloPdfView extends AbstractPdfView {
+ protected void buildPdfDocument(Map<String, Object> model, Document document,
+  PdfWriter pdfWriter, HttpServletRequest request, HttpServletResponse response) throws Exception {
+  Chapter chapter = new Chapter(new Paragraph("Spring Message"), 1);
+  chapter.add(new Paragraph((String)model.get("message")));
+  
+  document.add(chapter);
+  }
+}
+~~~
+
+>- XstlView
+>- TilesView
+>- AbstractJasperReportsView
+>- MappingJacksonJsonView
+
+
+## 3.4.2 뷰 리졸버
+>- 핸들러 매핑이 URL으로 부터 컨트롤러를 찾아주는 것처럼, 뷰 이름으로 부터 사용할 뷰 오브젝트를 찾아준다.
+>- ViewResolver 인터페이스를 구현해서 만들어진다.
+
+#### InternalResourceViewResolver
+#### 3-53 prefix, suffix 설정을 위한 빈 등록
+
+~~~
+ <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+ <property name="prefix" value="/WEB-INF/view" />
+ <property name="suffix" value=".jsp" />
+ </bean>
+~~~
+
+>- VelocityViewResolver
+>- FreeMarkerViewResolver
+#### 벨로시티 뷰 설정
+~~~
+<bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+	<property name="resourceLoaderPath" value="/WEB-INF/velocity/">
+</bean>
+
+<bean id="viewResolver" class=org.springframework.web.servlet.view.velocity.VelocityViewResolver">
+~~~
+                                                                                                 
+>- ResourceBundleViewResolver
+>- XmlViewResolver
+>- BeanNameViewResolver
+
+~~~
+view.properties 파일
+hello.(class)=org.springframework.web.servlet.view.JstlView
+hello.url="WEB-INF/view/hello.jsp
+
+main.(class)=org.springframework.web.servlet.view.velocity.VelocityView
+main.url=main.vm
+~~~
+
+#### 다중 뷰 리졸버 설정 
+~~~
+<bean class="org.springframework.web.servlet.view.ResourceBundleViewResolver">
+	<property name="order" value="0" />
+</bean>
+
+<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"/>
+~~~
+#### ContentNegotiatingViewResolver
+
+-> 뷰의 종류를 선택하는 컨트롤러 코드
+~~~
+if ("xml".equals(req.getParameter("type"))) {
+	return new ModelAndView(helloMarshallingView, model);
+}
+else {
+	return new ModelAndView("/WEB-INF/view/hello.jsp", model);
+}
+~~~
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
