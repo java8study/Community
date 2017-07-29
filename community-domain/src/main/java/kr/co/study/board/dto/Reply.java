@@ -1,9 +1,6 @@
 package kr.co.study.board.dto;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
-
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,6 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Reply {
+
 	  private Integer rno;
 	  private Integer bno;
 	  private String replytext;
@@ -52,7 +50,7 @@ public class Reply {
 	  }
 
 	  public Date getRegdate() {
-			return regdate;
+	    return regdate;
 	  }
 
 	  public void setRegdate(Date regdate) {
@@ -72,8 +70,5 @@ public class Reply {
 	    return "ReplyVO [rno=" + rno + ", bno=" + bno + ", replytext=" + replytext + ", replyer=" + replyer + ", regdate="
 	        + regdate + ", updatedate=" + updatedate + "]";
 	  }
-
-
-
 
 }

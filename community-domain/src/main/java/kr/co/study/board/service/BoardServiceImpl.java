@@ -31,9 +31,8 @@ public class BoardServiceImpl implements BoardService {
 //    return dao.read(bno);
 //  }
 
-
-  @Transactional(isolation=Isolation.READ_COMMITTED)
   @Override
+  @Transactional(isolation=Isolation.READ_COMMITTED)
   public Board read(Integer bno) throws Exception {
     dao.updateViewCnt(bno);
     return dao.read(bno);
