@@ -59,7 +59,7 @@
 				<div class="box-body">
 					<table class="table table-bordered">
 						<tr>
-							<th style="width: 10px">글 번호</th>
+							<th style="width: 60px">글 번호</th>
 							<th>제목</th>
 							<th>작성자</th>
 							<th>등록일</th>

@@ -63,18 +63,19 @@
 				<div class="box-header">
 					<h3 class="box-title">댓글 추가</h3>
 				</div>
+				<form>
 				<div class="box-body">
 					<label for="exampleInputEmail1">작성자</label> <input
 						class="form-control" type="text" placeholder="USER ID"
-						id="newReplyWriter">
+						id="newReplyWriter" required>
 						 <label for="exampleInputEmail1"> 글쓰기 내용 </label> <input class="form-control" type="text"
-						placeholder="REPLY TEXT" id="newReplyText">
+						placeholder="REPLY TEXT" required id="newReplyText">
 
 				</div>
+				</form>
 				<!-- /.box-body -->
 				<div class="box-footer">
-					<button type="button" class="btn btn-primary" id="replyAddBtn">ADD
-						REPLY</button>
+					<button type="button" class="btn btn-primary" id="replyAddBtn"> 추가</button>
 				</div>
 			</div>
 
@@ -173,6 +174,8 @@ $("#replyAddBtn").on("click", function() {
 			if (result == 'SUCCESS') {
 
 				alert("등록 되었습니다.");
+				$("#newReplyWriter").val("");
+				$("#newReplyText").val("");
 				getPageList(1);
 
 			}
@@ -255,7 +258,7 @@ function getPageList(page){
 			+ "<div class='timeline-footer'> "
 			+  "<a class='btn btn-primary btn-xs' id='modButton' data-toggle='modal' data-target='#modifyModal'>수정</a> "
 			+ "</div>" + "</div>"+"</li>";
-		$("#repliesDiv").append(str);
+		$("#repliesDiv").after(str);
 				
 	});
 
