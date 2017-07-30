@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,10 +12,13 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
-
+		
+		/* var articleId = $("#articleId").val();
+		
+		
 		$("#editBtn").click(function() {
-			document.location.href = "<c:url value="/doWritePage" />";
-		});
+			document.location.href = "<c:url value="/doWritePage/articleId" />";
+		}); */
 
 		$("#goListBtn").click(function() {
 			document.location.href = "<c:url value="/mainPage" />";
@@ -24,6 +28,8 @@
 </script>
 <body>
 	Detail page입니다.
+	<form:form commandName="articleDTO" method="post"
+		action="/community-domain/doAdjustWritePage/${articleDTO.articleId}">
 	<table border="1">
 		<tr>
 			<td>${articleDTO.articleId}</td>
@@ -34,10 +40,11 @@
 		</tr>
 		<tr>
 	</table>
-
+	
 	<button type="submit" id="editBtn">수정하기</button>
-	<button type="submit" id="goListBtn">목록으로</button>
+	</form:form>
 
+	<button type="submit" id="goListBtn">목록으로</button>
 
 
 </body>

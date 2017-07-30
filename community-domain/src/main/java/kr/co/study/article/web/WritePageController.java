@@ -2,8 +2,10 @@ package kr.co.study.article.web;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -13,24 +15,38 @@ import kr.co.study.article.service.ArticleService;
 @Controller
 public class WritePageController {
 	
-	ArticleService articleService;
+	@Autowired
+	private ArticleService articleService;
 
+	@RequestMapping("/doAdjustWritePage/{articleId}")
+	public ModelAndView adjustWritePageView(@PathVariable int articleId) {
+		ModelAndView view = new ModelAndView();
+		ArticleDTO articleDTO = new ArticleDTO();
+		
+		articleDTO = articleService.viewArticleDetailPage(articleId);
+		
+		view.addObject("articleDTO", articleDTO);
+		view.setViewName("article/adjustWritePage");
+		return view;
+	}
+	
 	@RequestMapping("/doWritePage")
-	public String writePageView() {
-		return "article/writePage";
+	public ModelAndView viewWritePageView() {
+		ModelAndView view = new ModelAndView();
+		
+		view.setViewName("article/writePage");
+		return view;
 	}
 	
 	@RequestMapping("/doWriteAction") 
-	public ModelAndView doWriteAction(String title, String contents) {
-		ModelAndView view = new ModelAndView();
+	public String doWriteAction(ArticleDTO articleDTO) {
 		
-		ArticleDTO articleDTO = new ArticleDTO();
+		articleDTO.setUserName("jewel1609");
 		
-		view.setViewName("redirect:/mainPage");
+		articleService.writeNewArticle(articleDTO);
 		//dto로 값넣으면 널포인터 에러가 난다..why..?
-//		int checkWriteArticle = articleService.writeNewArticle(title, contents);
 		
-		return view;
+		return "redirect:/mainPage";
 	}
 	
 	@RequestMapping("/doDeleteAction")
@@ -42,6 +58,8 @@ public class WritePageController {
 		
 		return "redirect:/mainPage";
 	}
+	
+	
 		
 		
 	

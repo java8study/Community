@@ -17,9 +17,9 @@ public class ArticleServiceImpl implements ArticleService {
 	private ArticleRepository articleRepository;
 
 	@Override
-	public int writeNewArticle(String title, String contents) {
+	public void writeNewArticle(ArticleDTO articleDTO) {
 		// TODO Auto-generated method stub
-		return articleRepository.writeNewArticle(title, contents);
+		articleRepository.writeNewArticle(articleDTO);
 	}
 
 	@Override
@@ -43,6 +43,7 @@ public class ArticleServiceImpl implements ArticleService {
 	@Override
 	public List<ArticleDTO> getAllArticleList() {
 		// TODO Auto-generated method stub
+		List<ArticleDTO> list = articleRepository.getAllArticleList();
 		return articleRepository.getAllArticleList();
 	}
 

@@ -8,7 +8,7 @@ import kr.co.study.article.dto.ArticleDTO;
 
 public interface ArticleService {
 	
-	public int writeNewArticle(String title, String contents);
+	public void writeNewArticle(ArticleDTO articleDTO);
 	
 	public ModelAndView showArticleList(ArticleDTO articleDTO);
 

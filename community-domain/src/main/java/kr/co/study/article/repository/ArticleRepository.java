@@ -10,7 +10,7 @@ import kr.co.study.article.dto.ArticleDTO;
 @Repository
 public interface ArticleRepository {
 
-	public int writeNewArticle(String title, String contents);
+	public void writeNewArticle(ArticleDTO articleDTO);
 
 	public List<ArticleDTO> getAllArticleList();
 
