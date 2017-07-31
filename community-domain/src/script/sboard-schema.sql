@@ -15,7 +15,7 @@ bno int not null default 0,
 replytext varchar(1000) not null,
 replyer varchar(50) not null,
 regdate TIMESTAMP NOT NULL DEFAULT now(),
-updateDt TIMESTAMP NOT NULL DEFAULT now(),
+updatedate TIMESTAMP NOT NULL DEFAULT now(),
 primary key(rno)
 );
 
