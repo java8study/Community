@@ -13,12 +13,10 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 		
-		/* var articleId = $("#articleId").val();
 		
-		
-		$("#editBtn").click(function() {
-			document.location.href = "<c:url value="/doWritePage/articleId" />";
-		}); */
+		$("#doDeleteBtn").click(function() {
+			document.location.href = "<c:url value="/doDeleteAction/${articleDTO.articleId}" />";
+		}); 
 
 		$("#goListBtn").click(function() {
 			document.location.href = "<c:url value="/mainPage" />";
@@ -45,6 +43,7 @@
 	</form:form>
 
 	<button type="submit" id="goListBtn">목록으로</button>
+	<button type="submit" id="doDeleteBtn">삭제 </button>
 
 
 </body>

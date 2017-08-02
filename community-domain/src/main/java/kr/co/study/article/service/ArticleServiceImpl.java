@@ -59,5 +59,11 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleRepository.getOneArticleByArticleId(articleId);
 	}
 
+	@Override
+	public void updateArticleByArticleDTO(ArticleDTO articleDTO) {
+		// TODO Auto-generated method stub
+		articleRepository.updateArticleByArticleDTO(articleDTO);
+	}
+
 
 }

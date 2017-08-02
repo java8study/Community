@@ -18,5 +18,7 @@ public interface ArticleService {
 
 	public ArticleDTO viewArticleDetailPage(int articleId);
 
+	public void updateArticleByArticleDTO(ArticleDTO articleDTO);
+
 	
 }

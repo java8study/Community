@@ -17,5 +17,7 @@ public interface ArticleRepository {
 	public void deleteArticleByArticleId(int articleId);
 
 	public ArticleDTO getOneArticleByArticleId(int articleId);
+
+	public void updateArticleByArticleDTO(ArticleDTO articleDTO);
 	
 }

@@ -44,21 +44,26 @@ public class WritePageController {
 		articleDTO.setUserName("jewel1609");
 		
 		articleService.writeNewArticle(articleDTO);
-		//dto로 값넣으면 널포인터 에러가 난다..why..?
 		
 		return "redirect:/mainPage";
 	}
 	
-	@RequestMapping("/doDeleteAction")
-	public String doDeleteAction(ArticleDTO articleDTO) {
+	@RequestMapping("/doDeleteAction/{articleId}")
+	public String doDeleteAction(@PathVariable int articleId) {
 		
-		int articleId = articleDTO.getArticleId();
 		articleService.deleteArticleByArticleId(articleId);
 		
-		
 		return "redirect:/mainPage";
 	}
 	
+	//Update
+	@RequestMapping("/doUpdate")
+	public String doUpdate(ArticleDTO articleDTO) {
+			
+		articleService.updateArticleByArticleDTO(articleDTO);
+		
+		return "redirect:/mainPage";
+	}
 	
 		
 		

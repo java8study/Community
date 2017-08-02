@@ -32,11 +32,13 @@
 		<c:forEach items="${articleList}" var="article">
 		<tr>
 			<td>
-			<a href="<c:url value='/articleDetail/${article.articleId}'/>">
 				${article.articleId}
+			</td>
+			<td>
+			<a href="<c:url value='/articleDetail/${article.articleId}'/>">
+			${article.title}
 			</a>
 			</td>
-			<td>${article.title}</td>
 			<td>${article.writeDate}</td>
 			<td>${article.readsCount}</td>
 			<td>${article.likesCount}</td>
