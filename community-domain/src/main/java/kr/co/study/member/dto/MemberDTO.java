@@ -1,5 +1,8 @@
 package kr.co.study.member.dto;
 
+import org.apache.ibatis.type.Alias;
+
+@Alias("memberDTO")
 public class MemberDTO {
 
 	private int memberId;
