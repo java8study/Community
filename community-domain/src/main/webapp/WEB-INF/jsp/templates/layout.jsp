@@ -37,6 +37,17 @@
 	
 	<!-- AngularJS -->
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	
+	<!-- jQuery 2.1.4 -->
+    <script src="<c:url value="/resources/plugins/jQuery/jQuery-2.1.4.min.js"/>"></script>
+
+    <!-- FastClick -->
+    <script src='/resources/plugins/fastclick/fastclick.min.js'></script>
+    <!-- AdminLTE App -->
+    <script src="/resources/dist/js/app.min.js" type="text/javascript"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="/resources/dist/js/demo.js" type="text/javascript"></script>
+  
 </head>
 <body>
 	<div>
