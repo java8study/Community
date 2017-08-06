@@ -1,9 +1,10 @@
 create table if not exists sample (
-id long not null auto_increment,
+id Bigint not null auto_increment primary key,
 userId varchar(45) not null,
 userPwd varchar(80) not null,
 userName varchar(45) not null,
 email varhcar(80) not null
+
 )
 
 insert into sample(userId,userPwd,userName,email) values('A','A','A','A@naver.com'); 

@@ -39,7 +39,7 @@ public class SampleController {
 
 	@RequestMapping("register.do")
 	public String join(@RequestParam HashMap<String, Object> params) {
-		System.out.println(params);
+		
 		sampleService.joinMember(params);
 		return "redirect:loginForm.do";
 	}
