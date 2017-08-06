@@ -9,14 +9,16 @@
 		<!-- left column -->
 		<div class="col-md-12">
 			<!-- general form elements -->
-			<div 99class="box box-primary">
+			<div class="box box-primary">
 				<div class="box-header">
-					<h3 class="box-title">MODIFY BOARD</h3>
+					<h3 class="box-title">수정 페이지</h3>
 				</div>
 				<!-- /.box-header -->
 
 <form role="form" action="modifyPage" method="post">
 
+	<input type='hidden' name='page' value="${cri.page}"> 
+	<input type='hidden' name='perPageNum' value="${cri.perPageNum}">
 	<input type='hidden' name='searchType' value="${cri.searchType}">
 	<input type='hidden' name='keyword' value="${cri.keyword}">
 
@@ -45,8 +47,8 @@
 					<!-- /.box-body -->
 				</form>
 				<div class="box-footer">
-					<button type="submit" class="btn btn-primary btn-sm">저장</button>
-					<button type="submit" class="btn btn-primary btn-sm">취소</button>
+					<button type="submit" id="modify" class="btn btn-primary btn-sm">저장</button>
+					<button type="submit" id="cancel" class="btn btn-primary btn-sm">취소</button>
 				</div>
 
 <script>
@@ -57,13 +59,13 @@ $(document).ready(
 
 		console.log(formObj);
 
-		$(".btn-warning")
+		$("#cancel")
 				.on("click",function() {
-					self.location = "${pageContext.request.contextPath}/sboard/list?"
-							+ "searchType=${cri.searchType}&keyword=${cri.keyword}";
+					self.location = "${pageContext.request.contextPath}/sboard/list?page=${cri.page}&perPageNum=${cri.perPageNum}"
+							+" &searchType=${cri.searchType}&keyword=${cri.keyword}";
 				});
 
-		$(".btn-primary").on("click",
+		$("#modify").on("click",
 				function() {
 					formObj.submit();
 				});
@@ -84,7 +86,3 @@ $(document).ready(
 <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
-<<<<<<< HEAD
-=======
-
->>>>>>> branch 'master' of https://github.com/java8study/Community.git
