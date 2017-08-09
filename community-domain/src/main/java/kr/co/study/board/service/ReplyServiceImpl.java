@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import kr.co.study.board.dto.Criteria;
 import kr.co.study.board.dto.Reply;
 import kr.co.study.board.repository.BoardDAO;
 import kr.co.study.board.repository.ReplyDAO;
@@ -56,6 +55,7 @@ public class ReplyServiceImpl implements ReplyService {
 
 
   @Override
+<<<<<<< HEAD
   public List<Reply> listReplyPage(Integer bno, Criteria cri) 
       throws Exception {
 	    Map<String, Object> paramMap = new HashMap<>();
@@ -65,6 +65,8 @@ public class ReplyServiceImpl implements ReplyService {
   }
 
   @Override
+=======
+>>>>>>> jewel1609_2
   public int count(Integer bno) throws Exception {
 
     return replyDAO.count(bno);

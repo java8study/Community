@@ -2,7 +2,6 @@ package kr.co.study.board.service;
 
 import java.util.List;
 
-import kr.co.study.board.dto.Criteria;
 import kr.co.study.board.dto.Reply;
 
 
@@ -16,8 +15,6 @@ public interface ReplyService {
 
   public void removeReply(Integer rno) throws Exception;
 
-  public List<Reply> listReplyPage(Integer bno, Criteria cri) 
-      throws Exception;
 
   public int count(Integer bno) throws Exception;
 }

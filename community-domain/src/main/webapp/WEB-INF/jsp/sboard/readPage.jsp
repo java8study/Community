@@ -2,8 +2,12 @@
 	pageEncoding="UTF-8"%>
 
 <%@include file="include/header.jsp"%>
+<<<<<<< HEAD
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+=======
+
+>>>>>>> jewel1609_2
 <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 
 
@@ -16,13 +20,8 @@
 				</div>
 
 				<form role="form" action="modifyPage" method="post">
-
-					<input type='hidden' name='bno' value="${board.bno}"> <input
-						type='hidden' name='page' value="${cri.page}"> <input
-						type='hidden' name='perPageNum' value="${cri.perPageNum}">
-					<input type='hidden' name='searchType' value="${cri.searchType}">
-					<input type='hidden' name='keyword' value="${cri.keyword}">
-
+					<input type='hidden' name='bno' value="${board.bno}"> 
+									
 				</form>
 
 				<div class="box-body">
@@ -37,7 +36,11 @@
 							readonly="readonly">${board.content}</textarea>
 					</div>
 					<div class="form-group">
+<<<<<<< HEAD
 						<label for="exampleInputEmail1">작가</label> <input type="text"
+=======
+						<label for="exampleInputEmail1">작성자</label> <input type="text"
+>>>>>>> jewel1609_2
 							name="writer" class="form-control" value="${board.writer}"
 							readonly="readonly">
 					</div>
@@ -47,7 +50,11 @@
 			  <div class="box-footer">
 			    <button type="submit" class="btn btn-primary btn-sm" id="modifyBtn">수정</button>
 			    <button type="submit" class="btn btn-primary btn-sm" id="removeBtn">삭제</button>
+<<<<<<< HEAD
 			    <button type="submit" class="btn btn-primary btn-sm" id="goListBtn">목록으로</button>
+=======
+			    <button type="submit" class="btn btn-primary btn-sm" id="goListBtn">리스트</button>
+>>>>>>> jewel1609_2
 			  </div>
 
 
@@ -62,7 +69,7 @@
 
 			<div class="box box-success">
 				<div class="box-header">
-					<h3 class="box-title">댓글 추가</h3>
+					<h3 class="box-title">댓글 목록</h3>
 				</div>
 				<form>
 				<div class="box-body">
@@ -76,7 +83,11 @@
 				</form>
 				<!-- /.box-body -->
 				<div class="box-footer">
+<<<<<<< HEAD
 					<button type="button" class="btn btn-primary" id="replyAddBtn"> 추가</button>
+=======
+					<button type="button" class="btn btn-primary btn-sm" id="replyAddBtn">댓글 추가</button>
+>>>>>>> jewel1609_2
 				</div>
 			</div>
 
@@ -131,6 +142,7 @@
 	
 	
 </section>
+<<<<<<< HEAD
 <script>
 
 var bno = ${board.bno};
@@ -144,6 +156,14 @@ $("#repliesDiv").on("click", function() {
 	getPageList(1);
 
 });
+=======
+<!-- /.content -->
+
+<script>
+
+
+	$("#repliesDiv").on("click", function() {
+>>>>>>> jewel1609_2
 
 var timeFormat = function(timeValue) {
 	var dateObj = new Date(timeValue);
@@ -214,6 +234,7 @@ $("#replyDelBtn").on("click", function() {
 	});
 });
 
+<<<<<<< HEAD
 $("#replyModBtn").on("click",function(){
 	  
 	  var rno = $(".modal-title").html();
@@ -261,6 +282,38 @@ function getPageList(page){
 			+ "</div>" + "</div>"+"</li>";
 		$("#repliesDiv").after(str);
 				
+=======
+	$("#replyAddBtn").on("click",function(){
+
+		 alert("버튼 눌림");
+		 var replyerObj = $("#newReplyWriter");
+		 var replytextObj = $("#newReplyText");
+		 var replyer = replyerObj.val();
+		 var replytext = replytextObj.val();
+		
+		  
+		  $.ajax({
+				type:'post', 
+				url:'/community-domain/replies',
+				headers: { 
+				      "Content-Type": "application/json",
+				      "X-HTTP-Method-Override": "POST" },
+				dataType:'text',
+				data: JSON.stringify({bno:bno, replyer:replyer, replytext:replytext}),
+				success:function(result){
+					console.log("result: " + result);
+					if(result == 'SUCCESS'){
+						alert("등록 되었습니다.");
+						replyPage = 1;
+						getPage("/replies/"+bno+"/"+replyPage );
+						replyerObj.val("");
+						replytextObj.val("");
+					}else{
+						alert("그냥 에러난거임");
+					
+					}
+			}});
+>>>>>>> jewel1609_2
 	});
 
 
@@ -311,19 +364,32 @@ $(document).ready(function(){
 	console.log(formObj);
 	
 	$("#modifyBtn").on("click", function(){
+<<<<<<< HEAD
 		formObj.attr("action", "${pageContext.request.contextPath}/sboard/modifyPage");
+=======
+		alert("버튼 눌림");
+		formObj.attr("action", "/community-domain/sboard/modifyPage");
+>>>>>>> jewel1609_2
 		formObj.attr("method", "get");		
 		formObj.submit();
 	});
 	
 	$("#removeBtn").on("click", function(){
+<<<<<<< HEAD
 		formObj.attr("action", "${pageContext.request.contextPath}/sboard/removePage");
+=======
+		formObj.attr("action", "'${pageContext.request.contextPath}/sboard/removePage");
+>>>>>>> jewel1609_2
 		formObj.submit();
 	});
 	
 	$("#goListBtn ").on("click", function(){
 		formObj.attr("method", "get");
+<<<<<<< HEAD
 		formObj.attr("action", "${pageContext.request.contextPath}/sboard/list");
+=======
+		formObj.attr("action", "/community-domain/sboard/list");
+>>>>>>> jewel1609_2
 		formObj.submit();
 	});
 	
@@ -334,4 +400,7 @@ $(document).ready(function(){
 });
 
 </script>
+<<<<<<< HEAD
 >>>>>>> branch 'master' of https://github.com/java8study/Community.git
+=======
+>>>>>>> jewel1609_2

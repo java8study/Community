@@ -22,9 +22,13 @@ public interface ReplyDAO {
 
 	  public void delete(Integer rno) throws Exception;
 
+<<<<<<< HEAD
 	  public List<Reply> listPage(Map<String,Object> map) throws Exception;
 
 	  public int count(Integer bno) throws Exception;
+=======
+  public int count(Integer bno) throws Exception;
+>>>>>>> jewel1609_2
 
 	  public int getBno(Integer rno) throws Exception;
 

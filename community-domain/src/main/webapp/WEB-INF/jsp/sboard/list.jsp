@@ -16,22 +16,31 @@
 			<!-- general form elements -->
 			<div class='box'>
 				<div class="box-header with-border">
-					<h3 class="box-title">글 목록</h3>
+					<h3 class="box-title"></h3>
 				</div>
 
 
 				<div class='box-body'>
 <<<<<<< HEAD
+<<<<<<< HEAD
 					<form action="/sboard/list" method="GET">
 =======
 
 >>>>>>> branch 'master' of https://github.com/java8study/Community.git
+=======
+					<form action="/community-domain/sboard/list" method="GET">
+>>>>>>> jewel1609_2
 					<select name="searchType">
 						<option value="t"
+<<<<<<< HEAD
 						<c:if test="${cri.searchType ==null or cri.searchType =='t' }">
 								<c:out value='selected'/>							
 						</c:if>>	
 						  제목</option>
+=======
+							<c:out value="${cri.searchType eq 't'?'selected':''}"/>>
+							제목</option>    <!-- <option value="t" selected /> -->
+>>>>>>> jewel1609_2
 						<option value="c"
 							<c:out value="${cri.searchType eq 'c'?'selected':''}"/>>
 							내용</option>
@@ -40,16 +49,28 @@
 							작성자</option>
 						<option value="tc"
 							<c:out value="${cri.searchType eq 'tc'?'selected':''}"/>>
+<<<<<<< HEAD
 							제목 또는 내용</option>
 						<option value="cw"
+=======
+							제목 및 내용</option>
+						<option value="cw" 	 
+>>>>>>> jewel1609_2
 							<c:out value="${cri.searchType eq 'cw'?'selected':''}"/>>
 							내용 또는 작성자</option>
 						<option value="tcw"
 							<c:out value="${cri.searchType eq 'tcw'?'selected':''}"/>>
 							제목 또는 내용 또는 작성자</option>
 					</select> <input type="text" name='keyword' id="keywordInput"
+<<<<<<< HEAD
 						value='${cri.keyword }'>
 					<button id='searchBtn'>검색</button>
+=======
+						value='${cri.keyword}'>
+					<input type="submit" id='searchBtn' value="검색">
+					
+					</form>
+>>>>>>> jewel1609_2
 
 				</div>
 			</div>
@@ -62,11 +83,15 @@
 				<div class="box-body">
 					<table class="table table-bordered">
 						<tr>
+<<<<<<< HEAD
 							<th style="width: 60px">글 번호</th>
+=======
+							<th style="width: 80px">번호</th>
+>>>>>>> jewel1609_2
 							<th>제목</th>
 							<th>작성자</th>
 							<th>등록일</th>
-							<th style="width: 40px">VIEWCNT</th>
+							<th style="width: 80px">조회수</th>
 						</tr>
 
 						<c:forEach items="${list}" var="board">
@@ -74,9 +99,14 @@
 							<tr>
 								<td>${board.bno}</td>
 								<td><a
+<<<<<<< HEAD
 									href='${pageContext.request.contextPath}/sboard/readPage${pageMaker.makeSearch(pageMaker.cri.page)}&bno=${board.bno}'>
 										${board.title} <strong>[ ${board.replycnt} ]</strong>
 								</a></td>
+=======
+									href='readPage/${board.bno}'>
+										${board.title} </a></td>
+>>>>>>> jewel1609_2
 								<td>${board.writer}</td>
 								<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm"
 										value="${board.regdate}" /></td>
@@ -89,7 +119,9 @@
 				</div>
 				<!-- /.box-body -->
 
+					
 
+<<<<<<< HEAD
 				<div class="box-footer">
 
 					<div class="text-center">
@@ -123,6 +155,14 @@
 			</div>		
 			</div>
 		
+=======
+			</div>
+			
+			 <div class="wrapper" style = "float: right; margin: 10px; " >
+				<button id='newBtn' class="pull-right form-control"  align="right">글쓰기</button>	
+			</div>
+			
+>>>>>>> jewel1609_2
 		</div>
 		<!--/.col (left) -->
 
@@ -144,17 +184,6 @@
 	$(document).ready(
 			function() {
 
-				$('#searchBtn').on(
-						"click",
-						function(event) {
-
-							self.location = "list"
-									+ '${pageMaker.makeQuery(1)}'
-									+ "&searchType="
-									+ $("select option:selected").val()
-									+ "&keyword=" + $('#keywordInput').val();
-
-						});
 
 				$('#newBtn').on("click", function(evt) {
 
