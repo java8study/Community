@@ -23,15 +23,37 @@
 			CURDATE() )
 	</insert>
 	
-	<select id="getAllArticleList" resultType="kr.co.study.article.dto.ArticleDTO" >
-		SELECT ARTICLE_ID articleId,
-				USER_NAME userName,
-				TITLE title,
-				CONTENTS contents,
-				LIKES_COUNT likesCount,
-				READS_COUNT readsCount,
-				WRITE_DATE writeDate
-		FROM ARTICLE
+	<select id="getAllArticleList" parameterType="kr.co.study.article.dto.ArticleSearchDTO" resultType="kr.co.study.article.dto.ArticleDTO" >
+		SELECT A.ARTICLE_ID articleId,
+				A.USER_NAME userName,
+				A.TITLE title,
+				A.CONTENTS contents,
+				A.LIKES_COUNT likesCount,
+				A.READS_COUNT readsCount,
+				A.WRITE_DATE writeDate
+		FROM (
+					SELECT @ROWNUM := @ROWNUM + 1 AS RNUM
+							, ARTICLE.*
+					FROM ARTICLE, 
+						(SELECT @ROWNUM :=0) r
+                        WHERE USER_NAME =#{userName}
+                       <!--  <if test="searchKeyword != null and searchType != null">
+							AND		(
+									<if test="searchType == 'userName'">
+										UPPER(USER_NAME) LIKE UPPER ('%' || #{searchKeyword} || '%' )
+									</if> 
+									<if test="searchType == 'title'">
+										UPPER(TITLE) LIKE UPPER ('%' || #{searchKeyword} || '%' ) 
+									</if>
+									<if test="searchType == 'contents'">
+										UPPER(CONTENTS) LIKE UPPER ('%' || #{searchKeyword} || '%' )
+									</if>
+									)
+							</if>	
+                        AND  -->
+                        ORDER BY ARTICLE_ID DESC
+					) A 
+		WHERE A.RNUM BETWEEN #{startIndex} AND #{endIndex}    
 	</select>
 	
 	<select id="getOneArticleByArticleId" parameterType="int" resultType="kr.co.study.article.dto.ArticleDTO">
@@ -46,6 +68,11 @@
 		WHERE ARTICLE_ID = #{articleId}
 	</select>
 	
+	<select id="getTotalArticleCount" resultType="int">
+		SELECT COUNT(ARTICLE_ID)
+		FROM ARTICLE
+	</select>
+	
 	<delete id="deleteArticleByArticleId" parameterType="int">
 		DELETE FROM ARTICLE
 		WHERE ARTICLE_ID = #{ articleId }
@@ -57,6 +84,7 @@
 		CONTENTS = #{contents}
 		WHERE ARTICLE_ID = #{articleId}
 	</update>
+	
 	
 
 </mapper>

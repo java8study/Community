@@ -11,10 +11,9 @@
 <script type="text/javascript">
 
 	$(document).ready(function() {
-
+		
 		$("#loginBtn").click(function() {
-			
-			var params = jQuery("#loginForm").serialize();
+			var params = $("#loginForm").serialize();
 			
 			$.ajax({
 				url:"/community-domain/checkLoginMember",
@@ -23,14 +22,19 @@
 				contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 				data : params,
 				success: function(data){
-					alert("성공" + data.KEY);
-				},
+					if ( data.KEY == 'SUCCESS') {
+						document.location.href = "<c:url value="/mainPage" />";
+						alert("로그인 성공 ");
+					}
+					else if ( data.KEY == 'FAIL' ) {
+						alert("아이디와 비밀번호를 다시 확인해주시기 바랍니다.");
+					}
+ 				},
 				error: function(request,status,error) {
 					alert("code:"+request.status+"\n"+"error:"+error);
 				}
 				
 			});
-			
 			
 		});
 		

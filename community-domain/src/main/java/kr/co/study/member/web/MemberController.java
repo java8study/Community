@@ -34,16 +34,18 @@ public class MemberController {
 	
 	@ResponseBody
 	@RequestMapping(value = ("/checkLoginMember"), method = RequestMethod.POST)
-	public HashMap<String, Object> checkLoginMember(@RequestParam Map<String,Object> params) {
-		System.out.println(params);
-		System.out.println("id" + params.get("userName"));
-		System.out.println("userPassword" + params.get("userPassword"));
+	public HashMap<String, Object> checkLoginMember(@RequestParam Map<String,Object> params, HttpSession session ) {
 		
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setUserName( (String) params.get("userName") );
+		memberDTO.setUserPassword( (String) params.get("userPassword") );
+		
+		
+		String loginStatus = memberService.checkLoginMember(memberDTO, session);
 		HashMap<String, Object> hashmap = new HashMap<String, Object>();
-	    hashmap.put("KEY", "YES");
+	    hashmap.put( "KEY", loginStatus );
 	    
 	    return hashmap;
-			//String loginStatus = memberService.checkLoginMember(params);
 	}
 	
 	

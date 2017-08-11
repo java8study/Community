@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.study.article.dto.ArticleDTO;
 import kr.co.study.article.dto.ArticleListDTO;
+import kr.co.study.article.dto.ArticleSearchDTO;
 import kr.co.study.article.repository.ArticleRepository;
 
 @Service
@@ -41,10 +42,9 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public List<ArticleDTO> getAllArticleList() {
+	public List<ArticleDTO> getAllArticleList(ArticleSearchDTO searchDTO) {
 		// TODO Auto-generated method stub
-		List<ArticleDTO> list = articleRepository.getAllArticleList();
-		return articleRepository.getAllArticleList();
+		return articleRepository.getAllArticleList(searchDTO);
 	}
 
 	@Override
@@ -63,6 +63,11 @@ public class ArticleServiceImpl implements ArticleService {
 	public void updateArticleByArticleDTO(ArticleDTO articleDTO) {
 		// TODO Auto-generated method stub
 		articleRepository.updateArticleByArticleDTO(articleDTO);
+	}
+
+	@Override
+	public int getTotalArticleCount() {
+		return articleRepository.getTotalArticleCount();
 	}
 
 

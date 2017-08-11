@@ -9,6 +9,6 @@ import kr.co.study.member.dto.MemberDTO;
 @Repository
 public interface MemberRepository {
 
-	boolean isPossibleLogin(MemberDTO memberDTO);
+	int isPossibleLogin(MemberDTO memberDTO);
 	
 }

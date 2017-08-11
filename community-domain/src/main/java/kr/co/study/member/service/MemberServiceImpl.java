@@ -17,15 +17,16 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public String checkLoginMember(MemberDTO memberDTO, HttpSession session) {
 		// TODO Auto-generated method stub
-		boolean isPossibleLogin = memberRepository.isPossibleLogin(memberDTO);
+		int isPossibleLogin = memberRepository.isPossibleLogin(memberDTO);
 		
-		if ( isPossibleLogin ) {
+		if ( isPossibleLogin > 0 ) {
 			session.setAttribute("MBR_ID", memberDTO.getUserName());
-			
-			return "OK";
+			session.setAttribute("MBR_PWD", memberDTO.getUserPassword());
+
+			return "SUCCESS";
 		}
 		else {
-			return "NO";
+			return "FAIL";
 		}
 	}
 	
