@@ -21,6 +21,6 @@ public interface ArticleRepository {
 
 	public void updateArticleByArticleDTO(ArticleDTO articleDTO);
 
-	public int getTotalArticleCount();
+	public int getTotalArticleCount(ArticleSearchDTO searchDTO);
 	
 }

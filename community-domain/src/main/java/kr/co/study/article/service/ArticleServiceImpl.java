@@ -66,8 +66,8 @@ public class ArticleServiceImpl implements ArticleService {
 	}
 
 	@Override
-	public int getTotalArticleCount() {
-		return articleRepository.getTotalArticleCount();
+	public int getTotalArticleCount(ArticleSearchDTO searchDTO) {
+		return articleRepository.getTotalArticleCount(searchDTO);
 	}
 
 

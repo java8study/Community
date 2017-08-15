@@ -11,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Alias("articleListDTO")
-public class ArticleListDTO {
+public class ArticleListDTO extends ArticleDTO {
 	
 	private List<ArticleDTO> articleList;
 	

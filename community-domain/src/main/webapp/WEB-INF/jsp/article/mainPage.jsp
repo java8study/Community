@@ -19,6 +19,23 @@
 		$("#logoutBtn").click(function() { 
 			document.location.href = "<c:url value="/logout"/>"; 
 		});
+		
+		$("#searchBtn").click(function(){
+			/* if( $("#searchKeyword").val() == "" ) {
+				alert("검색어를 입력하세요!");
+				return;
+			} */
+			
+			$("#searchForm").attr("action", "<c:url value="/mainPage"/>");
+			$("#searchForm").attr("method", "POST");
+			$("#searchForm").submit();
+			
+			movePage('0');
+		});
+		
+		$("#initSearchBtn").click(function(){
+			location.href="<c:url value="/mainPage" />"
+		});
 	});
 
 </script>
@@ -49,33 +66,24 @@
 			<td>${article.userName}</td>
 		</tr>
 		</c:forEach>
-		<td colspan="6" align="center">
+		</table>
 		<form id="searchForm">
-			<div style="text-align: center;">
+			<div>
 			${articleListDTO.paging.getPagingList("pageNo", "[@]", "이전", "다음", "searchForm") }
 			</div>
 			<div>
-				<select id ="searchType" name ="searchType">
-				<c:if test="${searchDTO.searchType eq '' }">
-				<option value="selectTitleDesc" selected="selected">제목</option>
-				<option value="selectMbrId">아이디</option>
-				</c:if>
-				<c:if test="${searchDTO.searchType eq 'selectTitleDesc' }">
-				<option value="selectTitleDesc" selected="selected">제목</option>
-				<option value="selectMbrId">아이디</option>
-				</c:if>
-				<c:if test="${searchDTO.searchType eq 'selectMbrId' }">
-				<option value="selectTitleDesc">제목</option>
-				<option value="selectMbrId" selected="selected">아이디</option>
-				</c:if>
-				</select>
+				<c:set var="selectedSearchType" value="${ sessionScope._SEARCH_ART_.searchType }" />
+						<select id="searchType" name="searchType" >
+							<option value="userName" ${ selectedSearchType eq "userName" ? "selected" : "" }>아이디 </option>
+							<option value="title" ${ selectedSearchType eq "title" ? "selected" : "" }>제목  </option>
+							<option value="contents" ${ selectedSearchType eq "contents" ? "selected" : "" }>내용 </option>
+						</select>
 				<input type="text" id="searchKeyword" name="searchKeyword" value="${searchDTO.searchKeyword}" />
 				<input type="button" id="searchBtn" value="검색" />
 				<input type="button" id="initSearchBtn" value="검색초기화" />
 			</div>
 		</form>
-		</td>
-	</table>
+	
 	<button type="submit" id="writeBtn">글쓰기 </button>
 	<button type="submit" id="logoutBtn">로그아웃 </button>
 

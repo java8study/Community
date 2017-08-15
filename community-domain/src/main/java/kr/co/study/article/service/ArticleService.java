@@ -21,7 +21,7 @@ public interface ArticleService {
 
 	public void updateArticleByArticleDTO(ArticleDTO articleDTO);
 
-	public int getTotalArticleCount();
+	public int getTotalArticleCount(ArticleSearchDTO searchDTO);
 
 	
 }

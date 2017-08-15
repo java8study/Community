@@ -33,27 +33,27 @@
 				A.WRITE_DATE writeDate
 		FROM (
 					SELECT @ROWNUM := @ROWNUM + 1 AS RNUM
-							, ARTICLE.*
-					FROM ARTICLE, 
-						(SELECT @ROWNUM :=0) r
-                        WHERE USER_NAME =#{userName}
-                       <!--  <if test="searchKeyword != null and searchType != null">
-							AND		(
-									<if test="searchType == 'userName'">
-										UPPER(USER_NAME) LIKE UPPER ('%' || #{searchKeyword} || '%' )
-									</if> 
-									<if test="searchType == 'title'">
-										UPPER(TITLE) LIKE UPPER ('%' || #{searchKeyword} || '%' ) 
-									</if>
-									<if test="searchType == 'contents'">
-										UPPER(CONTENTS) LIKE UPPER ('%' || #{searchKeyword} || '%' )
-									</if>
-									)
-							</if>	
-                        AND  -->
-                        ORDER BY ARTICLE_ID DESC
-					) A 
-		WHERE A.RNUM BETWEEN #{startIndex} AND #{endIndex}    
+							, ART.*
+					FROM  
+						(	
+							SELECT * 
+							FROM ARTICLE
+							<if test="searchType != null and searchType != ''">
+							<if test="searchType == 'userName'">
+							WHERE USER_NAME LIKE CONCAT('%', #{searchKeyword}, '%')
+							</if>
+							<if test="searchType == 'title'">
+							WHERE TITLE LIKE CONCAT('%', #{searchKeyword}, '%')
+							</if>
+							<if test="searchType == 'contents'">
+							WHERE CONTENTS LIKE CONCAT('%', #{searchKeyword}, '%')
+							</if>
+							</if>
+							ORDER BY ARTICLE_ID DESC
+						)	ART,
+					( SELECT @ROWNUM :=0 ) B
+				) A	
+		WHERE	A.RNUM BETWEEN #{startIndex} AND #{endIndex};  
 	</select>
 	
 	<select id="getOneArticleByArticleId" parameterType="int" resultType="kr.co.study.article.dto.ArticleDTO">
@@ -68,9 +68,27 @@
 		WHERE ARTICLE_ID = #{articleId}
 	</select>
 	
-	<select id="getTotalArticleCount" resultType="int">
-		SELECT COUNT(ARTICLE_ID)
-		FROM ARTICLE
+	<select id="getTotalArticleCount" parameterType="kr.co.study.article.dto.ArticleSearchDTO" resultType="int">
+		SELECT	COUNT(ARTICLE_ID)
+		FROM	(
+					SELECT	ART.*
+					FROM 	( 
+								SELECT *
+								FROM ARTICLE
+								<if test="searchKeyword != null and searchType != null">
+								<if test="searchType == 'userName'">
+								WHERE USER_NAME LIKE CONCAT('%', #{searchKeyword}, '%')
+								</if>
+								<if test="searchType == 'title'">
+								WHERE TITLE LIKE CONCAT('%', #{searchKeyword}, '%')
+								</if>
+								<if test="searchType == 'contents'">
+								WHERE CONTENTS LIKE CONCAT('%', #{searchKeyword}, '%')
+								</if>
+								</if>
+								ORDER BY ARTICLE_ID DESC
+							) ART
+				) A
 	</select>
 	
 	<delete id="deleteArticleByArticleId" parameterType="int">
