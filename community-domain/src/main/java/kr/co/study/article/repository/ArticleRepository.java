@@ -22,5 +22,9 @@ public interface ArticleRepository {
 	public void updateArticleByArticleDTO(ArticleDTO articleDTO);
 
 	public int getTotalArticleCount(ArticleSearchDTO searchDTO);
+
+	public void readsCountUpByArticleId(int articleId);
+
+	public void upLikesCount(ArticleDTO articleDTO);
 	
 }

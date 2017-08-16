@@ -24,7 +24,7 @@
 	</insert>
 	
 	<select id="getAllArticleList" parameterType="kr.co.study.article.dto.ArticleSearchDTO" resultType="kr.co.study.article.dto.ArticleDTO" >
-		SELECT A.ARTICLE_ID articleId,
+		SELECT 	A.ARTICLE_ID articleId,
 				A.USER_NAME userName,
 				A.TITLE title,
 				A.CONTENTS contents,
@@ -57,15 +57,15 @@
 	</select>
 	
 	<select id="getOneArticleByArticleId" parameterType="int" resultType="kr.co.study.article.dto.ArticleDTO">
-		SELECT ARTICLE_ID articleId,
+		SELECT 	ARTICLE_ID articleId,
 				USER_NAME userName,
 				TITLE title,
 				CONTENTS contents,
 				LIKES_COUNT likesCount,
 				READS_COUNT readsCount,
 				WRITE_DATE writeDate
-		FROM ARTICLE
-		WHERE ARTICLE_ID = #{articleId}
+		FROM 	ARTICLE
+		WHERE 	ARTICLE_ID = #{articleId}
 	</select>
 	
 	<select id="getTotalArticleCount" parameterType="kr.co.study.article.dto.ArticleSearchDTO" resultType="int">
@@ -102,6 +102,19 @@
 		CONTENTS = #{contents}
 		WHERE ARTICLE_ID = #{articleId}
 	</update>
+	
+	<update id="readsCountUpByArticleId" parameterType="int">
+		UPDATE ARTICLE SET
+		READS_COUNT = READS_COUNT + 1
+		WHERE ARTICLE_ID = #{articleId}
+	</update>
+	
+	<update id="upLikesCount" parameterType="kr.co.study.article.dto.ArticleDTO">
+		UPDATE ARTICLE SET
+		LIKES_COUNT = LIKES_COUNT + 1
+		WHERE ARTICLE_ID = #{articleId}
+	</update>
+	
 	
 	
 

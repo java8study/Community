@@ -70,5 +70,20 @@ public class ArticleServiceImpl implements ArticleService {
 		return articleRepository.getTotalArticleCount(searchDTO);
 	}
 
+	@Override
+	public void readsCountUpByArticleId(int articleId) {
+		// TODO Auto-generated method stub
+		articleRepository.readsCountUpByArticleId(articleId);
+	}
+
+	@Override
+	public String upLikesCount(ArticleDTO articleDTO) {
+		// TODO Auto-generated method stub
+		
+		articleRepository.upLikesCount(articleDTO);
+		
+		return "UP";
+	}
+
 
 }

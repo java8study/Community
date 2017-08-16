@@ -23,5 +23,9 @@ public interface ArticleService {
 
 	public int getTotalArticleCount(ArticleSearchDTO searchDTO);
 
+	public void readsCountUpByArticleId(int articleId);
+
+	public String upLikesCount(ArticleDTO articleDTO);
+
 	
 }

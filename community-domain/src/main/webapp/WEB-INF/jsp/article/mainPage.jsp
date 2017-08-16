@@ -10,6 +10,7 @@
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
+
 	$(document).ready( function() {
 		
 		$("#writeBtn").click(function() {
@@ -26,9 +27,9 @@
 				return;
 			} */
 			
-			$("#searchForm").attr("action", "<c:url value="/mainPage"/>");
+			/* $("#searchForm").attr("action", "<c:url value="/mainPage"/>");
 			$("#searchForm").attr("method", "POST");
-			$("#searchForm").submit();
+			$("#searchForm").submit(); */
 			
 			movePage('0');
 		});
