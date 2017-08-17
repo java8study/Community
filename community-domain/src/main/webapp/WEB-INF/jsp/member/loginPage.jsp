@@ -50,8 +50,8 @@
 	아이디 <input type="text" id ="userName" name="userName" /> <br/><br/>
 	패스워드 <input type="password" id="userPassword" name="userPassword" />	<br/><br/>
 
-	<button type="submit" id="loginBtn">로그인 </button>
-	<button type="submit" id="registMemberBtn">회원가입 </button>
+	<button type="button" id="loginBtn">로그인 </button>
+	<button type="button" id="registMemberBtn">회원가입 </button>
 </form>
 
 </body>
