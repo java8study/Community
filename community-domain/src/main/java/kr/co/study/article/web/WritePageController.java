@@ -61,6 +61,7 @@ public class WritePageController {
 	public String doDeleteAction(@PathVariable int articleId) {
 		
 		articleService.deleteArticleByArticleId(articleId);
+		articleService.deleteRepliesByArticleId(articleId);
 		
 		return "redirect:/mainPage";
 	}

@@ -31,5 +31,7 @@ public interface ArticleRepository {
 	public void writeReplyByUserNameAndArticleId(ReplyDTO replyDTO);
 
 	public List<ReplyDTO> viewReplyList(int articleId);
+
+	public void deleteRepliesByArticleId(int articleId);
 	
 }

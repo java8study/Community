@@ -34,5 +34,7 @@ public interface ArticleService {
 
 	public List<ReplyDTO> viewReplyList(int articleId);
 
+	public void deleteRepliesByArticleId(int articleId);
+
 	
 }

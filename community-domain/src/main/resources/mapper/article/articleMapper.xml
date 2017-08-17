@@ -132,6 +132,11 @@
 		WHERE ARTICLE_ID = #{ articleId }
 	</delete>
 	
+	<delete id="deleteRepliesByArticleId" parameterType="int">
+		DELETE	FROM	ARTICLE_REPLY
+		WHERE	ARTICLE_ID = #{ articleId }
+	</delete>
+	
 	<update id="updateArticleByArticleDTO" parameterType="kr.co.study.article.dto.ArticleDTO">	
 		UPDATE ARTICLE SET
 		TITLE = #{title},

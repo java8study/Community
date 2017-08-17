@@ -109,6 +109,9 @@
 	작성자 : ${reply.userName}
 	<br/>
 	댓글 내용 : ${reply.replyContents}
+	<br/>
+	좋아요 : ${reply.replyLikesCount }
+	싫어요 : ${reply.replyDisLikesCount }
 	<br/><br/>
 	</c:forEach>
 			
