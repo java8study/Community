@@ -21,6 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.study.article.dto.ArticleDTO;
 import kr.co.study.article.dto.ArticleListDTO;
 import kr.co.study.article.dto.ArticleSearchDTO;
+import kr.co.study.article.dto.ReplyDTO;
+import kr.co.study.article.dto.ReplyListDTO;
 import kr.co.study.article.service.ArticleService;
 import kr.co.study.article.util.Paging;
 import kr.co.study.member.dto.MemberDTO;
@@ -75,14 +77,20 @@ public class MainPageController {
 		ModelAndView view = new ModelAndView();
 		
 		ArticleDTO articleDTO = new ArticleDTO();
+		List<ReplyDTO> replyList = new ArrayList<ReplyDTO>();
+		ReplyListDTO replyListDTO = new ReplyListDTO();
 		
 		//조회수 증가
 		articleService.readsCountUpByArticleId(articleId);
 		
 		articleDTO = articleService.viewArticleDetailPage(articleId);
 		
+		replyList = articleService.viewReplyList(articleId);
+		
+		replyListDTO.setReplyList(replyList);
 		
 		view.addObject("articleDTO", articleDTO);
+		view.addObject("replyList", replyList);
 		
 		view.setViewName("article/articleDetailPage");
 		

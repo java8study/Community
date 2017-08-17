@@ -2,6 +2,8 @@ package kr.co.study.article.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
@@ -9,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.co.study.article.dto.ArticleDTO;
 import kr.co.study.article.dto.ArticleListDTO;
 import kr.co.study.article.dto.ArticleSearchDTO;
+import kr.co.study.article.dto.ReplyDTO;
 import kr.co.study.article.repository.ArticleRepository;
 
 @Service
@@ -83,6 +86,20 @@ public class ArticleServiceImpl implements ArticleService {
 		articleRepository.upLikesCount(articleDTO);
 		
 		return "UP";
+	}
+
+	@Override
+	public String writeReplyByUserNameAndArticleId(ReplyDTO replyDTO) {
+		// TODO Auto-generated method stub
+		
+		articleRepository.writeReplyByUserNameAndArticleId(replyDTO);
+		
+		return "REPLY_WRITE";
+	}
+
+	@Override
+	public List<ReplyDTO> viewReplyList(int articleId) {
+		return articleRepository.viewReplyList(articleId);
 	}
 
 

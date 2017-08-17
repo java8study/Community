@@ -20,8 +20,7 @@ public class MemberServiceImpl implements MemberService {
 		int isPossibleLogin = memberRepository.isPossibleLogin(memberDTO);
 		
 		if ( isPossibleLogin > 0 ) {
-			session.setAttribute("MBR_ID", memberDTO.getUserName());
-			session.setAttribute("MBR_PWD", memberDTO.getUserPassword());
+			session.setAttribute("_MEMBER_", memberDTO);
 
 			return "SUCCESS";
 		}

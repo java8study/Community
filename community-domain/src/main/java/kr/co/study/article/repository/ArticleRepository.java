@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.study.article.dto.ArticleDTO;
 import kr.co.study.article.dto.ArticleSearchDTO;
+import kr.co.study.article.dto.ReplyDTO;
 
 @Mapper
 @Repository
@@ -26,5 +27,9 @@ public interface ArticleRepository {
 	public void readsCountUpByArticleId(int articleId);
 
 	public void upLikesCount(ArticleDTO articleDTO);
+
+	public void writeReplyByUserNameAndArticleId(ReplyDTO replyDTO);
+
+	public List<ReplyDTO> viewReplyList(int articleId);
 	
 }

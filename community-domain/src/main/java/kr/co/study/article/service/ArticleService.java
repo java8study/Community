@@ -2,10 +2,13 @@ package kr.co.study.article.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.study.article.dto.ArticleDTO;
 import kr.co.study.article.dto.ArticleSearchDTO;
+import kr.co.study.article.dto.ReplyDTO;
 
 public interface ArticleService {
 	
@@ -26,6 +29,10 @@ public interface ArticleService {
 	public void readsCountUpByArticleId(int articleId);
 
 	public String upLikesCount(ArticleDTO articleDTO);
+
+	public String writeReplyByUserNameAndArticleId(ReplyDTO replyDTO);
+
+	public List<ReplyDTO> viewReplyList(int articleId);
 
 	
 }

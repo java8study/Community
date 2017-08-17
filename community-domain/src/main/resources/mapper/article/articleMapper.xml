@@ -23,6 +23,30 @@
 			CURDATE() )
 	</insert>
 	
+	<insert id="writeReplyByUserNameAndArticleId" parameterType="kr.co.study.article.dto.ReplyDTO">
+		INSERT INTO ARTICLE_REPLY	( 
+										REPLY_ID
+										, USER_NAME
+										, REPLY_CONTENTS
+										, REPLY_LIKES_COUNT
+										, REPLY_DISLIKES_COUNT
+										, ARTICLE_ID
+										, REPLY_WRITE_DATE
+									)
+		VALUES	(
+					(
+						SELECT MAX(R.REPLY_ID) + 1
+						FROM ARTICLE_REPLY R
+					)
+					, #{userName}
+					, #{replyContents}
+					, 0
+					, 0
+					, #{articleId}
+					, CURDATE()
+				)
+	</insert>
+	
 	<select id="getAllArticleList" parameterType="kr.co.study.article.dto.ArticleSearchDTO" resultType="kr.co.study.article.dto.ArticleDTO" >
 		SELECT 	A.ARTICLE_ID articleId,
 				A.USER_NAME userName,
@@ -89,6 +113,18 @@
 								ORDER BY ARTICLE_ID DESC
 							) ART
 				) A
+	</select>
+	
+	<select id="viewReplyList" parameterType="int" resultType="kr.co.study.article.dto.ReplyDTO">
+		SELECT	REPLY_ID replyId
+				, USER_NAME userName
+				, REPLY_CONTENTS replyContents
+				, REPLY_LIKES_COUNT replyLikesCount
+				, REPLY_DISLIKES_COUNT replyDisLikesCount
+				, ARTICLE_ID articleId
+				, REPLY_WRITE_DATE replyWirteDate
+		FROM	ARTICLE_REPLY
+		WHERE	ARTICLE_ID = #{articleId}
 	</select>
 	
 	<delete id="deleteArticleByArticleId" parameterType="int">
