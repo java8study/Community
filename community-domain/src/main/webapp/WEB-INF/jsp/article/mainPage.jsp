@@ -22,10 +22,10 @@
 		});
 		
 		$("#searchBtn").click(function(){
-			/* if( $("#searchKeyword").val() == "" ) {
+			if( $("#searchKeyword").val() == "" ) {
 				alert("검색어를 입력하세요!");
 				return;
-			} */
+			}
 			
 			/* $("#searchForm").attr("action", "<c:url value="/mainPage"/>");
 			$("#searchForm").attr("method", "POST");
