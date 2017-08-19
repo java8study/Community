@@ -85,8 +85,8 @@
 			</div>
 		</form>
 	
-	<button type="submit" id="writeBtn">글쓰기 </button>
-	<button type="submit" id="logoutBtn">로그아웃 </button>
+	<button type="button" id="writeBtn">글쓰기 </button>
+	<button type="button" id="logoutBtn">로그아웃 </button>
 
 </body>
 </html>

@@ -13,6 +13,23 @@
 <script type="text/javascript">
 	$(document).ready(function() {
 
+		$("#writeBtn").click(function() {
+			if ( $("#title").val() == '' ) {
+				alert("제목을 입력하시오.");
+				$("#title").focus();
+			}
+			else if ( $("#contents").val() == '' ) {
+				alert("내용 입력하시오.");
+				$("#contents").focus();
+			}
+			else {
+				$("#writeForm").attr("action", "<c:url value="/doWriteAction"/>");
+				$("#writeForm").attr("method", "POST");
+				$("#writeForm").submit();
+			}
+			
+		});
+		
 		$("#cancelBtn").click(function() {
 
 			document.location.href = "<c:url value="/mainPage" />";
@@ -21,8 +38,7 @@
 	});
 </script>
 <body>
-	<form:form commandName="articleDTO" method="post"
-		action="/community-domain/doWriteAction">
+	<form id="writeForm" >
 		<table border="1">
 			<tr>
 				<td>제목</td>
@@ -34,9 +50,9 @@
 				</td>
 			</tr>
 		</table>
-		<button type="submit" id="writeBtn">글쓰기</button>
-	</form:form>
-	<button type="submit" id="cancelBtn">취소</button>
+		<button type="button" id="writeBtn">글쓰기</button>
+	</form>
+	<button type="button" id="cancelBtn">취소</button>
 
 
 

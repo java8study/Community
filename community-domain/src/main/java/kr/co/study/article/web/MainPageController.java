@@ -42,6 +42,7 @@ public class MainPageController {
 	public ModelAndView showArticleList(@RequestParam(required=false, defaultValue="0") int pageNo,	@RequestParam(required = false, defaultValue = "") String searchKeyword,
 			@RequestParam(required = false, defaultValue = "") String searchType, HttpSession session){
 		
+		
 		ModelAndView view = new ModelAndView();
 		List<ArticleDTO> articleList = new ArrayList<ArticleDTO>(); 
 		ArticleListDTO articleListDTO = new ArticleListDTO();
@@ -64,8 +65,12 @@ public class MainPageController {
 		articleListDTO.setArticleList(articleList);
 		articleListDTO.setPaging(paging);
 		
-		
-		view.setViewName("article/mainPage");
+		if ( session.getAttribute("_MEMBER_") == null ) {
+			view.setViewName("redirect:/errorPage");
+		}
+		else {
+			view.setViewName("article/mainPage");
+		}
 		view.addObject("articleListDTO", articleListDTO);
 		view.addObject("searchDTO", searchDTO);
 		
@@ -119,6 +124,11 @@ public class MainPageController {
 		session.invalidate();
 		
 		return "redirect:/loginPage";
+	}
+	
+	@RequestMapping("/errorPage")
+	public String errorPage() {
+		return "member/errorPage";
 	}
 	
 	

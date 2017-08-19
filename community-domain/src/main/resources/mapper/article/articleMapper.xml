@@ -77,7 +77,38 @@
 						)	ART,
 					( SELECT @ROWNUM :=0 ) B
 				) A	
-		WHERE	A.RNUM BETWEEN #{startIndex} AND #{endIndex};  
+		WHERE	A.RNUM BETWEEN #{startIndex} AND #{endIndex}; 
+		<!-- SELECT 	
+				A.ARTICLE_ID articleId,
+				A.USER_NAME userName,
+				A.TITLE title,
+				A.CONTENTS contents,
+				A.LIKES_COUNT likesCount,
+				A.READS_COUNT readsCount,
+				A.WRITE_DATE writeDate
+		FROM (
+					SELECT @ROWNUM := @ROWNUM + 1 AS RNUM
+							, ART.*
+					FROM  
+						(	
+							SELECT * 
+							FROM ARTICLE
+							<if test="searchType != null and searchType != ''">
+							<if test="searchType == 'userName'">
+							WHERE USER_NAME LIKE CONCAT('%', #{searchKeyword}, '%')
+							</if>
+							<if test="searchType == 'title'">
+							WHERE TITLE LIKE CONCAT('%', #{searchKeyword}, '%')
+							</if>
+							<if test="searchType == 'contents'">
+							WHERE CONTENTS LIKE CONCAT('%', #{searchKeyword}, '%')
+							</if>
+							</if>
+							ORDER BY ARTICLE_ID DESC
+						)	ART
+					WHERE @ROWNUM := @ROWNUM + 1 <![CDATA[<=]]> #{endIndex}
+				) A	
+		WHERE	A.RNUM <![CDATA[>=]]> #{startIndex} -->
 	</select>
 	
 	<select id="getOneArticleByArticleId" parameterType="int" resultType="kr.co.study.article.dto.ArticleDTO">
