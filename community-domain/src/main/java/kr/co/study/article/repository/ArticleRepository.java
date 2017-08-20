@@ -33,5 +33,7 @@ public interface ArticleRepository {
 	public List<ReplyDTO> viewReplyList(int articleId);
 
 	public void deleteRepliesByArticleId(int articleId);
+
+	public void deleteReplyByReplyId(int replyId);
 	
 }

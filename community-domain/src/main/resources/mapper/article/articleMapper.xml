@@ -54,7 +54,7 @@
 				A.CONTENTS contents,
 				A.LIKES_COUNT likesCount,
 				A.READS_COUNT readsCount,
-				A.WRITE_DATE writeDate
+				DATE_FORMAT(A.WRITE_DATE, '%Y-%m-%d') writeDate
 		FROM (
 					SELECT @ROWNUM := @ROWNUM + 1 AS RNUM
 							, ART.*
@@ -118,7 +118,7 @@
 				CONTENTS contents,
 				LIKES_COUNT likesCount,
 				READS_COUNT readsCount,
-				WRITE_DATE writeDate
+				DATE_FORMAT(WRITE_DATE, '%Y-%m-%d') writeDate
 		FROM 	ARTICLE
 		WHERE 	ARTICLE_ID = #{articleId}
 	</select>
@@ -153,7 +153,7 @@
 				, REPLY_LIKES_COUNT replyLikesCount
 				, REPLY_DISLIKES_COUNT replyDisLikesCount
 				, ARTICLE_ID articleId
-				, REPLY_WRITE_DATE replyWirteDate
+				, DATE_FORMAT(REPLY_WRITE_DATE, '%Y-%m-%d') replyWirteDate
 		FROM	ARTICLE_REPLY
 		WHERE	ARTICLE_ID = #{articleId}
 	</select>
@@ -166,6 +166,11 @@
 	<delete id="deleteRepliesByArticleId" parameterType="int">
 		DELETE	FROM	ARTICLE_REPLY
 		WHERE	ARTICLE_ID = #{ articleId }
+	</delete>
+	
+	<delete id="deleteReplyByReplyId" parameterType="int">
+		DELETE FROM ARTICLE_REPLY
+		WHERE REPLY_ID = #{replyId}
 	</delete>
 	
 	<update id="updateArticleByArticleDTO" parameterType="kr.co.study.article.dto.ArticleDTO">	

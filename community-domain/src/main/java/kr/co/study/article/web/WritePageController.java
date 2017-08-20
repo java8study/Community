@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -97,9 +98,21 @@ public class WritePageController {
 	    return hashmap;
 	}
 	
-	
-	
+	//댓글 삭제 
+	@ResponseBody
+	@RequestMapping(value = ("/articleDetail/deleteReplyByReplyId"), method = RequestMethod.POST)
+	public HashMap<String, Object> deleteReplyByReplyId(@RequestParam Map<String,Object> params ) {
+		
+		System.out.println(params);
 		
 		
+		int replyId = Integer.parseInt((String)params.get("replyId"));
+		
+		String replyStatus = articleService.deleteReplyByReplyId(replyId);
+		HashMap<String, Object> hashmap = new HashMap<String, Object>();
+	    hashmap.put( "KEY", replyStatus );
+	    
+	    return hashmap;
+	}
 	
 }

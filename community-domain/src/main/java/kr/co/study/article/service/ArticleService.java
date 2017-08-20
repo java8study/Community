@@ -36,5 +36,7 @@ public interface ArticleService {
 
 	public void deleteRepliesByArticleId(int articleId);
 
+	public String deleteReplyByReplyId(int replyId);
+
 	
 }

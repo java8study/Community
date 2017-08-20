@@ -79,8 +79,42 @@
 			}
 			
 		});
-
+		
 	});
+	
+	function replyDeleteOpen(replyId) {
+		var msg = confirm("댓글을 삭제합니다.");
+		if ( msg == true ) {
+			replyDelete(replyId);
+		}
+	}
+	
+	function replyDelete(replyId) {
+		
+		var params = "replyId="+replyId;
+		
+		$.ajax({
+			url:"/community-domain/articleDetail/deleteReplyByReplyId",
+			dataType:"json",
+			type:'POST',	
+			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+			data : params,
+			success: function(data)	{
+				if ( data.KEY == 'REPLY_DELETE') {
+					location.reload();
+					alert("댓글 삭제 완료 ");
+				}
+				else if ( data.KEY == 'FAIL' ) {
+					alert("실패 !");
+				}
+				},
+			error: function(request,status,error) {
+				alert("code:"+request.status+"\n"+"error:"+error);
+			}
+			
+		});
+		
+	}
 </script>
 <body>
 	Detail page입니다.
@@ -106,6 +140,7 @@
 	<button type="button" id="likeBtn">좋아요!</button> <br/>
 	
 	<c:forEach items="${replyList}" var="reply">
+	<br/>
 	작성자 : ${reply.userName}
 	<br/>
 	댓글 내용 : ${reply.replyContents}
@@ -113,8 +148,12 @@
 	좋아요 : ${reply.replyLikesCount }
 	싫어요 : ${reply.replyDisLikesCount }
 	<br/><br/>
+	<c:if test="${sessionScope._MEMBER_.userName eq reply.userName}">
+	<button type="button" name ="replyDeleteBtn" class="replyDeleteBtn" onclick="replyDeleteOpen(${reply.replyId})">삭제 </button>
+	댓글 번호 : ${reply.replyId}
+	</c:if>			
+	<br/><br/>
 	</c:forEach>
-			
 	내 닉네임 : ${ sessionScope._MEMBER_.userName} <br/>
 	<textarea id="replyContents" name="replyContents" cols="40" rows="3"></textarea>
 	<input type="hidden" name="articleId" value="${articleDTO.articleId}" />

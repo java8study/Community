@@ -108,5 +108,13 @@ public class ArticleServiceImpl implements ArticleService {
 		articleRepository.deleteRepliesByArticleId(articleId);
 	}
 
+	@Override
+	public String deleteReplyByReplyId(int replyId) {
+		// TODO Auto-generated method stub
+		articleRepository.deleteReplyByReplyId(replyId);
+		
+		return "REPLY_DELETE";
+	}
+
 
 }
