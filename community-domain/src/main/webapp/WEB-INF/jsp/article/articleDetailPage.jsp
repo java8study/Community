@@ -5,11 +5,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Article Detail Page</title>
 </head>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 		
@@ -117,27 +123,45 @@
 	}
 </script>
 <body>
-	Detail page입니다.
+	<div style="position: relative;left: 350px; top:100px;">
+	<div class="page-header">
+        <h1>Detail page입니다. </h1>
+     </div>
+	<br/><br/>
 	<form:form commandName="articleDTO" method="post"
 		action="/community-domain/doAdjustWritePage/${articleDTO.articleId}">
-	<table border="1">
+	<div class="row">
+        <div class="col-md-6">
+          <table class="table">		
 		<tr>
-			<td>${articleDTO.articleId}</td>
-			<td>${articleDTO.title }</td>
-			<td>${articleDTO.contents }</td>
-			<td>${articleDTO.writeDate }</td>
-			<td>${articleDTO.userName }</td>
-			<td>${articleDTO.likesCount }</td>
+			<th>${articleDTO.title }
+			<div align="right"> 
+			${articleDTO.writeDate }
+			</div>
+			</th>
 		</tr>
-	</table>
+		<tr>
+			<td>${articleDTO.contents }</td>
+		<tr/>
+		<tr>
+			<td>
+			<div align="right"> 
+			${articleDTO.userName }, 
+			좋아요 : ${articleDTO.likesCount }
+			</div>
+			</td>
+		</tr>
+			</table>
+		</div>
+	</div>
 	<input type="hidden" name="articleId" value="${articleDTO.articleId}" />
 	
-	<button type="submit" id="editBtn">수정하기</button>
+	<button type="submit" id="editBtn" class="btn btn-sm btn-primary">수정하기</button>
+	<button type="button" id="goListBtn" class="btn btn-sm btn-primary">목록으로</button>
+	<button type="button" id="doDeleteBtn" class="btn btn-sm btn-primary">삭제 </button>
+	<button type="button" id="likeBtn" class="btn btn-sm btn-primary">좋아요!</button> <br/>
 	</form:form>
 	<form id ="detailForm">
-	<button type="button" id="goListBtn">목록으로</button>
-	<button type="button" id="doDeleteBtn">삭제 </button>
-	<button type="button" id="likeBtn">좋아요!</button> <br/>
 	
 	<c:forEach items="${replyList}" var="reply">
 	<br/>
@@ -147,20 +171,19 @@
 	<br/>
 	좋아요 : ${reply.replyLikesCount }
 	싫어요 : ${reply.replyDisLikesCount }
-	<br/><br/>
 	<c:if test="${sessionScope._MEMBER_.userName eq reply.userName}">
-	<button type="button" name ="replyDeleteBtn" class="replyDeleteBtn" onclick="replyDeleteOpen(${reply.replyId})">삭제 </button>
-	댓글 번호 : ${reply.replyId}
+	<button type="button" name ="replyDeleteBtn" class="btn btn-sm btn-danger" onclick="replyDeleteOpen(${reply.replyId})">삭제 </button>
 	</c:if>			
+	
 	<br/><br/>
 	</c:forEach>
 	내 닉네임 : ${ sessionScope._MEMBER_.userName} <br/>
 	<textarea id="replyContents" name="replyContents" cols="40" rows="3"></textarea>
 	<input type="hidden" name="articleId" value="${articleDTO.articleId}" />
-	<button type="submit" id="replyWirteBtn">댓글 작성 </button>
+	<button type="submit" id="replyWirteBtn" class="btn btn-sm btn-primary">댓글 작성 </button>
 	
 	</form>
-	
+	</div>
 	
 
 

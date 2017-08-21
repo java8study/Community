@@ -5,10 +5,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Main Page</title>
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
 
 	$(document).ready( function() {
@@ -41,16 +48,19 @@
 
 </script>
 <body>
-
-	<table border="1">
+	<div class="row" style="position: relative;left: 350px;top: 100px;" align="center">
+	<div class="col-md-6">
+	<table class="table">
+		<thead>
 		<tr>
-			<td>글번호 </td>
-			<td>제 목 </td>
-			<td>작성일 </td>
-			<td>조회수 </td>
-			<td>좋아요 </td>
-			<td>작성자 </td>
+			<th>글번호 </th>
+			<th>제 목 </th>
+			<th>좋아요 </th>
+			<th>작성자 </th>
+			<th>조회수 </th>
+			<th>작성일 </th>
 		</tr>
+		</thead>
 		<c:forEach items="${articleListDTO.articleList}" var="article">
 		<tr>
 			<td>
@@ -61,10 +71,10 @@
 			${article.title}
 			</a>
 			</td>
-			<td>${article.writeDate}</td>
-			<td>${article.readsCount}</td>
 			<td>${article.likesCount}</td>
 			<td>${article.userName}</td>
+			<td>${article.readsCount}</td>
+			<td>${article.writeDate}</td>
 		</tr>
 		</c:forEach>
 		</table>
@@ -80,13 +90,15 @@
 							<option value="contents" ${ selectedSearchType eq "contents" ? "selected" : "" }>내용 </option>
 						</select>
 				<input type="text" id="searchKeyword" name="searchKeyword" value="${searchDTO.searchKeyword}" />
-				<input type="button" id="searchBtn" value="검색" />
-				<input type="button" id="initSearchBtn" value="검색초기화" />
+				<input type="button" id="searchBtn" class="btn btn-sm btn-primary" value="검색" />
+				<input type="button" id="initSearchBtn" class="btn btn-sm btn-primary" value="검색초기화" />
 			</div>
 		</form>
-	
-	<button type="button" id="writeBtn">글쓰기 </button>
-	<button type="button" id="logoutBtn">로그아웃 </button>
+	<br/>
+	<button type="button" id="writeBtn" class="btn btn-sm btn-primary">글쓰기 </button>
+	<button type="button" id="logoutBtn" class="btn btn-sm btn-primary">로그아웃 </button>
+	</div>
+	</div>
 
 </body>
 </html>

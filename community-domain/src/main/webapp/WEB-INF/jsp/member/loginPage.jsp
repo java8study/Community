@@ -4,10 +4,17 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>로그인 페이지 </title>
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
 
 	$(document).ready(function() {
@@ -45,14 +52,17 @@
 	});
 </script>
 <body>
-
+<div style="position:relative;top:150px;"  align="center">
 <form id="loginForm" name="loginForm">
-	아이디 <input type="text" id ="userName" name="userName" /> <br/><br/>
-	패스워드 <input type="password" id="userPassword" name="userPassword" />	<br/><br/>
+	<h1>
+	<input type="text" id ="userName" name="userName" placeholder="아이디"/> <br/><br/>
+	<input type="password" id="userPassword" name="userPassword"  placeholder="비밀번호"/>	<br/><br/>
+	</h1>
 
-	<button type="button" id="loginBtn">로그인 </button>
-	<button type="button" id="registMemberBtn">회원가입 </button>
+	<button type="button" id="loginBtn" class="btn btn-lg btn-primary">로그인 </button> &nbsp;&nbsp;
+	<button type="button" id="registMemberBtn" class="btn btn-lg btn-primary">회원가입 </button>
 </form>
+</div>
 
 </body>
 </html>
