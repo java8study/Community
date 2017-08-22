@@ -44,6 +44,7 @@
 		$("#initSearchBtn").click(function(){
 			location.href="<c:url value="/mainPage" />"
 		});
+		
 	});
 
 </script>
@@ -80,7 +81,9 @@
 		</table>
 		<form id="searchForm">
 			<div>
-			${articleListDTO.paging.getPagingList("pageNo", "[@]", "이전", "다음", "searchForm") }
+				<c:if test="${ not empty articleListDTO }">
+					${articleListDTO.paging.getPagingList("pageNo", "[@]", "이전", "다음", "searchForm") }
+				</c:if>
 			</div>
 			<div>
 				<c:set var="selectedSearchType" value="${ sessionScope._SEARCH_ART_.searchType }" />
@@ -89,10 +92,11 @@
 							<option value="title" ${ selectedSearchType eq "title" ? "selected" : "" }>제목  </option>
 							<option value="contents" ${ selectedSearchType eq "contents" ? "selected" : "" }>내용 </option>
 						</select>
-				<input type="text" id="searchKeyword" name="searchKeyword" value="${searchDTO.searchKeyword}" />
+			</div>
+				<input type="text" id="searchKeyword" name="searchKeyword" value="${ searchDTO.searchKeyword}" />
+				<input type="text" style="display: none;" />
 				<input type="button" id="searchBtn" class="btn btn-sm btn-primary" value="검색" />
 				<input type="button" id="initSearchBtn" class="btn btn-sm btn-primary" value="검색초기화" />
-			</div>
 		</form>
 	<br/>
 	<button type="button" id="writeBtn" class="btn btn-sm btn-primary">글쓰기 </button>

@@ -39,38 +39,31 @@ public class MainPageController {
 	}
 	
 	@RequestMapping("/mainPage")
-	public ModelAndView showArticleList(@RequestParam(required=false, defaultValue="0") int pageNo,	@RequestParam(required = false, defaultValue = "") String searchKeyword,
-			@RequestParam(required = false, defaultValue = "") String searchType, HttpSession session){
-		
+	public ModelAndView showArticleList(ArticleSearchDTO searchDTO, HttpSession session, @RequestParam(required = false, defaultValue = "0") int pageNo){
 		
 		ModelAndView view = new ModelAndView();
-		List<ArticleDTO> articleList = new ArrayList<ArticleDTO>(); 
-		ArticleListDTO articleListDTO = new ArticleListDTO();
-		Paging paging = new Paging();
+		searchDTO.setPageNo(pageNo);
 		
+		ArticleListDTO articleListDTO = new ArticleListDTO();
+		int totalArticleCount = articleService.getTotalArticleCount(searchDTO);
+		
+		Paging paging = new Paging();
+		paging.setTotalArticleCount(totalArticleCount);
 		paging.setPageNumber(pageNo + "");
 		
-		ArticleSearchDTO searchDTO = new ArticleSearchDTO();
 		searchDTO.setStartIndex(paging.getStartArticleNumber());
 		searchDTO.setEndIndex(paging.getEndArticleNumber());
-		searchDTO.setSearchKeyword(searchKeyword);
-		searchDTO.setSearchType(searchType);
 		
 		session.setAttribute("_SEARCH_ART_", searchDTO);
 		
-		int totalArticleCount = articleService.getTotalArticleCount(searchDTO);
-		paging.setTotalArticleCount(totalArticleCount);
 		
-		articleList = articleService.getAllArticleList(searchDTO);
+		List<ArticleDTO> articleList = articleService.getAllArticleList(searchDTO);
+		
 		articleListDTO.setArticleList(articleList);
 		articleListDTO.setPaging(paging);
 		
-		if ( session.getAttribute("_MEMBER_") == null ) {
-			view.setViewName("redirect:/errorPage");
-		}
-		else {
-			view.setViewName("article/mainPage");
-		}
+		
+		view.setViewName("article/mainPage");
 		view.addObject("articleListDTO", articleListDTO);
 		view.addObject("searchDTO", searchDTO);
 		
