@@ -1,35 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Main Page</title>
 </head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript">
+
 	$(document).ready( function() {
 		
 		$("#writeBtn").click(function() {
 			document.location.href = "<c:url value="/doWritePage" />";
 		});
 		
+		$("#logoutBtn").click(function() { 
+			document.location.href = "<c:url value="/logout"/>"; 
+		});
+		
+		$("#searchBtn").click(function(){
+			if( $("#searchKeyword").val() == "" ) {
+				alert("검색어를 입력하세요!");
+				return;
+			}
+			
+			/* $("#searchForm").attr("action", "<c:url value="/mainPage"/>");
+			$("#searchForm").attr("method", "POST");
+			$("#searchForm").submit(); */
+			
+			movePage('0');
+		});
+		
+		$("#initSearchBtn").click(function(){
+			location.href="<c:url value="/mainPage" />"
+		});
+		
 	});
 
 </script>
 <body>
-
-	<table border="1">
+	<div class="row" style="position: relative;left: 350px;top: 100px;" align="center">
+	<div class="col-md-6">
+	<table class="table">
+		<thead>
 		<tr>
-			<td>글번호 </td>
-			<td>제 목 </td>
-			<td>작성일 </td>
-			<td>조회수 </td>
-			<td>좋아요 </td>
-			<td>작성자 </td>
+			<th>글번호 </th>
+			<th>제 목 </th>
+			<th>좋아요 </th>
+			<th>작성자 </th>
+			<th>조회수 </th>
+			<th>작성일 </th>
 		</tr>
-		<c:forEach items="${articleList}" var="article">
+		</thead>
+		<c:forEach items="${articleListDTO.articleList}" var="article">
 		<tr>
 			<td>
 				${article.articleId}
@@ -39,17 +72,37 @@
 			${article.title}
 			</a>
 			</td>
-			<td>${article.writeDate}</td>
-			<td>${article.readsCount}</td>
 			<td>${article.likesCount}</td>
 			<td>${article.userName}</td>
+			<td>${article.readsCount}</td>
+			<td>${article.writeDate}</td>
 		</tr>
 		</c:forEach>
-		
-		
-		
-	</table>
-	<button type="submit" id="writeBtn">글쓰기 </button>
+		</table>
+		<form id="searchForm">
+			<div>
+				<c:if test="${ not empty articleListDTO }">
+					${articleListDTO.paging.getPagingList("pageNo", "[@]", "이전", "다음", "searchForm") }
+				</c:if>
+			</div>
+			<div>
+				<c:set var="selectedSearchType" value="${ sessionScope._SEARCH_ART_.searchType }" />
+						<select id="searchType" name="searchType" >
+							<option value="userName" ${ selectedSearchType eq "userName" ? "selected" : "" }>아이디 </option>
+							<option value="title" ${ selectedSearchType eq "title" ? "selected" : "" }>제목  </option>
+							<option value="contents" ${ selectedSearchType eq "contents" ? "selected" : "" }>내용 </option>
+						</select>
+			</div>
+				<input type="text" id="searchKeyword" name="searchKeyword" value="${ searchDTO.searchKeyword}" />
+				<input type="text" style="display: none;" />
+				<input type="button" id="searchBtn" class="btn btn-sm btn-primary" value="검색" />
+				<input type="button" id="initSearchBtn" class="btn btn-sm btn-primary" value="검색초기화" />
+		</form>
+	<br/>
+	<button type="button" id="writeBtn" class="btn btn-sm btn-primary">글쓰기 </button>
+	<button type="button" id="logoutBtn" class="btn btn-sm btn-primary">로그아웃 </button>
+	</div>
+	</div>
 
 </body>
 </html>

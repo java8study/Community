@@ -1,8 +1,6 @@
 package kr.co.study.board.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,15 +16,15 @@ public class ReplyServiceImpl implements ReplyService {
   @Autowired
   private ReplyDAO replyDAO;
   
-  @Autowired 
-  private BoardService boardService;
-  
+  @Autowired
+  private BoardDAO boardDAO;
+
   @Transactional
   @Override
   public void addReply(Reply vo) throws Exception {
-	
+
     replyDAO.create(vo);
-    boardService.updateReplyCnt(vo.getBno(), 1);
+    boardDAO.updateReplyCnt(vo.getBno(), 1);
   }
   
   @Transactional
@@ -35,7 +33,7 @@ public class ReplyServiceImpl implements ReplyService {
   
     int bno = replyDAO.getBno(rno);
     replyDAO.delete(rno);
-    boardService.updateReplyCnt(bno, -1);
+    boardDAO.updateReplyCnt(bno, -1);
   }   
 
 
@@ -55,18 +53,6 @@ public class ReplyServiceImpl implements ReplyService {
 
 
   @Override
-<<<<<<< HEAD
-  public List<Reply> listReplyPage(Integer bno, Criteria cri) 
-      throws Exception {
-	    Map<String, Object> paramMap = new HashMap<>();
-	    paramMap.put("bno", bno);
-	    paramMap.put("cri", cri);	  
-    return replyDAO.listPage(paramMap);
-  }
-
-  @Override
-=======
->>>>>>> jewel1609_2
   public int count(Integer bno) throws Exception {
 
     return replyDAO.count(bno);

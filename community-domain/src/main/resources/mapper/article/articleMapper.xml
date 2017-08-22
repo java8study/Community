@@ -23,32 +23,154 @@
 			CURDATE() )
 	</insert>
 	
-	<select id="getAllArticleList" resultType="kr.co.study.article.dto.ArticleDTO" >
-		SELECT ARTICLE_ID articleId,
-				USER_NAME userName,
-				TITLE title,
-				CONTENTS contents,
-				LIKES_COUNT likesCount,
-				READS_COUNT readsCount,
-				WRITE_DATE writeDate
-		FROM ARTICLE
+	<insert id="writeReplyByUserNameAndArticleId" parameterType="kr.co.study.article.dto.ReplyDTO">
+		INSERT INTO ARTICLE_REPLY	( 
+										REPLY_ID
+										, USER_NAME
+										, REPLY_CONTENTS
+										, REPLY_LIKES_COUNT
+										, REPLY_DISLIKES_COUNT
+										, ARTICLE_ID
+										, REPLY_WRITE_DATE
+									)
+		VALUES	(
+					(
+						SELECT MAX(R.REPLY_ID) + 1
+						FROM ARTICLE_REPLY R
+					)
+					, #{userName}
+					, #{replyContents}
+					, 0
+					, 0
+					, #{articleId}
+					, CURDATE()
+				)
+	</insert>
+	
+	<select id="getAllArticleList" parameterType="kr.co.study.article.dto.ArticleSearchDTO" resultType="kr.co.study.article.dto.ArticleDTO" >
+		SELECT 	A.ARTICLE_ID articleId,
+				A.USER_NAME userName,
+				A.TITLE title,
+				A.CONTENTS contents,
+				A.LIKES_COUNT likesCount,
+				A.READS_COUNT readsCount,
+				DATE_FORMAT(A.WRITE_DATE, '%Y-%m-%d') writeDate
+		FROM (
+					SELECT @ROWNUM := @ROWNUM + 1 AS RNUM
+							, ART.*
+					FROM  
+						(	
+							SELECT * 
+							FROM ARTICLE
+							<if test="searchType != null and searchType != ''">
+							<if test="searchType == 'userName'">
+							WHERE USER_NAME LIKE CONCAT('%', #{searchKeyword}, '%')
+							</if>
+							<if test="searchType == 'title'">
+							WHERE TITLE LIKE CONCAT('%', #{searchKeyword}, '%')
+							</if>
+							<if test="searchType == 'contents'">
+							WHERE CONTENTS LIKE CONCAT('%', #{searchKeyword}, '%')
+							</if>
+							</if>
+							ORDER BY ARTICLE_ID DESC
+						)	ART,
+					( SELECT @ROWNUM :=0 ) B
+				) A	
+		WHERE	A.RNUM BETWEEN #{startIndex} AND #{endIndex}; 
+		<!-- SELECT 	
+				A.ARTICLE_ID articleId,
+				A.USER_NAME userName,
+				A.TITLE title,
+				A.CONTENTS contents,
+				A.LIKES_COUNT likesCount,
+				A.READS_COUNT readsCount,
+				A.WRITE_DATE writeDate
+		FROM (
+					SELECT @ROWNUM := @ROWNUM + 1 AS RNUM
+							, ART.*
+					FROM  
+						(	
+							SELECT * 
+							FROM ARTICLE
+							<if test="searchType != null and searchType != ''">
+							<if test="searchType == 'userName'">
+							WHERE USER_NAME LIKE CONCAT('%', #{searchKeyword}, '%')
+							</if>
+							<if test="searchType == 'title'">
+							WHERE TITLE LIKE CONCAT('%', #{searchKeyword}, '%')
+							</if>
+							<if test="searchType == 'contents'">
+							WHERE CONTENTS LIKE CONCAT('%', #{searchKeyword}, '%')
+							</if>
+							</if>
+							ORDER BY ARTICLE_ID DESC
+						)	ART
+					WHERE @ROWNUM := @ROWNUM + 1 <![CDATA[<=]]> #{endIndex}
+				) A	
+		WHERE	A.RNUM <![CDATA[>=]]> #{startIndex} -->
 	</select>
 	
 	<select id="getOneArticleByArticleId" parameterType="int" resultType="kr.co.study.article.dto.ArticleDTO">
-		SELECT ARTICLE_ID articleId,
+		SELECT 	ARTICLE_ID articleId,
 				USER_NAME userName,
 				TITLE title,
 				CONTENTS contents,
 				LIKES_COUNT likesCount,
 				READS_COUNT readsCount,
-				WRITE_DATE writeDate
-		FROM ARTICLE
-		WHERE ARTICLE_ID = #{articleId}
+				DATE_FORMAT(WRITE_DATE, '%Y-%m-%d') writeDate
+		FROM 	ARTICLE
+		WHERE 	ARTICLE_ID = #{articleId}
+	</select>
+	
+	<select id="getTotalArticleCount" parameterType="kr.co.study.article.dto.ArticleSearchDTO" resultType="int">
+		SELECT	COUNT(ARTICLE_ID)
+		FROM	(
+					SELECT	ART.*
+					FROM 	( 
+								SELECT *
+								FROM ARTICLE
+								<if test="searchKeyword != null and searchType != null">
+								<if test="searchType == 'userName'">
+								WHERE USER_NAME LIKE CONCAT('%', #{searchKeyword}, '%')
+								</if>
+								<if test="searchType == 'title'">
+								WHERE TITLE LIKE CONCAT('%', #{searchKeyword}, '%')
+								</if>
+								<if test="searchType == 'contents'">
+								WHERE CONTENTS LIKE CONCAT('%', #{searchKeyword}, '%')
+								</if>
+								</if>
+								ORDER BY ARTICLE_ID DESC
+							) ART
+				) A
+	</select>
+	
+	<select id="viewReplyList" parameterType="int" resultType="kr.co.study.article.dto.ReplyDTO">
+		SELECT	REPLY_ID replyId
+				, USER_NAME userName
+				, REPLY_CONTENTS replyContents
+				, REPLY_LIKES_COUNT replyLikesCount
+				, REPLY_DISLIKES_COUNT replyDisLikesCount
+				, ARTICLE_ID articleId
+				, DATE_FORMAT(REPLY_WRITE_DATE, '%Y-%m-%d') replyWirteDate
+		FROM	ARTICLE_REPLY
+		WHERE	ARTICLE_ID = #{articleId}
 	</select>
 	
 	<delete id="deleteArticleByArticleId" parameterType="int">
 		DELETE FROM ARTICLE
 		WHERE ARTICLE_ID = #{ articleId }
+	</delete>
+	
+	<delete id="deleteRepliesByArticleId" parameterType="int">
+		DELETE	FROM	ARTICLE_REPLY
+		WHERE	ARTICLE_ID = #{ articleId }
+	</delete>
+	
+	<delete id="deleteReplyByReplyId" parameterType="int">
+		DELETE FROM ARTICLE_REPLY
+		WHERE REPLY_ID = #{replyId}
 	</delete>
 	
 	<update id="updateArticleByArticleDTO" parameterType="kr.co.study.article.dto.ArticleDTO">	
@@ -57,6 +179,20 @@
 		CONTENTS = #{contents}
 		WHERE ARTICLE_ID = #{articleId}
 	</update>
+	
+	<update id="readsCountUpByArticleId" parameterType="int">
+		UPDATE ARTICLE SET
+		READS_COUNT = READS_COUNT + 1
+		WHERE ARTICLE_ID = #{articleId}
+	</update>
+	
+	<update id="upLikesCount" parameterType="kr.co.study.article.dto.ArticleDTO">
+		UPDATE ARTICLE SET
+		LIKES_COUNT = LIKES_COUNT + 1
+		WHERE ARTICLE_ID = #{articleId}
+	</update>
+	
+	
 	
 
 </mapper>
