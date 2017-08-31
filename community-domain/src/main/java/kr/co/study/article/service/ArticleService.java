@@ -38,5 +38,9 @@ public interface ArticleService {
 
 	public String deleteReplyByReplyId(int replyId);
 
+	public String replyLikeUpByReplyId(int replyId);
+
+	public String replyDisLikeUpByReplyId(int replyId);
+
 	
 }

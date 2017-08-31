@@ -35,5 +35,15 @@ public interface ArticleRepository {
 	public void deleteRepliesByArticleId(int articleId);
 
 	public void deleteReplyByReplyId(int replyId);
+
+	public void replyLikeUpByReplyId(int replyId);
+
+	public String replyLikesCountByReplyId(int replyId);
+
+	public String showLikesCount(ArticleDTO articleDTO);
+
+	public void replyDisLikeUpByReplyId(int replyId);
+
+	public String replyDisLikesCountByReplyId(int replyId);
 	
 }

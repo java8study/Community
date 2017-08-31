@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
+<%@ include file="/WEB-INF/jsp/member/header.jsp"%>
 <html>
 <head>
 <link rel="stylesheet"
@@ -60,7 +61,7 @@
 			
 		</table>
 		<button type="button" id="writeBtn" class="btn btn-sm btn-primary">글쓰기</button> &nbsp;&nbsp;
-		<button type="button" id="cancelBtn" class="btn btn-sm btn-primary">취소</button>
+		<button type="button" id="cancelBtn" class="btn btn-sm btn-primary">취소 </button>
 		</div>
 		
 	</form>

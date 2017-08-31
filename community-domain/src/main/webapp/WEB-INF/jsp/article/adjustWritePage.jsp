@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
+<%@ include file="/WEB-INF/jsp/member/header.jsp"%>
 <html>
 <head>
 <link rel="stylesheet"
@@ -31,7 +32,7 @@
 <form:form commandName="articleDTO" method="post" action="/community-domain/doUpdate">
 	<div align="center" style="position: relative;left: 350px;top: 100px;">
 	<div class="col-md-5">
-	<table class="table">
+	<table class="1">
 		<tr>
 			<td>제목 </td>
 			<td> 

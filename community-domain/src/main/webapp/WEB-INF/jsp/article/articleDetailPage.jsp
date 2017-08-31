@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
+<%@ include file="/WEB-INF/jsp/member/header.jsp"%>
 <html>
 <head>
 <link rel="stylesheet"
@@ -21,7 +22,15 @@
 		
 		
 		$("#doDeleteBtn").click(function() {
-			document.location.href = "<c:url value="/doDeleteAction/${articleDTO.articleId}" />";
+			
+			if ( confirm ("정말 삭제하시겠습니까?") == true ) {
+				document.location.href = "<c:url value="/doDeleteAction/${articleDTO.articleId}" />";
+				alert("삭제했습니다!");
+			}
+			else {
+				return;
+			}
+			
 		}); 
 
 		$("#goListBtn").click(function() {
@@ -38,13 +47,7 @@
 				contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
 				data : params,
 				success: function(data){
-					if ( data.KEY == 'UP') {
-						location.reload();
-						alert("좋아요!!! ");
-					}
-					else if ( data.KEY == 'FAIL' ) {
-						alert("좋아요 실패!");
-					}
+					$('#likesCount').html(data.KEY);
  				},
 				error: function(request,status,error) {
 					alert("code:"+request.status+"\n"+"error:"+error);
@@ -87,6 +90,50 @@
 		});
 		
 	});
+	
+	function replyLikeUp(replyId) {
+		
+		var params = "replyId=" + replyId;
+		
+		var replyId = "replyLikesUp"+replyId;
+		
+		$.ajax({
+			url:"/community-domain/articleDetail/replyLikeUpByReplyId",
+			dataType:"json",
+			type:'POST',
+			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+			data : params,
+			success:function(data) { 
+				$("#"+replyId).html(data.KEY);
+			},
+			error: function(request,status,error) {
+				alert("code:"+request.status+"\n"+"error:"+error);
+			}
+		});
+		
+	}
+	
+	function replyDisLikeUp(replyId) {
+		
+		var params = "replyId=" + replyId;
+		
+		var replyId = "replyDisLikesUp"+replyId;
+		
+		$.ajax({
+			url:"/community-domain/articleDetail/replyDisLikeUpByReplyId",
+			dataType:"json",
+			type:'POST',
+			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+			data : params,
+			success:function(data) { 
+				$("#"+replyId).html(data.KEY);
+			},
+			error: function(request,status,error) {
+				alert("code:"+request.status+"\n"+"error:"+error);
+			}
+		});
+		
+	}
 	
 	function replyDeleteOpen(replyId) {
 		var msg = confirm("댓글을 삭제합니다.");
@@ -147,7 +194,8 @@
 			<td>
 			<div align="right"> 
 			${articleDTO.userName }, 
-			좋아요 : ${articleDTO.likesCount }
+			<span id="likeBtn" class= "glyphicon glyphicon-thumbs-up" ></span> : 
+			<div id="likesCount">${articleDTO.likesCount }</div>
 			</div>
 			</td>
 		</tr>
@@ -159,7 +207,7 @@
 	<button type="submit" id="editBtn" class="btn btn-sm btn-primary">수정하기</button>
 	<button type="button" id="goListBtn" class="btn btn-sm btn-primary">목록으로</button>
 	<button type="button" id="doDeleteBtn" class="btn btn-sm btn-primary">삭제 </button>
-	<button type="button" id="likeBtn" class="btn btn-sm btn-primary">좋아요!</button> <br/>
+	<br/>
 	</form:form>
 	<form id ="detailForm">
 	
@@ -169,10 +217,18 @@
 	<br/>
 	댓글 내용 : ${reply.replyContents}
 	<br/>
-	좋아요 : ${reply.replyLikesCount }
-	싫어요 : ${reply.replyDisLikesCount }
+	<div style="float: left;">
+	<span class= "glyphicon glyphicon-thumbs-up" onclick="replyLikeUp(${reply.replyId})" ></span> 
+	&nbsp; : </div> 
+	<div style="float: left;" id= "replyLikesUp${reply.replyId}">${reply.replyLikesCount }</div>
+	&nbsp;&nbsp;
+	
+	<div style="float: left;">
+	<span class= "glyphicon glyphicon-thumbs-down" onclick="replyDisLikeUp(${reply.replyId})"></span> 
+	&nbsp; : </div>
+	<div style = "float:left;" id = "replyDisLikesUp${reply.replyId}">${reply.replyDisLikesCount }</div>
 	<c:if test="${sessionScope._MEMBER_.userName eq reply.userName}">
-	<button type="button" name ="replyDeleteBtn" class="btn btn-sm btn-danger" onclick="replyDeleteOpen(${reply.replyId})">삭제 </button>
+	<button type="button" name ="replyDeleteBtn" class="btn btn-xs btn-danger" onclick="replyDeleteOpen(${reply.replyId})">삭제 </button>
 	</c:if>			
 	
 	<br/><br/>
@@ -180,7 +236,7 @@
 	내 닉네임 : ${ sessionScope._MEMBER_.userName} <br/>
 	<textarea id="replyContents" name="replyContents" cols="40" rows="3"></textarea>
 	<input type="hidden" name="articleId" value="${articleDTO.articleId}" />
-	<button type="submit" id="replyWirteBtn" class="btn btn-sm btn-primary">댓글 작성 </button>
+	<button type="button" id="replyWirteBtn" class="btn btn-sm btn-primary">댓글 작성 </button>
 	
 	</form>
 	</div>

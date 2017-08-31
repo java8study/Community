@@ -191,6 +191,36 @@
 		LIKES_COUNT = LIKES_COUNT + 1
 		WHERE ARTICLE_ID = #{articleId}
 	</update>
+
+	<select id="showLikesCount" parameterType="kr.co.study.article.dto.ArticleDTO" resultType="string">
+		SELECT LIKES_COUNT
+		FROM ARTICLE
+		WHERE ARTICLE_ID = #{articleId}
+	</select>
+	
+	<update id="replyLikeUpByReplyId" parameterType="int">
+		UPDATE ARTICLE_REPLY SET
+		REPLY_LIKES_COUNT = REPLY_LIKES_COUNT + 1
+		WHERE REPLY_ID = #{replyId}
+	</update>
+	
+	<update id="replyDisLikeUpByReplyId" parameterType="int">
+		UPDATE ARTICLE_REPLY SET
+		REPLY_DISLIKES_COUNT = REPLY_DISLIKES_COUNT + 1
+		WHERE REPLY_ID = #{replyId}
+	</update>
+	
+	<select id="replyLikesCountByReplyId" parameterType="int" resultType="string">
+		SELECT REPLY_LIKES_COUNT
+		FROM ARTICLE_REPLY
+		WHERE REPLY_ID = #{replyId}
+	</select>
+	
+	<select id="replyDisLikesCountByReplyId" parameterType="int" resultType="string">
+		SELECT REPLY_DISLIKES_COUNT
+		FROM ARTICLE_REPLY
+		WHERE REPLY_ID = #{replyId}
+	</select>
 	
 	
 	

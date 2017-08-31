@@ -5,10 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.junit.experimental.theories.suppliers.TestedOn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,7 +23,6 @@ import kr.co.study.article.dto.ReplyDTO;
 import kr.co.study.article.dto.ReplyListDTO;
 import kr.co.study.article.service.ArticleService;
 import kr.co.study.article.util.Paging;
-import kr.co.study.member.dto.MemberDTO;
 
 @Controller
 public class MainPageController {

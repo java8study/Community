@@ -103,9 +103,6 @@ public class WritePageController {
 	@RequestMapping(value = ("/articleDetail/deleteReplyByReplyId"), method = RequestMethod.POST)
 	public HashMap<String, Object> deleteReplyByReplyId(@RequestParam Map<String,Object> params ) {
 		
-		System.out.println(params);
-		
-		
 		int replyId = Integer.parseInt((String)params.get("replyId"));
 		
 		String replyStatus = articleService.deleteReplyByReplyId(replyId);
@@ -113,6 +110,38 @@ public class WritePageController {
 	    hashmap.put( "KEY", replyStatus );
 	    
 	    return hashmap;
+	}
+	
+	//댓글 좋아요 업!
+	@ResponseBody
+	@RequestMapping(value = ("/articleDetail/replyLikeUpByReplyId"), method = RequestMethod.POST)
+	public HashMap<String, Object> replyLikeUpByReplyId(@RequestParam Map<String,Object> params ) {
+		
+		System.out.println(params);
+		
+		int replyId = Integer.parseInt((String)params.get("replyId"));
+		
+		String status = articleService.replyLikeUpByReplyId(replyId);
+		HashMap<String, Object> hashmap = new HashMap<String, Object>();
+		hashmap.put("KEY", status);
+		
+		return hashmap;
+	}
+	
+	//댓글 싫어요 업! replyDisLikeUpByReplyId
+	@ResponseBody
+	@RequestMapping(value = ("/articleDetail/replyDisLikeUpByReplyId"), method = RequestMethod.POST)
+	public HashMap<String, Object> replyDisLikeUpByReplyId(@RequestParam Map<String,Object> params ) {
+		
+		System.out.println(params);
+		
+		int replyId = Integer.parseInt((String)params.get("replyId"));
+		
+		String status = articleService.replyDisLikeUpByReplyId(replyId);
+		HashMap<String, Object> hashmap = new HashMap<String, Object>();
+		hashmap.put("KEY", status);
+		
+		return hashmap;
 	}
 	
 }

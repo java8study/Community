@@ -85,7 +85,7 @@ public class ArticleServiceImpl implements ArticleService {
 		
 		articleRepository.upLikesCount(articleDTO);
 		
-		return "UP";
+		return articleRepository.showLikesCount(articleDTO);
 	}
 
 	@Override
@@ -114,6 +114,23 @@ public class ArticleServiceImpl implements ArticleService {
 		articleRepository.deleteReplyByReplyId(replyId);
 		
 		return "REPLY_DELETE";
+	}
+
+	@Override
+	public String replyLikeUpByReplyId(int replyId) {
+		// TODO Auto-generated method stub
+		articleRepository.replyLikeUpByReplyId(replyId);
+		
+		return articleRepository.replyLikesCountByReplyId(replyId);
+	}
+
+	@Override
+	public String replyDisLikeUpByReplyId(int replyId) {
+		// TODO Auto-generated method stub
+		
+		articleRepository.replyDisLikeUpByReplyId(replyId);
+		
+		return articleRepository.replyDisLikesCountByReplyId(replyId);
 	}
 
 

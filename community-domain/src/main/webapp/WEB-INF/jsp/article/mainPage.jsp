@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
+<%@ include file="/WEB-INF/jsp/member/header.jsp"%>
 <html>
 <head>
 <link rel="stylesheet"
@@ -49,7 +50,7 @@
 
 </script>
 <body>
-	<div class="row" style="position: relative;left: 350px;top: 100px;" align="center">
+	<div class="row" style="position: relative;left: 350px;top: 50px;" align="center">
 	<div class="col-md-6">
 	<table class="table">
 		<thead>
