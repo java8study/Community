@@ -43,22 +43,22 @@ SessionStatus
 public void hello(@RequestParam Charset charset, Model model){}
 ```
 
-    - 커스텀 프로퍼티 에디터
-        - 스프링이 디폴트로 등록해서 적용해주는 프로퍼티 에디터는 자바의 기본적인 타입 20여가지에 불과하다.
-        - 직접 정의한 타입으로 직접 바인딩을 하고 싶다면, 프로퍼티 에디터를 직접 작성하면된다.
-        - PropertyEditorSupport 재구현
-        - getAsTest(), setAsText(String text) Override
-    - @InitBinder
-        - 직접 정의한 커스텀 프로퍼티 에디터를 자동으로 바인딩 시키기 위해서는 Custom WebDataBinder를 등록시켜야 한다.
+- 커스텀 프로퍼티 에디터
+	- 스프링이 디폴트로 등록해서 적용해주는 프로퍼티 에디터는 자바의 기본적인 타입 20여가지에 불과하다.
+	- 직접 정의한 타입으로 직접 바인딩을 하고 싶다면, 프로퍼티 에디터를 직접 작성하면된다.
+	- PropertyEditorSupport 재구현
+	- getAsTest(), setAsText(String text) Override
+- @InitBinder
+	- 직접 정의한 커스텀 프로퍼티 에디터를 자동으로 바인딩 시키기 위해서는 Custom WebDataBinder를 등록시켜야 한다.
 ```
 @InitBinder
 public void initBinder(WebDataBinder dataBinder){
     dataBinder.registerCustomEditor(Level.class, new LevelPropertyEditor());
 }
-```   
-        - @InitBinder가 붙은 initBinder() 메소드는 메소드 파리미터를 바인딩하기 전에 자동으로 호출된다.
-        - WebDataBinder의 바인딩 적용 대상은 @RequestParam, @CookieValue, @RequestHeader, @PathVariable, @ModelAttribute
-        - @InitBinder 매소드는 싱글턴이 될 수 없다.
+```
+- @InitBinder가 붙은 initBinder() 메소드는 메소드 파리미터를 바인딩하기 전에 자동으로 호출된다.
+- WebDataBinder의 바인딩 적용 대상은 @RequestParam, @CookieValue, @RequestHeader, @PathVariable, @ModelAttribute
+- @InitBinder 매소드는 싱글턴이 될 수 없다.
 
 
 
