@@ -7,9 +7,8 @@ public void add(User user)
 user라는 이름으로 User오브젝트 return
 ```
 
-Map, ModelMap, Model 파라미터
-
-@ModelAttribute 메소드
+- Map, ModelMap, Model 파라미터
+- @ModelAttribute 메소드
 ```
 @ModelAttribute("codes")
 public List<Code> codes() {
@@ -17,22 +16,18 @@ public List<Code> codes() {
 }
 ```
 
-BindingResult
-ModelAndView
-String
-void 
+- BindingResult, ModelAndView, String, void
+ 
 ```
 public void hello(@RequestParam String name, Model model)
 ```
 
-모델 오브젝트
-Map/Model/ModelMap
-View
-@ResponseBody
+- View
+- @ResponseBody
     - String 타입을 지원하는 메세지 컨버터가 이를 변환해서 HttpServletResponse의 출력 스트림에 넣어버린다.
-@SessionAttributes 
+- @SessionAttributes 
     - Session에 정보 저장
-SessionStatus
+- SessionStatus
     - 현재 컨트롤러에 의해 세션에 저장된 정보를 모두 제거해준다.
 
 모델 바인딩과 검증
