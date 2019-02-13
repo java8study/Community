@@ -1,0 +1,6 @@
+rootProject.name = 'Community'
+include ':community-core'
+include ':community-domain'
+
+project(':community-core').projectDir = "$rootDir/community-core" as File
+project(':community-domain').projectDir = "$rootDir/community-domain" as File

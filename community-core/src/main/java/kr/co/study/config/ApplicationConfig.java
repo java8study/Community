@@ -10,10 +10,6 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @ComponentScan(value = "kr.co.study")
-@Import({
-	DatabaseConfig.class,
-	MybatisContext.class
-})
 public class ApplicationConfig {
 
 }
