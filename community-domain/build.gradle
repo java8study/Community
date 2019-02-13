@@ -1,10 +1,11 @@
 
-apply plugin: 'war'
+apply plugin: 'jar'
 
 description = 'community-domain'
 dependencies {
-    compile project(':community-core')
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version:'2.1.2.RELEASE'
+//    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version:'2.1.2.RELEASE'
+//    compile group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version:'2.1.2.RELEASE'
     compile group: 'org.webjars', name: 'bootstrap', version:'3.3.7'
     testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version:'2.1.2.RELEASE'
 }

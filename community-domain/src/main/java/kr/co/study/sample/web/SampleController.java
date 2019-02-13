@@ -1,26 +1,24 @@
 package kr.co.study.sample.web;
 
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpSession;
 
 /**
  * Created by coupang on 2017. 5. 26..
  */
-@Slf4j
-@Controller
+@RestController
 public class SampleController {
 
     // Login Page
-    @RequestMapping("loginForm.do")
+    @GetMapping("loginForm.do")
     public String loginForm() {
         return "loginForm";
     }
 
 
-    @RequestMapping("logout.do")
+    @GetMapping("logout.do")
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:loginForm.do";
