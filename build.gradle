@@ -11,13 +11,8 @@ subprojects {
   	options.encoding = 'UTF-8'
   }
 
-  
   repositories {
     mavenLocal()
     maven { url "http://repo.maven.apache.org/maven2" }
   }
-
-  
-  
-  
 }
