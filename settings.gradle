@@ -1,5 +1,8 @@
+//pluginManagement {
+//    repositories {
+//        gradlePluginPortal()
+//    }
+//}
 rootProject.name = 'Community'
 include ':community-domain'
-
-project(':community-domain').projectDir = "$rootDir/community-domain" as File
 

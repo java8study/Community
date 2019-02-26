@@ -1,18 +1,12 @@
-allprojects  {
-  group = 'community'
-version = '1.0.0-SNAPSHOT'
-}
+group = 'kr.co.study'
+version = '0.0.1-SNAPSHOT'
+
 
 subprojects {
   apply plugin: 'java'
   sourceCompatibility = 1.8
-  targetCompatibility = 1.8
-  tasks.withType(JavaCompile) {
-  	options.encoding = 'UTF-8'
-  }
 
-  repositories {
-    mavenLocal()
-    maven { url "http://repo.maven.apache.org/maven2" }
-  }
+    repositories {
+        mavenCentral()
+    }
 }
